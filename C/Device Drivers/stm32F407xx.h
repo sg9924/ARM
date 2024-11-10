@@ -431,7 +431,37 @@ typedef struct
 #define GPIOJ               ((GPIO_RegDef*)GPIOJ_BASE_ADDR)
 #define GPIOK               ((GPIO_RegDef*)GPIOK_BASE_ADDR)
 
+// RCC  Definition
+#define RCC                 ((RCC_RegDef*)RCC_BASE_ADDR)
 
+// EXTI Definition
+#define EXTI				((EXTI_RegDef*)EXTI_BASE_ADDR)
+
+// SYSCFG Definition
+#define SYSCFG				((SYSCFG_RegDef*)SYSCFG_BASE_ADDR)
+
+// SPI Definition
+#define SPI1  				((SPI_RegDef*)SPI1_BASE_ADDR)
+#define SPI2  				((SPI_RegDef*)SPI2_BASE_ADDR)
+#define SPI3  				((SPI_RegDef*)SPI3_BASE_ADDR)
+
+// I2C Definition
+#define I2C1  				((I2C_RegDef*)I2C1_BASE_ADDR)
+#define I2C2  				((I2C_RegDef*)I2C2_BASE_ADDR)
+#define I2C3  				((I2C_RegDef*)I2C3_BASE_ADDR)
+
+// USART Definition
+#define USART1  			((USART_RegDef*)USART1_BASE_ADDR)
+#define USART2  			((USART_RegDef*)USART2_BASE_ADDR)
+#define USART3  			((USART_RegDef*)USART3_BASE_ADDR)
+#define USART6  			((USART_RegDef*)USART6_BASE_ADDR)
+
+// UART Definition
+#define UART4  				((USART_RegDef*)UART4_BASE_ADDR)
+#define UART5  				((USART_RegDef*)UART5_BASE_ADDR)
+
+/********************************************* Peripheral Address Definitions End *********************************************/
+/*----------------------------------------------------------------------------------------------------------------------------*/
 
 
 
