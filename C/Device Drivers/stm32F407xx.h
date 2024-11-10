@@ -307,6 +307,22 @@ typedef struct
     volatile uint32_t AFR[2];       /*<Alternate Function -> Low Register: AFRL , High Register: AFRH><Address Offset: 0x00>*/
 }GPIO_RegDef;
 
+/*************************************** Peripheral Registers Definition Structures End ***************************************/
+/*----------------------------------------------------------------------------------------------------------------------------*/
+/******************************************** Peripheral Address Definitions Start ********************************************/
+
+// GPIO Port Definitions
+#define GPIOA               ((GPIO_RegDef*)GPIOA_BASE_ADDR)
+#define GPIOB               ((GPIO_RegDef*)GPIOB_BASE_ADDR)
+#define GPIOC               ((GPIO_RegDef*)GPIOC_BASE_ADDR)
+#define GPIOD               ((GPIO_RegDef*)GPIOD_BASE_ADDR)
+#define GPIOE               ((GPIO_RegDef*)GPIOE_BASE_ADDR)
+#define GPIOF               ((GPIO_RegDef*)GPIOF_BASE_ADDR)
+#define GPIOG               ((GPIO_RegDef*)GPIOG_BASE_ADDR)
+#define GPIOH               ((GPIO_RegDef*)GPIOH_BASE_ADDR)
+#define GPIOI               ((GPIO_RegDef*)GPIOI_BASE_ADDR)
+#define GPIOJ               ((GPIO_RegDef*)GPIOJ_BASE_ADDR)
+#define GPIOK               ((GPIO_RegDef*)GPIOK_BASE_ADDR)
 
 
 
