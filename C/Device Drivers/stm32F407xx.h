@@ -307,6 +307,113 @@ typedef struct
     volatile uint32_t AFR[2];       /*<Alternate Function -> Low Register: AFRL , High Register: AFRH><Address Offset: 0x00>*/
 }GPIO_RegDef;
 
+
+// RCC Register Definition Structure
+typedef struct
+{
+    volatile uint32_t CR;           /*<><Address Offset: 0x00>*/
+    volatile uint32_t PLLCFGR;      /*<><Address Offset: 0x00>*/
+    volatile uint32_t CFGR;         /*<><Address Offset: 0x00>*/
+    volatile uint32_t CIR;          /*<><Address Offset: 0x00>*/
+    volatile uint32_t AHB1RSTR;     /*<><Address Offset: 0x00>*/
+    volatile uint32_t AHB2RSTR;     /*<><Address Offset: 0x00>*/
+    volatile uint32_t AHB3RSTR;     /*<><Address Offset: 0x00>*/
+    uint32_t RESERVED0;             /*<!Reserved Memory - Cannot be used!><Address Offset: 0x00>*/
+    volatile uint32_t APB1RSTR;     /*<><Address Offset: 0x00>*/
+    volatile uint32_t APB2RSTR;     /*<><Address Offset: 0x00>*/
+    uint32_t RESERVED1[2];          /*<!Reserved Memory - Cannot be used!><Address Offset: 0x00>*/
+    volatile uint32_t AHB1ENR;      /*<><Address Offset: 0x00>*/
+    volatile uint32_t AHB2ENR;      /*<><Address Offset: 0x00>*/
+    volatile uint32_t AHB3ENR;      /*<><Address Offset: 0x00>*/
+    uint32_t RESERVED2;             /*<!Reserved Memory - Cannot be used!><Address Offset: 0x00>*/
+    volatile uint32_t APB1ENR;      /*<><Address Offset: 0x00>*/
+    volatile uint32_t APB2ENR;      /*<><Address Offset: 0x00>*/
+    uint32_t RESERVED3[2];          /*<!Reserved Memory - Cannot be used!><Address Offset: 0x00>*/
+    volatile uint32_t AHB1LPENR;    /*<><Address Offset: 0x00>*/
+    volatile uint32_t AHB2LPENR;    /*<><Address Offset: 0x00>*/
+    volatile uint32_t AHB3LPENR;    /*<><Address Offset: 0x00>*/
+    uint32_t RESERVED4;             /*<!Reserved Memory - Cannot be used!><Address Offset: 0x00>*/
+    volatile uint32_t APB1LPENR;    /*<><Address Offset: 0x00>*/
+    volatile uint32_t APB2LPENR;    /*<><Address Offset: 0x00>*/
+    uint32_t RESERVED5[2];          /*<!Reserved Memory - Cannot be used!><Address Offset: 0x00>*/
+    volatile uint32_t BDCR;         /*<><Address Offset: 0x00>*/
+    volatile uint32_t CSR;          /*<><Address Offset: 0x00>*/
+    uint32_t RESERVED6[2];          /*<!Reserved Memory - Cannot be used!><Address Offset: 0x00>*/
+    volatile uint32_t SSCGR;        /*<><Address Offset: 0x00>*/
+    volatile uint32_t PLLI2SCFGR;   /*<><Address Offset: 0x00>*/
+}RCC_RegDef;
+
+
+// EXTI Register Definition Structure
+typedef struct
+{
+    volatile uint32_t IMR;          /*<><Address offset: 0x00>*/
+    volatile uint32_t EMR;          /*<><Address offset: 0x00>*/
+    volatile uint32_t RTSR;         /*<><Address offset: 0x00>*/
+    volatile uint32_t FTSR;         /*<><Address offset: 0x00>*/
+    volatile uint32_t SWIER;        /*<><Address offset: 0x00>*/
+    volatile uint32_t PR;           /*<><Address offset: 0x00>*/
+}EXTI_RegDef;
+
+
+// SPI Register Definition Structure
+typedef struct
+{
+    volatile uint32_t CR1;          /*<><Address Offset: 0x00>*/
+    volatile uint32_t CR2;          /*<><Address Offset: 0x00>*/
+    volatile uint32_t SR;           /*<><Address Offset: 0x00>*/
+    volatile uint32_t DR;           /*<><Address Offset: 0x00>*/
+    volatile uint32_t CRCPR;        /*<><Address Offset: 0x00>*/
+    volatile uint32_t RXCRCR;       /*<><Address Offset: 0x00>*/
+    volatile uint32_t TXCRCR;       /*<><Address Offset: 0x00>*/
+    volatile uint32_t I2SCFGR;      /*<><Address Offset: 0x00>*/
+    volatile uint32_t I2SPR;        /*<><Address Offset: 0x00>*/
+}SPI_RegDef;
+
+
+// SYSCFG Register Definition Structure
+typedef struct
+{
+    volatile uint32_t MEMRMP;           /*<><Address offset: 0x00>*/
+    volatile uint32_t PMC;              /*<><Address offset: 0x00>*/
+    volatile uint32_t EXTICR[4];        /*<><Address offset: 0x00>*/
+    volatile uint32_t RESERVED1[2];     /*<!Reserved Memory - Cannot be used!><Address offset: 0x00>*/
+    volatile uint32_t CMPCR;            /*<><Address offset: 0x00>*/
+    volatile uint32_t RESERVED2[2];     /*<!Reserved Memory - Cannot be used!><Address offset: 0x00>*/
+    volatile uint32_t CFGR;             /*<><Address offset: 0x00>*/
+
+}SYSCFG_RegDef;
+
+
+// I2C Register Definition Structure
+typedef struct 
+{
+    volatile uint32_t CR1;              /*<><Address Offset: 0x00>*/
+    volatile uint32_t CR2;              /*<><Address Offset: 0x00>*/
+    volatile uint32_t OAR1;             /*<><Address Offset: 0x00>*/
+    volatile uint32_t OAR2;             /*<><Address Offset: 0x00>*/
+    volatile uint32_t DR;               /*<><Address Offset: 0x00>*/
+    volatile uint32_t SR1;              /*<><Address Offset: 0x00>*/
+    volatile uint32_t SR2;              /*<><Address Offset: 0x00>*/
+    volatile uint32_t CCR;              /*<><Address Offset: 0x00>*/
+    volatile uint32_t TRISE;            /*<><Address Offset: 0x00>*/
+    volatile uint32_t FLTR;             /*<><Address Offset: 0x00>*/
+
+}I2C_RegDef;
+
+
+// USART Register Definition Structure
+typedef struct
+{
+    volatile uint32_t SR;               /*<><Address Offset: 0x00>*/
+    volatile uint32_t DR;               /*<><Address Offset: 0x00>*/
+    volatile uint32_t BRR;              /*<><Address Offset: 0x00>*/
+    volatile uint32_t CR1;              /*<><Address Offset: 0x00>*/
+    volatile uint32_t CR2;              /*<><Address Offset: 0x00>*/
+    volatile uint32_t CR3;              /*<><Address Offset: 0x00>*/
+    volatile uint32_t GTPR;             /*<><Address Offset: 0x00>*/
+}USART_RegDef;
+
 /*************************************** Peripheral Registers Definition Structures End ***************************************/
 /*----------------------------------------------------------------------------------------------------------------------------*/
 /******************************************** Peripheral Address Definitions Start ********************************************/
