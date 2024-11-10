@@ -291,6 +291,21 @@
 #define USART_SR_CTS        			9
 /************************************ Peripheral Registers Bit Positions Definitions End ************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
+/************************************* Peripheral Registers Definition Structures Start *************************************/
+
+// GPIO Register Definition Structure
+typedef struct
+{
+    volatile uint32_t MODER;        /*<><Address Offset: 0x00>*/
+    volatile uint32_t OTYPER;       /*<><Address Offset: 0x00>*/
+    volatile uint32_t OSPEEDR;      /*<><Address Offset: 0x00>*/
+    volatile uint32_t PUPDR;        /*<><Address Offset: 0x00>*/
+    volatile uint32_t IDR;          /*<><Address Offset: 0x00>*/
+    volatile uint32_t ODR;          /*<><Address Offset: 0x00>*/
+    volatile uint32_t BSRR;         /*<><Address Offset: 0x00>*/
+    volatile uint32_t LCKR;         /*<><Address Offset: 0x00>*/
+    volatile uint32_t AFR[2];       /*<Alternate Function -> Low Register: AFRL , High Register: AFRH><Address Offset: 0x00>*/
+}GPIO_RegDef;
 
 
 
