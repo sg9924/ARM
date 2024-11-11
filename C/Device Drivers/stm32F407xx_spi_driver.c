@@ -1,5 +1,120 @@
 #include "stm32f407xx_spi_driver.h"
 
+//Helper Functions
+
+// SPI Close Transmission - Helper
+void SPI_CloseTransmisson(SPI_Handle *pSPIHandle)
+{
+	pSPIHandle->pSPIx->CR2 &= ~(1 << SPI_CR2_TXEIE);
+	pSPIHandle->pTxBuffer = NULL;
+	pSPIHandle->TxLen = 0;
+	pSPIHandle->TxState = SPI_READY;
+}
+
+
+// SPI Close Reception - Helper
+void SPI_CloseReception(SPI_Handle *pSPIHandle)
+{
+	pSPIHandle->pSPIx->CR2 &= ~(1 << SPI_CR2_RXNEIE);
+	pSPIHandle->pRxBuffer = NULL;
+	pSPIHandle->RxLen = 0;
+	pSPIHandle->RxState = SPI_READY;
+}
+
+
+// SPI TX Interrupt Handle - Helper
+static void  spi_txe_interrupt_handle(SPI_Handle *pSPIHandle)
+{
+	// check the DFF bit in CR1
+	if((pSPIHandle->pSPIx->CR1 & (1 << SPI_CR1_DFF)))
+	{
+		//16 bit DFF
+		//1. load the data in to the DR
+		pSPIHandle->pSPIx->DR = *((uint16_t*)pSPIHandle->pTxBuffer);
+		pSPIHandle->TxLen--;
+		pSPIHandle->TxLen--;
+		(uint16_t*)pSPIHandle->pTxBuffer++;
+	}else
+	{
+		//8 bit DFF
+		pSPIHandle->pSPIx->DR = *pSPIHandle->pTxBuffer;
+		pSPIHandle->TxLen--;
+		pSPIHandle->pTxBuffer++;
+	}
+
+	if(!(pSPIHandle->TxLen)) // if length of transmission data is  zero
+	{
+		//Close SPI Transmission
+		SPI_CloseTransmisson(pSPIHandle);
+
+		//This prevents interrupts from setting the TXE flag
+		SPI_ApplicationEventCallback(pSPIHandle,SPI_EVENT_TX_CMPLT);
+	}
+
+}
+
+
+// SPI Rx Interrupt Handle - Helper
+static void spi_rxne_interrupt_handle(SPI_Handle *pSPIHandle)
+{
+	// Check DFF bit in CR
+	if(pSPIHandle->pSPIx->CR1 & (1 << SPI_CR1_DFF))
+	{
+		//16 bit
+		*((uint16_t*)pSPIHandle->pRxBuffer) = (uint16_t) pSPIHandle->pSPIx->DR;
+		pSPIHandle->RxLen -= 2;
+		pSPIHandle->pRxBuffer++;
+		pSPIHandle->pRxBuffer++;
+
+	}else
+	{
+		//8 bit
+		*(pSPIHandle->pRxBuffer) = (uint8_t) pSPIHandle->pSPIx->DR;
+		pSPIHandle->RxLen--;
+		pSPIHandle->pRxBuffer++;
+	}
+
+	if(!(pSPIHandle->RxLen)) // if length of data to be recieved is zero
+	{
+		// Close SPI Reception
+		SPI_CloseReception(pSPIHandle);
+
+		//This prevents interrupts from setting the TXE flag
+		SPI_ApplicationEventCallback(pSPIHandle,SPI_EVENT_RX_CMPLT);
+	}
+}
+
+
+// SPI Overwrite Error Handle - Helper
+static void spi_ovr_err_interrupt_handle(SPI_Handle *pSPIHandle)
+{
+	uint8_t temp;
+
+	// Clear the OVR flag
+	if(pSPIHandle->TxState != SPI_BUSY_IN_TX)
+	{
+		temp = pSPIHandle->pSPIx->DR;
+		temp = pSPIHandle->pSPIx->SR;
+	}
+
+	(void) temp; //
+
+	// Inform the Application
+	SPI_ApplicationEventCallback(pSPIHandle,SPI_EVENT_OVR_ERR);
+}
+
+
+
+// SPI Clear OVR Flag - Helper
+void SPI_ClearOVRFlag(SPI_RegDef *pSPIx)
+{
+	uint8_t temp;
+	temp = pSPIx->DR;
+	temp = pSPIx->SR;
+	(void)temp; //
+}
+
+
 
 // SPI Clock Control
 void SPI_Clk_Enable(SPI_RegDef *pSPIx, uint8_t mode)
