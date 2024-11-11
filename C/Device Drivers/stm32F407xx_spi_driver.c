@@ -184,3 +184,59 @@ void SPI_ReceiveData(SPI_RegDef *pSPIx, uint8_t *pRxBuffer, uint32_t Len)
 			}
 		}
 }
+
+// SPI Interrupt Configuration
+void SPI_IRQInterruptConfig(uint8_t IRQNumber, uint8_t mode)
+{
+	// Enable the specified Interrupt Number
+	if(mode == ENABLE)
+	{
+		if(IRQNumber <= 31)
+		{
+			//program NVIC ISER0 register
+			*NVIC_ISER0 |= (1 << IRQNumber);
+
+		}else if(IRQNumber > 31 && IRQNumber < 64) //32 to 63
+		{
+			//program NVIC ISER1 register
+			*NVIC_ISER1 |= (1 << (IRQNumber % 32));
+		}
+		else if(IRQNumber >= 64 && IRQNumber < 96)
+		{
+			//program NVIC ISER2 register //64 to 95
+			*NVIC_ISER3 |= (1 << (IRQNumber % 64));
+		}
+	}else // Disable the specified Interrupt Number
+	{
+		if(IRQNumber <= 31)
+		{
+			//program NVIC ICER0 register
+			*NVIC_ICER0 |= (1 << IRQNumber);
+		}else if(IRQNumber > 31 && IRQNumber < 64)
+		{
+			//program NVIC ICER1 register
+			*NVIC_ICER1 |= (1 << (IRQNumber % 32));
+		}
+		else if(IRQNumber >= 6 && IRQNumber < 96)
+		{
+			//program NVIC ICER2 register
+			*NVIC_ICER3 |= (1 << (IRQNumber % 64));
+		}
+	}
+
+}
+
+
+
+// SPI Interrupt Priority Configuration
+void SPI_IRQPriorityConfig(uint8_t IRQNumber,uint32_t IRQPriority)
+{
+	// get IPR value
+	uint8_t iprx = IRQNumber/4; // get IPR Register no.
+	uint8_t iprx_section = IRQNumber %4; // get IPR register section no.
+
+	uint8_t shift_amount = (8 * iprx_section) + (8 - NO_PR_BITS_IMPLEMENTED); // calculate the configuration value for IPR (priority)
+
+	*(NVIC_PR_BASE_ADDR + iprx) |= (IRQPriority << shift_amount); // load the configurated value into the specified IPR section which sets the priority
+
+}
