@@ -57,8 +57,8 @@ void SPI_IRQHandling(SPI_Handle *pHandle);
 
 // Peripheral Control Functions
 void SPI_Enable(SPI_RegDef *pSPIx, uint8_t mode);
-void SPI_SSIConfig(SPI_RegDef *pSPIx, uint8_t EnOrDi);
-void SPI_SSOEConfig(SPI_RegDef *pSPIx, uint8_t EnOrDi);
+void SPI_SSIConfig(SPI_RegDef *pSPIx, uint8_t mode);
+void SPI_SSOEConfig(SPI_RegDef *pSPIx, uint8_t mode);
 uint8_t SPI_GetFlagStatus(SPI_RegDef *pSPIx , uint32_t FlagName);
 void SPI_ClearOVRFlag(SPI_RegDef *pSPIx);
 void SPI_CloseTransmisson(SPI_Handle *pSPIHandle);
