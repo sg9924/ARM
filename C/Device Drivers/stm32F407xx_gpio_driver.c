@@ -74,3 +74,93 @@ void GPIO_Clk_Enable(GPIO_RegDef* pGPIOx, uint8_t setup_mode)
 
 }
 
+// GPIO Initialisation & De-Initialisation
+void GPIO_Init(GPIO_Handle* pGPIOHandle)
+{
+	uint32_t temp=0; //temp register value
+
+	//1. enable the peripheral clock for GPIO
+	GPIO_Clk_Enable(pGPIOHandle->pGPIOx, ENABLE);
+
+	//2. configure the mode of GPIO pin
+	if(pGPIOHandle->GPIOx_PinConfig.PinMode <= GPIO_MODE_ANALOG)
+	{
+		//Non-Interrupt Mode
+		temp = (pGPIOHandle->GPIOx_PinConfig.PinMode << (2 * pGPIOHandle->GPIOx_PinConfig.PinNo)); //storing the configuration value in temp
+		pGPIOHandle->pGPIOx->MODER &= ~(0x3 << (2 * pGPIOHandle->GPIOx_PinConfig.PinNo)); 	//clearing the MODER register for the specified Pin no.
+		pGPIOHandle->pGPIOx->MODER |= temp; //setting
+
+	}else
+	{
+		//Interrupt Mode
+		//a. Configure Falling or Rising edge or both modes in EXTI
+		//b. Enable clock for SYSCFG
+		//c. Configure EXTICR in SYSCFG for GPIO Port Selection
+		//d. Enable EXTI Interrupt Delivery
+		//Note: EXTI doesn't need clock enable operation
+
+		if(pGPIOHandle->GPIOx_PinConfig.PinMode == GPIO_MODE_INTRPT_FE_TRIG) //Falling Edge Trigger Interrupt Mode Config
+		{
+			//1. Configure FTSR bit
+			EXTI->FTSR |= (1 << pGPIOHandle->GPIOx_PinConfig.PinNo);
+			//2. Clear RTSR bit
+			EXTI->RTSR &= ~(1 << pGPIOHandle->GPIOx_PinConfig.PinNo);
+
+		}else if (pGPIOHandle->GPIOx_PinConfig.PinMode == GPIO_MODE_INTRPT_RE_TRIG) //Rising Edge Trigger Interrupt Mode Config
+		{
+			//1. Configure RTSR bit
+			EXTI->RTSR |= (1 << pGPIOHandle->GPIOx_PinConfig.PinNo);
+			//2. Clear FTSR bit
+			EXTI->FTSR &= ~(1 << pGPIOHandle->GPIOx_PinConfig.PinNo);
+
+		}else if (pGPIOHandle->GPIOx_PinConfig.PinMode == GPIO_MODE_INTRPT_FERE_TRIG) //Falling & Rising Edge Trigger Interrupt Mode Config
+		{
+			//1. Configure RTSR bit
+			EXTI->RTSR |= (1 << pGPIOHandle->GPIOx_PinConfig.PinNo);
+			//2. Configure FTSR bit
+			EXTI->FTSR |= (1 << pGPIOHandle->GPIOx_PinConfig.PinNo);
+		}
+
+		//configure the GPIO port selection in SYSCFG_EXTICR
+		uint8_t temp1 = pGPIOHandle->GPIOx_PinConfig.PinNo/4; //get EXTICR Register number
+		uint8_t temp2 = pGPIOHandle->GPIOx_PinConfig.PinNo%4; //get bit no. of the EXTICR register
+		uint8_t portcode = GPIO_BASEADDR_TO_CODE(pGPIOHandle->pGPIOx); //get the corresponding code of the specified GPIO port
+		SYSCFG_PCLK_EN(); // Enable Clock for SYSCFG Peripheral
+		if(temp2<=4)
+		SYSCFG->EXTICR[temp1] |= portcode << (temp2 * 4); //set the configuration value in EXITCRx register
+		else
+		printf("\nIncorrect Pin Number!");
+
+		//enable EXTI Interrupt Delivery
+		EXTI->IMR |= 1 << pGPIOHandle->GPIOx_PinConfig.PinNo;
+	}
+
+	//3. configure the speed
+	temp = (pGPIOHandle->GPIOx_PinConfig.PinSpeed << (2 * pGPIOHandle->GPIOx_PinConfig.PinNo));
+	pGPIOHandle->pGPIOx->OSPEEDR &= ~(0x3 << (2 * pGPIOHandle->GPIOx_PinConfig.PinNo)); //clearing the OSPEEDR register for the specified Pin no.
+	pGPIOHandle->pGPIOx->OSPEEDR |= temp; //setting
+
+	//4. configure the Pull up Pull Down settings
+	temp = (pGPIOHandle->GPIOx_PinConfig.PinPUPDCtrl << (2 * pGPIOHandle->GPIOx_PinConfig.PinNo));
+	pGPIOHandle->pGPIOx->PUPDR &= ~(0x3 << (2 * pGPIOHandle->GPIOx_PinConfig.PinNo)); //clearing the PUPDR register for the specified Pin no.
+	pGPIOHandle->pGPIOx->PUPDR |= temp; //setting
+
+
+	//5. configure the Output Type (Push Pull / Open Drain)
+	temp = (pGPIOHandle->GPIOx_PinConfig.PinOPType << pGPIOHandle->GPIOx_PinConfig.PinNo);
+	pGPIOHandle->pGPIOx->OTYPER &= ~(0x1 << pGPIOHandle->GPIOx_PinConfig.PinNo); //clearing the OTYPER register for the specified Pin no.
+	pGPIOHandle->pGPIOx->OTYPER |= temp; //setting
+
+	//6. configure Alternate Functionality
+	if(pGPIOHandle->GPIOx_PinConfig.PinMode == GPIO_MODE_ALTFUN)
+	{
+		//configure the alt function registers
+		uint8_t temp1, temp2;
+
+		temp1 = pGPIOHandle->GPIOx_PinConfig.PinNo/8; //get the alternate function register no (2 in total)
+		temp2 = pGPIOHandle->GPIOx_PinConfig.PinNo%8; //get the section no of the alt func register
+		pGPIOHandle->pGPIOx->AFR[temp1] &= ~(0xF << (4 * temp2)); //clearing the AFR[1:0] register for the specified Pin no.
+		pGPIOHandle->pGPIOx->AFR[temp1] |= (pGPIOHandle->GPIOx_PinConfig.PinAltFuncMode<<(4*temp2)); //setting
+	}
+
+}
