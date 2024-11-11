@@ -56,4 +56,30 @@
 /*************************************************** GPIO Definitions End ***************************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
+
+/********************************************* GPIO Structure Definitions Start *********************************************/
+
+//GPIO Pin Configuration Structure
+typedef struct
+{
+    uint8_t PinNo;                          /*<>*/
+    uint8_t PinMode;                        /*<>*/
+    uint8_t PinSpeed;                       /*<>*/
+    uint8_t PinPUPDCtrl;                    /*<>*/
+    uint8_t PinOPType;                      /*<>*/
+    uint8_t PinAltFuncMode;                 /*<>*/
+
+}GPIO_PinConfig;
+
+
+// GPIO Handler Structure
+typedef struct
+{
+    GPIO_RegDef    *pGPIOx;                 /*<>*/
+    GPIO_PinConfig  GPIOx_PinConfig;        /*<>*/
+}GPIO_Handle;
+
+/********************************************** GPIO Structure Definitions End **********************************************/
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
 #endif /* INC_STM32F407XX_GPIO_DRIVER_H */
