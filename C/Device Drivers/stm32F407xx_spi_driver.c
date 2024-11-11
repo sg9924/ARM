@@ -285,3 +285,45 @@ uint8_t SPI_ReceiveDataIT(SPI_Handle *pSPIHandle, uint8_t *pRxBuffer, uint32_t L
 	}
 	return state;
 }
+
+
+// SPI Interrupt Handler
+void SPI_IRQHandling(SPI_Handle *pHandle)
+{
+
+	uint8_t temp1 , temp2;
+	
+	// Check for TXE
+	// check TXE Flag whether the Buffer is empty
+	temp1 = pHandle->pSPIx->SR & (1 << SPI_SR_TXE);
+	// check if Interrupt is enabled for Tx
+	temp2 = pHandle->pSPIx->CR2 & (1 << SPI_CR2_TXEIE);
+
+	if(temp1 && temp2) // if both TXE and TXE are valid
+	{
+		// handle TXE (Helper Function)
+		spi_txe_interrupt_handle(pHandle);
+	}
+
+	// Check for RXNE
+	// check RXNE Flag to receive data
+	temp1 = pHandle->pSPIx->SR & (1 << SPI_SR_RXNE);
+	// check if Interrupt is enabled for Rx
+	temp2 = pHandle->pSPIx->CR2 & (1 << SPI_CR2_RXNEIE);
+
+	if(temp1 && temp2) // if both RXNE and RXNEIE are valid
+	{
+		//  handle RXNE (Helper Function)
+		spi_rxne_interrupt_handle(pHandle);
+	}
+
+	// check for OVR flag
+	temp1 = pHandle->pSPIx->SR & (1 << SPI_SR_OVR);
+	temp2 = pHandle->pSPIx->CR2 & (1 << SPI_CR2_ERRIE);
+
+	if(temp1 && temp2)
+	{
+		// handle OVR error (Helper Function)
+		spi_ovr_err_interrupt_handle(pHandle);
+	}
+}
