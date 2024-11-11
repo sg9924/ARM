@@ -101,6 +101,43 @@ typedef struct
 
 /*************************************************** USART Definitions End **************************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
+/******************************************** USART Functions Declarations Start *********************************************/
+
+// USART Peripheral CLock Enable
+void USART_CLkEable(USART_RegDef *pUSARTx, uint8_t mode);
+
+// USART Intialization & De-Intialization
+void USART_Init(USART_Handle *pUSARTHandle);
+void USART_DeInit(USART_Handle *pUSARTHandle);
+
+
+// USART - Send & Receive Data
+void USART_SendData(USART_Handle *pUSARTHandle, uint8_t *pTxBuffer, uint32_t Len);
+void  USART_ReceiveData(USART_Handle *pUSARTHandle,uint8_t *pRxBuffer, uint32_t Len);
+
+
+// USART - Send & receive Data for Interrupt
+uint8_t USART_SendDataIT(USART_Handle *pUSARTHandle,uint8_t *pTxBuffer, uint32_t Len);
+uint8_t USART_ReceiveDataIT(USART_Handle *pUSARTHandle,uint8_t *pRxBuffer, uint32_t Len);
+
+
+// USART - Interrupt Config
+void USART_IRQInterruptConfig(uint8_t IRQNumber, uint8_t mode);
+void USART_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority);
+void USART_IRQHandling(USART_Handle *pUSARTHandle);
+
+
+uint8_t USART_GetFlagStatus(USART_RegDef *pUSARTx, uint8_t StatusFlagName);
+void USART_ClearFlag(USART_RegDef *pUSARTx, uint16_t StatusFlagName);
+void USART_PeripheralControl(USART_RegDef *pUSARTx, uint8_t mode);
+void USART_SetBaudRate(USART_RegDef *pUSARTx, uint32_t BaudRate);
+
+
+//Application Callback
+void USART_ApplicationEventCallback(USART_Handle *pUSARTHandle,uint8_t ApEv);
+
+/********************************************** USART Function Declarations End **********************************************/
+/*--------------------------------------------------------------------------------------------------------------------------*/
 
 
 #endif /* STM32F446X_UART_DRIVER_H_ */
