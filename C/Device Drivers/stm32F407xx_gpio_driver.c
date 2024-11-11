@@ -216,3 +216,66 @@ void GPIO_WriteOpPort(GPIO_RegDef* pGPIOx, uint16_t value)
 {
 	pGPIOx->ODR  = value; // write value (16 bits) to entire port
 }
+
+// GPIO Toggle Output
+void GPIO_OpToggle(GPIO_RegDef* pGPIOx, uint8_t pin_no)
+{
+	pGPIOx->ODR  ^= (1<<pin_no); // toggle the bit value for the specified GPIO pin
+}
+
+
+// GPIO Interrupt Number Configuration
+void GPIO_IRQInterruptConfig(uint8_t IRQNumber, uint8_t mode)
+{
+
+	if(mode == ENABLE)
+	{
+		// Interrupt Set Enable
+		if(IRQNumber <= 31)
+		{
+			//configure ISER0 register for 1 to 31
+			*NVIC_ISER0 |= (1 << IRQNumber);
+
+		}else if(IRQNumber>31 && IRQNumber<64)
+		{
+			//configure ISER1 for 32 to 63
+			*NVIC_ISER1 |= (1 << (IRQNumber % 32));
+		}
+		else if(IRQNumber>=64 && IRQNumber<96)
+		{
+			//configure ISER2 for 64 to 95
+			*NVIC_ISER2 |= (1 << (IRQNumber % 64));
+		}
+	}else
+	{
+		// Interrupt Clear Enable
+		if(IRQNumber <= 31)
+		{
+			//configure ICER0 for 1 to 31
+			*NVIC_ICER0 |= (1 << IRQNumber);
+		}else if(IRQNumber>31 && IRQNumber<64)
+		{
+			//configure ICER1 for 32 to 63
+			*NVIC_ICER1 |= (1 << (IRQNumber % 32));
+		}
+		else if(IRQNumber>=64 && IRQNumber<96)
+		{
+			//configure ICER2 for 64 to 95
+			*NVIC_ICER2 |= (1 << (IRQNumber % 64));
+		}
+	}
+}
+
+
+// GPIO Interrupt Priority Config (Optional in case of single interrupts)
+void GPIO_IRQPriorityConfig(uint8_t IRQNumber,uint32_t IRQPriority)
+{
+	//configure IPR
+	uint8_t iprx = IRQNumber/4; // get IPR register no.
+	uint8_t iprx_section = IRQNumber%4 ; // get the section no. of the IPRx register
+
+	uint8_t shift_amount = (8*iprx_section) + (8-NO_PR_BITS_IMPLEMENTED); // frame the config value
+
+	*(NVIC_PR_BASE_ADDR+iprx) |= (IRQPriority<<shift_amount); // load the config value into the required section of the IPRx register
+
+}
