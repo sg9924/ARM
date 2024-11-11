@@ -186,3 +186,33 @@ void GPIO_DeInit(GPIO_RegDef* pGPIOx)
 	else if (pGPIOx == GPIOI)
 		GPIOI_REG_RESET();
 }
+
+// GPIO Read & Write
+// GPIO Read & Write from & to Pin
+uint8_t GPIO_ReadIpPin(GPIO_RegDef* pGPIOx, uint8_t pin_no)
+{
+   uint8_t value;
+   value = (uint8_t)((pGPIOx->IDR >> pin_no) & 0x00000001); // the IDR data can be accessed in word mode only
+   return value;
+}
+
+void GPIO_WriteOpPin(GPIO_RegDef* pGPIOx, uint8_t pin_no, uint8_t value)
+{
+	if(value == GPIO_PIN_SET)
+		pGPIOx->ODR |= (1<<pin_no); // setting output bit to 1
+	else
+		pGPIOx->ODR &= ~(1<<pin_no); // clearing output bit to 0
+}
+
+// GPIO Read & Write from & to Port
+uint16_t GPIO_ReadIpPort(GPIO_RegDef* pGPIOx)
+{
+	uint16_t value;
+	value = (uint16_t)pGPIOx->IDR;// read entire port value (16 bits)
+	return value;
+}
+
+void GPIO_WriteOpPort(GPIO_RegDef* pGPIOx, uint16_t value)
+{
+	pGPIOx->ODR  = value; // write value (16 bits) to entire port
+}
