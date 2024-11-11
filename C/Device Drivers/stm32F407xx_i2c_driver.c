@@ -810,3 +810,13 @@ void I2C_ER_IRQHandling(I2C_Handle *pI2CHandle)
 		I2C_ApplicationEventCallback(pI2CHandle,I2C_ERROR_TIMEOUT);
 	}
 }
+
+
+// I2C - Application Event CallBack
+__attribute__((weak)) I2C_ApplicationEventCallback(I2C_Handle *pI2CHandle,uint8_t AppEv)
+{
+	// weak implementation
+}
+
+/************************************************ I2C API's Definitions End *************************************************/
+/*--------------------------------------------------------------------------------------------------------------------------*/
