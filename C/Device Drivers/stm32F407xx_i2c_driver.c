@@ -470,3 +470,98 @@ uint8_t I2C_MasterReceiveDataIT(I2C_Handle *pI2CHandle,uint8_t *pRxBuffer, uint8
 
 	return busystate;
 }
+
+
+// I2C - Master: Handle Interrupt for TXE
+static void I2C_MasterHandleTXEInterrupt(I2C_Handle *pI2CHandle)
+{
+	// data length greater than 0
+	if(pI2CHandle->TxLen > 0)
+	{
+		//1. load the data into DR
+		pI2CHandle->pI2Cx->DR = *(pI2CHandle->pTxBuffer);
+
+		//2. decrement TxLen
+		pI2CHandle->TxLen--;
+
+		//3. Increment buffer address
+		pI2CHandle->pTxBuffer++;
+
+	}
+}
+
+
+// I2C - Master: Handle Interrupt for RXNE
+static void I2C_MasterHandleRXNEInterrupt(I2C_Handle *pI2CHandle)
+{
+	//when data length is 1
+	if(pI2CHandle->RxSize == 1)
+	{
+		// read data from DR
+		*pI2CHandle->pRxBuffer = pI2CHandle->pI2Cx->DR;
+
+		// decrement data length
+		pI2CHandle->RxLen--;
+
+	}
+
+
+	//when data length is greater than 1
+	if(pI2CHandle->RxSize > 1)
+	{
+		if(pI2CHandle->RxLen == 2) // if data length is 2
+		{
+			//clear ACK
+			I2C_ManageAcking(pI2CHandle->pI2Cx,DISABLE);
+		}
+
+			//read data from DR
+			*pI2CHandle->pRxBuffer = pI2CHandle->pI2Cx->DR;
+
+			//increment buffer address
+			pI2CHandle->pRxBuffer++;
+
+			// dcrement data length
+			pI2CHandle->RxLen--;
+	}
+
+	//when data length is 0
+	if(pI2CHandle->RxLen == 0)
+	{
+		//close the I2C data reception and notify the application
+
+		//1. generate stop condition
+		if(pI2CHandle->Sr == I2C_DISABLE_SR) // if repeated start is not enabled
+			I2C_GenerateStopCondition(pI2CHandle->pI2Cx);
+
+		//2. Close I2C RX
+		I2C_CloseReceiveData(pI2CHandle);
+
+		//3. Notify the Application
+		I2C_ApplicationEventCallback(pI2CHandle,I2C_EV_RX_CMPLT);
+	}
+}
+
+
+// I2C - Interrupt: Close Data Reception
+void I2C_CloseReceiveData(I2C_Handle *pI2CHandle)
+{
+	//Disable ITBUFEN Control Bit
+	pI2CHandle->pI2Cx->CR2 &= ~(1<<I2C_CR2_ITBUFEN);
+
+	//Disable ITEVFEN Control Bit
+	pI2CHandle->pI2Cx->CR2 &= ~(1<<I2C_CR2_ITEVTEN);
+
+	// Reset the values for the next I2C Transaction
+	pI2CHandle->TxRxState = I2C_READY;
+	pI2CHandle->pRxBuffer = NULL;
+	pI2CHandle->RxLen = 0;
+	pI2CHandle->RxSize = 0;
+
+	//Re-Enable ACK for next I2C Transaction
+	if(pI2CHandle->I2C_Config.I2C_AckControl == I2C_ACK_ENABLE)
+	{
+		I2C_ManageAcking(pI2CHandle->pI2Cx,ENABLE);
+	}
+
+}
