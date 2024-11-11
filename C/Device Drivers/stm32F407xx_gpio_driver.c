@@ -279,3 +279,17 @@ void GPIO_IRQPriorityConfig(uint8_t IRQNumber,uint32_t IRQPriority)
 	*(NVIC_PR_BASE_ADDR+iprx) |= (IRQPriority<<shift_amount); // load the config value into the required section of the IPRx register
 
 }
+
+// GPIO Interrupt Handling
+void GPIO_IRQHandling(uint8_t PinNumber)
+{
+	
+	if(EXTI->PR & (1 << PinNumber)) // If the PR register is set for the Pin Number,
+	{
+		//clear the EXTI PR register for the specified Pin Number
+		EXTI->PR |= (1 << PinNumber);
+	}
+
+}
+/*********************************************** GPIO API's Definitions Start ***********************************************/
+/*--------------------------------------------------------------------------------------------------------------------------*/
