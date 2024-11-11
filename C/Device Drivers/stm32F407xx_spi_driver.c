@@ -240,3 +240,48 @@ void SPI_IRQPriorityConfig(uint8_t IRQNumber,uint32_t IRQPriority)
 	*(NVIC_PR_BASE_ADDR + iprx) |= (IRQPriority << shift_amount); // load the configurated value into the specified IPR section which sets the priority
 
 }
+
+// SPI Send Data for Interrupt
+uint8_t SPI_SendDataIT(SPI_Handle *pSPIHandle,uint8_t *pTxBuffer, uint32_t Len)
+{
+	// Get the state of the Transmitter
+	uint8_t state = pSPIHandle->TxState;
+
+	if(state != SPI_BUSY_IN_TX) // if Tx state is not busy
+	{
+		//1. Get the TX Buffer address and length of the data to be sent 
+		pSPIHandle->pTxBuffer = pTxBuffer;
+		pSPIHandle->TxLen = Len;
+
+		//2. Mark SPI state as busy to prevent other codes from taking over the SPI until the transmission is over
+		pSPIHandle->TxState = SPI_BUSY_IN_TX;
+
+		//3. Enable the TXEIE to get interrupt whenever TXE flag is set in SR
+		pSPIHandle->pSPIx->CR2 |= (1 << SPI_CR2_TXEIE);
+	}
+	
+	return state;
+}
+
+
+// SPI Receive Data for Interrupt
+uint8_t SPI_ReceiveDataIT(SPI_Handle *pSPIHandle, uint8_t *pRxBuffer, uint32_t Len)
+{
+	// Get state of the Receiver
+	uint8_t state = pSPIHandle->RxState;
+
+	if(state != SPI_BUSY_IN_RX) // if receiver is not busy
+	{
+		//1. Save the Rx buffer address and Len information in some global variables
+		pSPIHandle->pRxBuffer = pRxBuffer;
+		pSPIHandle->RxLen = Len;
+
+		//2. Mark the SPI state as busy in reception so that no other code can take over same SPI peripheral until reception is over
+		pSPIHandle->RxState = SPI_BUSY_IN_RX;
+
+		//3. Enable the RXNEIE control bit to get interrupt whenever RXNEIE flag is set in SR
+		pSPIHandle->pSPIx->CR2 |= (1 << SPI_CR2_RXNEIE);
+
+	}
+	return state;
+}
