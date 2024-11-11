@@ -406,3 +406,67 @@ void I2C_IRQPriorityConfig(uint8_t IRQNumber,uint32_t IRQPriority)
 	*(NVIC_PR_BASE_ADDR + iprx) |=  (IRQPriority<<shift_amount); // load the value into the register setion
 
 }
+
+
+// I2C - Master: Send Data for Interrupt
+uint8_t I2C_MasterSendDataIT(I2C_Handle *pI2CHandle,uint8_t *pTxBuffer, uint32_t Len, uint8_t SlaveAddr,uint8_t Sr)
+{
+	uint8_t busystate = pI2CHandle->TxRxState;
+
+	// I2C must not be busy in TX and RX
+	if((busystate != I2C_BUSY_IN_TX) && (busystate != I2C_BUSY_IN_RX))
+	{
+		pI2CHandle->pTxBuffer = pTxBuffer; // load data buffer address
+		pI2CHandle->TxLen = Len; // load data length
+		pI2CHandle->TxRxState = I2C_BUSY_IN_TX; // set state as busy in TX
+		pI2CHandle->DevAddr = SlaveAddr; //load Slave Address
+		pI2CHandle->Sr = Sr; // load Repeated Start mode value
+
+		//Generate Start Condition
+		I2C_GenerateStartCondition(pI2CHandle->pI2Cx);
+
+		//Enable ITBUFEN Control Bit
+		pI2CHandle->pI2Cx->CR2 |= (1<<I2C_CR2_ITBUFEN);
+
+		//Enable ITEVFEN Control Bit
+		pI2CHandle->pI2Cx->CR2 |= (1<<I2C_CR2_ITEVTEN);
+
+		//Enable ITERREN Control Bit
+		pI2CHandle->pI2Cx->CR2 |= (1<<I2C_CR2_ITERREN);
+
+	}
+
+	return busystate;
+}
+
+
+// I2C - Master: Receive Data for Interrupt
+uint8_t I2C_MasterReceiveDataIT(I2C_Handle *pI2CHandle,uint8_t *pRxBuffer, uint8_t Len, uint8_t SlaveAddr,uint8_t Sr)
+{
+	uint8_t busystate = pI2CHandle->TxRxState;
+
+	//I2C must not be busy in both TX and RX
+	if((busystate != I2C_BUSY_IN_TX) && (busystate != I2C_BUSY_IN_RX))
+	{
+		pI2CHandle->pRxBuffer = pRxBuffer; // load buffer address
+		pI2CHandle->RxLen = Len; // load data length
+		pI2CHandle->TxRxState = I2C_BUSY_IN_RX; // set state as busy in RX
+		pI2CHandle->RxSize = Len; // load data length
+		pI2CHandle->DevAddr = SlaveAddr; // load slave address
+		pI2CHandle->Sr = Sr; // load repeated start mode value
+
+		//Generate START Condition
+		I2C_GenerateStartCondition(pI2CHandle->pI2Cx);
+
+		//Enable ITBUFEN Control Bit
+		pI2CHandle->pI2Cx->CR2 |= (1<<I2C_CR2_ITBUFEN);
+
+		//Enable ITEVFEN Control Bit
+		pI2CHandle->pI2Cx->CR2 |= (1<<I2C_CR2_ITEVTEN);
+
+		//Enable ITERREN Control Bit
+		pI2CHandle->pI2Cx->CR2 |= (1<<I2C_CR2_ITERREN);
+	}
+
+	return busystate;
+}
