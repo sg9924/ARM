@@ -127,3 +127,60 @@ uint8_t SPI_GetFlagStatus(SPI_RegDef *pSPIx , uint32_t Flag)
 	return FLAG_RESET;
 }
 
+
+// SPI Send Data
+void SPI_SendData(SPI_RegDef *pSPIx,uint8_t *pTxBuffer, uint32_t Len)
+{
+	while(Len > 0)
+	{
+		//1. check for TXE Flag whether data can be sent (Wait until TXE Flag becomes 1)
+		while(SPI_GetFlagStatus(pSPIx,SPI_TXE_FLAG)  == FLAG_RESET);
+
+		//2. check the DFF bit in CR1
+		if((pSPIx->CR1 & (1 << SPI_CR1_DFF)))
+		{
+			//16 bit DFF
+			//load the data into the Data Register
+			pSPIx->DR = *((uint16_t*)pTxBuffer);
+			Len--;
+			Len--;
+			(uint16_t*)pTxBuffer++;
+		}else
+		{
+			//8 bit DFF
+            //load the data into the Data Register
+			pSPIx->DR = *pTxBuffer;
+			Len--;
+			pTxBuffer++;
+		}
+	}
+}
+
+
+// SPI Receive Data
+void SPI_ReceiveData(SPI_RegDef *pSPIx, uint8_t *pRxBuffer, uint32_t Len)
+{
+	while(Len > 0)
+		{
+			//1. wait until RXNE is set (RXNE should be 0)
+			while(SPI_GetFlagStatus(pSPIx,SPI_RXNE_FLAG)  == (uint8_t)FLAG_RESET);
+
+			//2. check the DFF bit in CR1
+			if((pSPIx->CR1 & (1 << SPI_CR1_DFF)))
+			{
+				//16 bit DFF
+				//load the data from DR to Rxbuffer address
+				 *((uint16_t*)pRxBuffer) = pSPIx->DR ;
+				Len--;
+				Len--;
+				(uint16_t*)pRxBuffer++;
+			}else
+			{
+				//8 bit DFF
+                //load the data from DR to Rxbuffer address
+				*(pRxBuffer) = pSPIx->DR ;
+				Len--;
+				pRxBuffer++;
+			}
+		}
+}
