@@ -737,3 +737,76 @@ void I2C_EV_IRQHandling(I2C_Handle *pI2CHandle)
 		}
 	}
 }
+
+
+// I2C - Interrupt: Error Handling
+void I2C_ER_IRQHandling(I2C_Handle *pI2CHandle)
+{
+	// temp variables
+	uint32_t temp1,temp2;
+
+    //get status of ITERREN (Interrupt Error Enable)
+	temp2 = (pI2CHandle->pI2Cx->CR2) & (1 << I2C_CR2_ITERREN);
+
+
+//Check for Bus error - BERR
+	temp1 = (pI2CHandle->pI2Cx->SR1) & (1<< I2C_SR1_BERR);
+	if(temp1 && temp2)
+	{
+
+		//Clear BERR flag
+		pI2CHandle->pI2Cx->SR1 &= ~(1 << I2C_SR1_BERR);
+
+		//Notify Application about the error
+	  I2C_ApplicationEventCallback(pI2CHandle,I2C_ERROR_BERR);
+	}
+
+//Check for arbitration lost error - ARLO
+	temp1 = (pI2CHandle->pI2Cx->SR1) & (1 << I2C_SR1_ARLO);
+	if(temp1 && temp2)
+	{
+
+		//Clear ARLO flag
+		pI2CHandle->pI2Cx->SR1 &= ~(1 << I2C_SR1_ARLO);
+
+		//Notify the Application about the error
+		I2C_ApplicationEventCallback(pI2CHandle,I2C_ERROR_ARLO);
+
+	}
+
+//Check for ACK failure error - AF
+	temp1 = (pI2CHandle->pI2Cx->SR1) & (1 << I2C_SR1_AF);
+	if(temp1 && temp2)
+	{
+
+	    //Clear AF flag
+		pI2CHandle->pI2Cx->SR1 &= ~(1 << I2C_SR1_AF);
+
+		//Notify the Application about the error
+		I2C_ApplicationEventCallback(pI2CHandle,I2C_ERROR_AF);
+	}
+
+//Check for Overrun/underrun error - OVR
+	temp1 = (pI2CHandle->pI2Cx->SR1) & (1 << I2C_SR1_OVR);
+	if(temp1 && temp2)
+	{
+
+	    //Xlear OVRflag
+		pI2CHandle->pI2Cx->SR1 &= ~(1 << I2C_SR1_OVR);
+
+		//Notify the Application about the error
+		I2C_ApplicationEventCallback(pI2CHandle,I2C_ERROR_OVR);
+	}
+
+//Check for Time out error - TIMEOUT
+	temp1 = (pI2CHandle->pI2Cx->SR1) & (1 << I2C_SR1_TIMEOUT);
+	if(temp1 && temp2)
+	{
+
+	    //CLear TIMEOUT flag
+		pI2CHandle->pI2Cx->SR1 &= ~(1 << I2C_SR1_TIMEOUT);
+
+		//Notify the Application about the error
+		I2C_ApplicationEventCallback(pI2CHandle,I2C_ERROR_TIMEOUT);
+	}
+}
