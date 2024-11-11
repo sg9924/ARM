@@ -41,3 +41,36 @@ void GPIO_Pin_Reset(GPIO_PinConfig* p)
 }
 /******************************************* GPIO Helper Function Definitions End *******************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
+/*********************************************** GPIO API's Definitions Start ***********************************************/
+
+// GPIO Peripheral Clock Setup
+void GPIO_Clk_Enable(GPIO_RegDef* pGPIOx, uint8_t setup_mode)
+{
+	if(setup_mode == ENABLE)
+	{
+		if(pGPIOx == GPIOA)
+			GPIOA_PCLK_EN(); 				// Enable Clock for the specified GPIO Port using Macros
+        else if (pGPIOx == GPIOB)
+			GPIOB_PCLK_EN();
+        else if (pGPIOx == GPIOC)
+			GPIOC_PCLK_EN();
+        else if (pGPIOx == GPIOD)
+			GPIOD_PCLK_EN();
+        else if (pGPIOx == GPIOE)
+			GPIOE_PCLK_EN();
+        else if (pGPIOx == GPIOF)
+			GPIOF_PCLK_EN();
+        else if (pGPIOx == GPIOG)
+			GPIOG_PCLK_EN();
+        else if (pGPIOx == GPIOH)
+			GPIOH_PCLK_EN();
+        else if (pGPIOx == GPIOI)
+			GPIOI_PCLK_EN();
+	}
+	else
+	{
+		//TODO
+	}
+
+}
+
