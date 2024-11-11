@@ -1,5 +1,12 @@
 #include "stm32f407xx_spi_driver.h"
 
+// Application Event Callback Function
+__attribute__((weak)) SPI_ApplicationEventCallback(SPI_Handle *pSPIHandle,uint8_t AppEv) //
+{
+
+	//This is a weak implementation. the user application may override this function.
+}
+
 //Helper Functions
 
 // SPI Close Transmission - Helper
