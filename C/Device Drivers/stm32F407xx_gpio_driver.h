@@ -81,5 +81,47 @@ typedef struct
 
 /********************************************** GPIO Structure Definitions End **********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
+/****************************************** GPIO Helper Function Definitions Start ******************************************/
+
+// View GPIO Details
+void GPIO_Details(GPIO_Handle* pGPIOHandle);                                        /*<>*/
+
+// GPIO Pin Config Reset
+void GPIO_Pin_Reset(GPIO_PinConfig* p);                                             /*<>*/
+
+/******************************************* GPIO Helper Function Definitions End *******************************************/
+/*--------------------------------------------------------------------------------------------------------------------------*/
+/*********************************************** GPIO API's Declarations Start **********************************************/
+
+// GPIO Peripheral Clock Setup
+void GPIO_Clk_Enable(GPIO_RegDef* pGPIOx, uint8_t setup_mode);                       /*<>*/
+
+
+// GPIO Initialisation & De-Initialisation
+void GPIO_Init(GPIO_Handle* pGPIOHandle);                                           /*<>*/
+void GPIO_DeInit(GPIO_RegDef* pGPIOx);                                              /*<>*/
+
+
+// GPIO Read & Write
+// GPIO Read & Write from & to Pin
+uint8_t GPIO_ReadIpPin(GPIO_RegDef* pGPIOx, uint8_t pin_no);                        /*<>*/
+void GPIO_WriteOpPin(GPIO_RegDef* pGPIOx, uint8_t pin_no, uint8_t value);           /*<>*/
+
+// GPIO Read & Write from & to Port
+uint16_t GPIO_ReadIpPort(GPIO_RegDef* pGPIOx);                                      /*<>*/
+void GPIO_WriteOpPort(GPIO_RegDef* pGPIOx, uint16_t value);                         /*<>*/
+
+
+// GPIO Toggle Output
+void GPIO_OpToggle(GPIO_RegDef* pGPIOx, uint8_t pin_no);                            /*<>*/
+
+// GPIO Interrupt Handling
+void GPIO_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi);                    /*<>*/
+void GPIO_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority);               /*<>*/
+void GPIO_IRQHandling(uint8_t PinNumber);                                           /*<>*/
+
+/************************************************ GPIO API's Declarations End ***********************************************/
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
 
 #endif /* INC_STM32F407XX_GPIO_DRIVER_H */
