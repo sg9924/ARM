@@ -423,7 +423,257 @@ void USART_IRQPriorityConfig(uint8_t IRQNumber,uint32_t IRQPriority)
 
 
 
+void USART_IRQHandling(USART_Handle *pUSARTHandle)
+{
+    //Temp values
+	uint32_t temp1,temp2,temp3;
 
+    //data buffer
+	uint16_t *pdata;
+
+//------------------------------> Check for TC Flag
+    //check state of TC in SR
+	temp1 = pUSARTHandle->pUSARTx->SR & (1 << USART_SR_TC);
+
+	 //check state of TCEIE bit
+	temp2 = pUSARTHandle->pUSARTx->CR1 & (1 << USART_CR1_TCIE);
+
+    // if TC and TCIE are set
+	if(temp1 && temp2)
+	{
+		//close transmission and call application callback if TxLen is zero
+		if (pUSARTHandle->TxBusyState == USART_BUSY_IN_TX) //if USART is busy in TX
+		{
+			//if TxLen is 0
+			if(!pUSARTHandle->TxLen)
+			{
+				//clear the TC flag
+				pUSARTHandle->pUSARTx->SR &= ~(1 << USART_SR_TC);
+
+				//clear the TCIE control bit
+                pUSARTHandle->pUSARTx->CR1 |= (1 << USART_CR1_TCIE);
+
+				//Reset the application state
+				pUSARTHandle->TxBusyState = USART_READY;
+
+				//Reset Data Buffer address to NULL
+				pUSARTHandle->pTxBuffer = NULL;
+
+				//Reset the data length to zero
+				pUSARTHandle->TxLen = 0;
+
+				//Application callback for TX complete Event
+				USART_ApplicationEventCallback(pUSARTHandle,USART_EVENT_TX_CMPLT);
+			}
+		}
+	}
+
+//------------------------------> Check for TXE Flag
+	//check state of TXE bit in SR
+	temp1 = pUSARTHandle->pUSARTx->SR & (1 << USART_SR_TXE);
+
+	//check state of TXEIE bit in CR1
+	temp2 = pUSARTHandle->pUSARTx->CR1 & (1 << USART_CR1_TXEIE);
+
+    //if TXE & TXIE are set
+	if(temp1 && temp2)
+	{
+		if(pUSARTHandle->TxBusyState == USART_BUSY_IN_TX) //if USART busy in TX
+		{
+			//send until Txlen reaches zero
+			if(pUSARTHandle->TxLen > 0)
+			{
+				//check word length for 8 bit or 9 bit
+				if(pUSARTHandle->USART_Config.USART_WordLength == USART_WORDLEN_9BITS) //if 9 bit 
+				{
+					//load the DR with 2 bytes masking the bits other than first 9 bits
+					pdata = (uint16_t*) pUSARTHandle->pTxBuffer;
+					pUSARTHandle->pUSARTx->DR = (*pdata & (uint16_t)0x01FF);
+
+					//check for Parity
+					if(pUSARTHandle->USART_Config.USART_ParityControl == USART_PARITY_DISABLE) //if parity is disabled
+					{
+						//9 bits of user data will be sent
+
+                        // increment buffer address twice
+						pUSARTHandle->pTxBuffer++;
+						pUSARTHandle->pTxBuffer++;
+
+                        //decrement length twice
+						pUSARTHandle->TxLen-=2;
+					}
+					else //parity is enabled
+					{
+						//8 bits of user data will be sent
+						//9th bit will be replaced by parity bit
+
+                        //increment buffer once and decrement length once
+						pUSARTHandle->pTxBuffer++;
+						pUSARTHandle->TxLen-=1;
+					}
+				}
+				else //if 8 bit word length
+				{
+                    //mask last 8 bits of data in buffer
+					pUSARTHandle->pUSARTx->DR = (*pUSARTHandle->pTxBuffer & (uint8_t)0xFF);
+
+					//increment buffer address once and decrement length once
+					pUSARTHandle->pTxBuffer++;
+					pUSARTHandle->TxLen-=1;
+				}
+			}
+
+            //if TX length is 0
+			if (pUSARTHandle->TxLen == 0)
+			{
+				//clear the TXEIE bit (disable interrupt for TXE flag)
+				pUSARTHandle->pUSARTx->CR1 &= ~(1 << USART_CR1_TXEIE);
+			}
+		}
+	}
+
+//------------------------------> Check for RXNE Flag
+    //check state of RXNE in SR
+	temp1 = pUSARTHandle->pUSARTx->SR & (1 << USART_SR_RXNE);
+
+    //check state of RXNEIE in CR1
+	temp2 = pUSARTHandle->pUSARTx->CR1 & (1 << USART_CR1_RXNEIE);
+
+    //if RXNE and RXNEIE are set (interrupt due to RXNE)
+	if(temp1 && temp2)
+	{
+		if(pUSARTHandle->RxBusyState == USART_BUSY_IN_RX) //USARt busy in RX
+		{
+            //length is not 0 (receive data until length is 0)
+			if(pUSARTHandle->RxLen > 0)
+			{
+				//check word length for 8 or 9 bits
+				if(pUSARTHandle->USART_Config.USART_WordLength == USART_WORDLEN_9BITS)
+				{
+					//check for parity
+					if(pUSARTHandle->USART_Config.USART_ParityControl == USART_PARITY_DISABLE) //parity is disabled
+					{
+						//all 9 bits will be user data
+						//read only first 9 bits (mask of 0x1FF)
+						*((uint16_t*) pUSARTHandle->pRxBuffer) = (pUSARTHandle->pUSARTx->DR  & (uint16_t)0x01FF);
+
+						//increment buffer address twice
+						pUSARTHandle->pRxBuffer++;
+						pUSARTHandle->pRxBuffer++;
+
+                        //decrement length twice
+						pUSARTHandle->RxLen-=2;
+					}
+					else //parity is enabled
+					{
+						//8 bits will be user data and 1 bit is parity
+						*pUSARTHandle->pRxBuffer = (pUSARTHandle->pUSARTx->DR & (uint8_t)0xFF);
+
+                        //increment buffer address 
+						pUSARTHandle->pRxBuffer++;
+
+                        //decrement length
+						pUSARTHandle->RxLen-=1;
+					}
+				}
+				else //if 8 bit word length
+				{
+
+					//check for parity
+					if(pUSARTHandle->USART_Config.USART_ParityControl == USART_PARITY_DISABLE) //parity is disabled
+					{
+						//all 8 bits will be user data
+						//read 8 bits from DR
+						*pUSARTHandle->pRxBuffer = (uint8_t) (pUSARTHandle->pUSARTx->DR  & (uint8_t)0xFF);
+					}
+					else //parity is enabled
+					{
+						//7 bits will be user data and 1 bit is parity
+						//read only 7 bits (mask 0X7F)
+						*pUSARTHandle->pRxBuffer = (uint8_t) (pUSARTHandle->pUSARTx->DR  & (uint8_t)0x7F);
+					}
+
+					//increment buffer address
+					pUSARTHandle->pRxBuffer++;
+
+                    //decrement length
+					pUSARTHandle->RxLen-=1;
+				}
+
+
+			}
+
+            //if length is 0
+			if(!pUSARTHandle->RxLen)
+			{
+				//disable RXNE Interrupt
+				pUSARTHandle->pUSARTx->CR1 &= ~(1 << USART_CR1_RXNEIE);
+
+                //reset USART state to Ready
+				pUSARTHandle->RxBusyState = USART_READY;
+
+                //application callback for RX complete event
+				USART_ApplicationEventCallback(pUSARTHandle,USART_EVENT_RX_CMPLT);
+			}
+		}
+	}
+
+//------------------------------> Check for CTS Flag
+//Note: CTS feature is not applicable for UART4 and UART5
+
+	//check status of CTS bit in SR
+	temp1 = pUSARTHandle->pUSARTx->SR & (1 << USART_SR_CTS);
+
+	//check status of CTSE bit in CR1
+	temp2 = pUSARTHandle->pUSARTx->CR3 & (1 << USART_CR3_CTSE);
+
+	//check status of CTSIE bit in CR3 (This is not available for UART4 & UART5)
+	temp3 = pUSARTHandle->pUSARTx->CR3 & (1 << USART_CR3_CTSIE);
+
+    //if CTS and CTSE is set
+	if(temp1  && temp2)
+	{
+		//clear CTS flag in SR
+		pUSARTHandle->pUSARTx->SR &=  ~(1 << USART_SR_CTS);
+
+		//application callback for CTS event
+		USART_ApplicationEventCallback(pUSARTHandle,USART_EVENT_CTS);
+	}
+
+//------------------------------> Check for IDLE Flag
+	//check status of IDLE flag in SR
+	temp1 = pUSARTHandle->pUSARTx->SR & (1 << USART_SR_IDLE);
+
+	//check state of IDLEIE bit in CR1
+	temp2 = pUSARTHandle->pUSARTx->CR1 & (1 << USART_CR1_IDLEIE);
+
+    //if IDEL & IDLEIE are set
+	if(temp1 && temp2)
+	{
+		//clear IDLE flag
+		pUSARTHandle->pUSARTx->SR &= ~(1 << USART_SR_IDLE);
+
+		//application callback for IDLE Event
+		USART_ApplicationEventCallback(pUSARTHandle,USART_EVENT_IDLE);
+	}
+
+//------------------------------> Check for ORE Flag
+	//check status of ORE flag in SR
+	temp1 = pUSARTHandle->pUSARTx->SR & USART_SR_ORE;
+
+	//check status of RXNEIE in CR1
+	temp2 = pUSARTHandle->pUSARTx->CR1 & USART_CR1_RXNEIE;
+
+    //if ORE & RXNEIE are set
+	if(temp1  && temp2)
+	{
+		//Clear ORE
+        pUSARTHandle->pUSARTx->SR &= ~(1 << USART_SR_ORE);
+        //USART_ClearFlag(pUSARTHandle->pUSARTx, USART_FLAG_ORE);
+
+		//application callback for ORE Error
+		USART_ApplicationEventCallback(pUSARTHandle,USART_ERR_ORE);
+	}
 
 
 /*********************************************** USART API's Definitions End ************************************************/
