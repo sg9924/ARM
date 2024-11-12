@@ -104,7 +104,7 @@ typedef struct
 /******************************************** USART Functions Declarations Start *********************************************/
 
 // USART Peripheral CLock Enable
-void USART_CLkEable(USART_RegDef *pUSARTx, uint8_t mode);
+void USART_CLkEnable(USART_RegDef *pUSARTx, uint8_t mode);
 
 // USART Intialization & De-Intialization
 void USART_Init(USART_Handle *pUSARTHandle);
