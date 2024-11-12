@@ -312,5 +312,56 @@ void USART_ReceiveData(USART_Handle *pUSARTHandle, uint8_t *pRxBuffer, uint32_t 
 	}
 }
 
+
+// USART - Send Data for Interrupt
+uint8_t USART_SendDataIT(USART_Handle *pUSARTHandle,uint8_t *pTxBuffer, uint32_t Len)
+{
+    //Get TX state of USART
+	uint8_t txstate = pUSARTHandle->TxBusyState;
+
+	if(txstate != USART_BUSY_IN_TX) // not busy in transmission
+	{
+		pUSARTHandle->TxLen = Len; //length of data
+		pUSARTHandle->pTxBuffer = pTxBuffer; //data buffer address
+		pUSARTHandle->TxBusyState = USART_BUSY_IN_TX; //set state as busy in TX
+
+		//Enable interrupt for TXE
+		pUSARTHandle->pUSARTx->CR1 |= ( 1 << USART_CR1_TXEIE);
+
+		//Enable interrupt for TC
+		pUSARTHandle->pUSARTx->CR1 |= ( 1 << USART_CR1_TCIE); 
+	}
+
+	return txstate;
+}
+
+
+// USART - Receive Data for Interrupt
+uint8_t USART_ReceiveDataIT(USART_Handle *pUSARTHandle,uint8_t *pRxBuffer, uint32_t Len)
+{
+    //Get RX state of USART
+	uint8_t rxstate = pUSARTHandle->RxBusyState;
+
+	if(rxstate != USART_BUSY_IN_RX) // not busy in RX
+	{
+		pUSARTHandle->RxLen = Len; //length of data
+		pUSARTHandle->pRxBuffer = pRxBuffer; //data buffer address
+		pUSARTHandle->RxBusyState = USART_BUSY_IN_RX; //set state as busy in RX
+
+		(void)pUSARTHandle->pUSARTx->DR;
+
+		//Enable interrupt for RXNE
+		pUSARTHandle->pUSARTx->CR1 |= ( 1 << USART_CR1_RXNEIE);
+	}
+
+	return rxstate;
+}
+
+
+
+
+
+
+
 /*********************************************** USART API's Definitions End ************************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
