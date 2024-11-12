@@ -166,9 +166,26 @@ void lcd_init()
     lcd_send_command(LCD_CMD_DIS_CLEAR);
     mdelay(2);//provide delay - 2ms
 
-    //entry mode set
+    //entry mode set - cursor increment, no display shift
     lcd_send_command(LCD_CMD_INCADD);
 
+}
+
+//set cursor position in LCD
+void lcd_set_cursor(uint8_t row, uint8_t column)
+{
+    column--;
+    switch(row)
+    {
+        case 1: 
+            lcd_send_command(column |= 0x80);
+            break;
+        case 2:
+            lcd_send_command(column |= 0xC0);
+            break;
+        default:
+            break;
+    }
 }
 
 
