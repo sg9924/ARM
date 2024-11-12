@@ -65,7 +65,7 @@ typedef struct
 #define USART_WORDLEN_8BITS                 0
 #define USART_WORDLEN_9BITS                 1
 
-//USART STop Bits
+//USART Stop Bits
 #define USART_STOPBITS_1                    0
 #define USART_STOPBITS_0_5                  1
 #define USART_STOPBITS_2                    2
@@ -79,12 +79,13 @@ typedef struct
 #define USART_HW_FLOW_CTRL_CTS_RTS	        3
 
 
-//USARt Flags
+//USART Flags
 #define USART_FLAG_TXE 			            (1 << USART_SR_TXE)
 #define USART_FLAG_RXNE 		            (1 << USART_SR_RXNE)
 #define USART_FLAG_TC 			            (1 << USART_SR_TC)
+#define USART_FLAG_ORE 			            (1 << USART_SR_ORE)
 
-//USARt States
+//USART States
 #define USART_BUSY_IN_RX                    1
 #define USART_BUSY_IN_TX                    2
 #define USART_READY                         0
