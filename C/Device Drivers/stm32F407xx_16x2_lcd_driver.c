@@ -1,4 +1,4 @@
-#include "16x2_lcd.h"
+#include "stm32F407xx_16x2_lcd_driver.h"
 #include "stm32F407xx_gpio_driver.h"
 
 /*--------------------------------------------------------------------------------------------------------------------------*/
@@ -40,3 +40,53 @@ static void write_bits_4(uint8_t value)
 
 /**************************************** 16x2 LCD Helper Functions Definitions End *****************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
+/****************************************** 16x2 LCD Functions Definitions Start ********************************************/
+
+//send command to LCD
+void lcd_send_command(uint8_t cmd)
+{
+    // set RS to 0
+    GPIO_WriteOpPin(LCD_GPIO_PORT, LCD_GPIO_RS, GPIO_PIN_RESET);
+    //set RW to 0
+    GPIO_WriteOpPin(LCD_GPIO_PORT, LCD_GPIO_RW, GPIO_PIN_RESET);
+
+    //first send higher nibble of the command
+    write_bits_4(cmd >> 4);
+    //then send lower nibble of the command
+    write_bits_4(cmd & 0x0F);
+
+    lcd_enable();
+}
+
+//send character to LCD
+void lcd_send_char(uint8_t data)
+{
+    // set RS to 1
+    GPIO_WriteOpPin(LCD_GPIO_PORT, LCD_GPIO_RS, GPIO_PIN_SET);
+    //set RW to 0
+    GPIO_WriteOpPin(LCD_GPIO_PORT, LCD_GPIO_RW, GPIO_PIN_RESET);
+
+    //first send higher nibble of the command
+    write_bits_4(data >> 4);
+    //then send lower nibble of the command
+    write_bits_4(data & 0x0F);
+
+    lcd_enable();
+}
+
+//send string to LCD
+void lcd_send_string(char* msg)
+{
+    do
+    {
+        lcd_send_char((uint8_t)*msg++);
+    }while(*msg != '\0');
+}
+
+
+
+
+
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+/******************************************* 16x2 LCD Functions Definitions End *********************************************/
