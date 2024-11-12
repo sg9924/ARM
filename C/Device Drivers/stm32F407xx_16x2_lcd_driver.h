@@ -27,9 +27,16 @@
 
 
 // LCD Functions Declarations
-void lcd_init(void);
+void display_return_home(void);
+void display_clear(void);
+void lcd_set_cursor(uint8_t, uint8_t);
 void lcd_send_command(uint8_t);
 void lcd_send_char(uint8_t);
 void lcd_send_string(char*);
+void lcd_init(void);
+void lcd_print(char*, uint8_t);
+void lcd_print_blink(char*, uint8_t);
+void lcd_print_slide(char*, uint8_t);
+
 
 #endif /*LCD_H*/

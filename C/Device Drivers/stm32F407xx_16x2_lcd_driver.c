@@ -58,6 +58,21 @@ void lcd_send_command(uint8_t cmd)
     lcd_enable();
 }
 
+
+void display_return_home()
+{
+    lcd_send_command(LCD_CMD_DIS_RETURN_HOME);
+    mdelay(2);
+}
+
+
+void display_clear()
+{
+    lcd_send_command(LCD_CMD_DIS_CLEAR);
+    mdelay(2);
+}
+
+
 //send character to LCD
 void lcd_send_char(uint8_t data)
 {
@@ -81,6 +96,45 @@ void lcd_send_string(char* msg)
     {
         lcd_send_char((uint8_t)*msg++);
     }while(*msg != '\0');
+}
+
+
+//LCD Print functions
+
+//normal print
+void lcd_print(char* msg, uint8_t delay)
+{
+	lcd_send_string(msg);
+	mdelay(delay);
+}
+
+//print with blinking of characters
+void lcd_print_blink(char* msg, uint8_t delay)
+{
+	lcd_send_string(msg);
+	display_return_home();
+	mdelay(delay);
+	display_clear();
+	mdelay(delay);
+}
+
+//print with character shift
+void lcd_print_slide(char* msg, uint8_t delay)
+{
+	char* temp = msg;
+	do
+	{
+		lcd_print(temp, delay);
+		display_clear();
+		display_return_home();
+		temp++;
+
+		if(*temp=='\0')
+		{
+			temp=msg;
+		}
+
+	}while(1);
 }
 
 
@@ -163,8 +217,7 @@ void lcd_init()
     lcd_send_command(LCD_CMD_DON_CURON);
 
     //display clear
-    lcd_send_command(LCD_CMD_DIS_CLEAR);
-    mdelay(2);//provide delay - 2ms
+    display_clear();
 
     //entry mode set - cursor increment, no display shift
     lcd_send_command(LCD_CMD_INCADD);
