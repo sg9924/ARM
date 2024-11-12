@@ -3,6 +3,36 @@
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /********************************************** USART API's Definitions Start ***********************************************/
 
+// USART - Clock ENable
+void USART_ClkEnable(USART_RegDef *pUSARTx, uint8_t mode)
+{
+	if(mode == ENABLE)
+	{
+		if(pUSARTx == USART1)
+		{
+			USART1_PCCK_EN();
+		}
+        else if (pUSARTx == USART2)
+		{
+			USART2_PCCK_EN();
+		}
+        else if (pUSARTx == USART3)
+		{
+			USART3_PCCK_EN();
+		}
+		else if (pUSARTx == UART4)
+		{
+			UART4_PCCK_EN();
+		}
+	}
+	else
+	{
+		//
+	}
+
+}
+
+
 // USART - Set Baudrate
 void USART_SetBaudRate(USART_RegDef *pUSARTx, uint32_t BaudRate)
 {
@@ -166,6 +196,121 @@ void USART_Init(USART_Handle *pUSARTHandle)
 }
 
 
+void USART_PeripheralControl(USART_RegDef *pUSARTx, uint8_t cmd)
+{
+	if(cmd == ENABLE)
+	{
+		pUSARTx->CR1 |= (1 << 13);
+	}
+    else
+	{
+		pUSARTx->CR1 &= ~(1 << 13);
+	}
+
+}
+
+
+// USART - Send Data
+void USART_SendData(USART_Handle *pUSARTHandle, uint8_t *pTxBuffer, uint32_t Len)
+{
+    //data buffer
+	uint16_t *pdata;
+
+   //Loop for sending data bytes of length Len
+	for(uint32_t i = 0 ; i < Len; i++)
+	{
+		//Wait until TXE flag is set in the SR
+		while(!USART_GetFlagStatus(pUSARTHandle->pUSARTx,USART_FLAG_TXE));
+
+		//Check for 9 bit or 8 bit word length in a frame
+		if(pUSARTHandle->USART_Config.USART_WordLength == USART_WORDLEN_9BITS) // 9 bit word length
+		{
+			//load DR with 2 bytes masking the bits other than first 9 bits
+			pdata = (uint16_t*) pTxBuffer;
+			pUSARTHandle->pUSARTx->DR = (*pdata & (uint16_t)0x01FF);
+
+			//check for Parity in USART
+			if(pUSARTHandle->USART_Config.USART_ParityControl == USART_PARITY_DISABLE) // No Parity
+			{
+				//increment pTxBuffer twice
+				pTxBuffer++;
+				pTxBuffer++;
+			}
+			else // parity is used
+			{
+				//8bits of user data will be sent
+				// 9th bit will be parity bit
+				pTxBuffer++;
+			}
+		}
+		else // 8 bit word length
+		{
+
+			pUSARTHandle->pUSARTx->DR = (*pTxBuffer  & (uint8_t)0xFF);
+
+			//increment buffer address
+			pTxBuffer++;
+		}
+	}
+
+	//wait till TC flag is set in the SR
+	while(!USART_GetFlagStatus(pUSARTHandle->pUSARTx,USART_FLAG_TC));
+}
+
+
+// USART - Receive Data
+void USART_ReceiveData(USART_Handle *pUSARTHandle, uint8_t *pRxBuffer, uint32_t Len)
+{
+   //Loop for receiving data bytes of length Len
+	for(uint32_t i = 0 ; i < Len; i++)
+	{
+		//Wait until RXNE flag is set in SR
+		while(!USART_GetFlagStatus(pUSARTHandle->pUSARTx,USART_FLAG_RXNE));
+
+		//Check for 9 bit or 8 bit word length in a frame
+		if(pUSARTHandle->USART_Config.USART_WordLength == USART_WORDLEN_9BITS)
+		{
+
+			//Check for Parity
+			if(pUSARTHandle->USART_Config.USART_ParityControl == USART_PARITY_DISABLE) // no Parity
+			{
+
+				//read only first 9 bits so mask the DR with 0x01FF
+				*((uint16_t*) pRxBuffer) = (pUSARTHandle->pUSARTx->DR  & (uint16_t)0x01FF);
+
+				//increment buffer address
+				pRxBuffer++;
+				pRxBuffer++;
+			}
+			else // parity is used
+			{
+				//8 bits of user data and 1 parity bit
+				*pRxBuffer = (pUSARTHandle->pUSARTx->DR  & (uint8_t)0xFF);
+				pRxBuffer++;
+			}
+		}
+		else // 8 bit word length
+		{
+
+			// check for parity
+			if(pUSARTHandle->USART_Config.USART_ParityControl == USART_PARITY_DISABLE) // parity is not used
+			{
+				//read 8 bits from DR
+				 *pRxBuffer = (uint8_t) (pUSARTHandle->pUSARTx->DR  & (uint8_t)0xFF);
+			}
+			else // parity is used
+			{
+                //7 bits will be of user data and 1 bit is parity
+				//read 7 bits - mask DR with 0X7F
+				 *pRxBuffer = (uint8_t) (pUSARTHandle->pUSARTx->DR  & (uint8_t)0x7F);
+
+			}
+
+			//increment pRxBuffer
+			pRxBuffer++;
+		}
+	}
+}
 
 /*********************************************** USART API's Definitions End ************************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
