@@ -1,5 +1,6 @@
 #include<string.h>
-#include "stm32f407xx.h"
+#include"stm32F407xx_gpio_driver.h"
+#include"stm32F407xx_spi_driver.h"
 
 
 //PB15 --> SPI2_MOSI
@@ -8,21 +9,21 @@
 
 void SPI2_GPIOInits(void)
 {
-	GPIO_Handle_t SPIPins;
+	GPIO_Handle SPIPins;
 
 	SPIPins.pGPIOx = GPIOB;
-	SPIPins.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_ALTFN;
-	SPIPins.GPIO_PinConfig.GPIO_PinAltFunMode = 5;
-	SPIPins.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
-	SPIPins.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-	SPIPins.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
+	SPIPins.GPIOx_PinConfig.PinMode = GPIO_MODE_ALTFUN;
+	SPIPins.GPIOx_PinConfig.PinAltFuncMode = 5;
+	SPIPins.GPIOx_PinConfig.PinOPType = GPIO_OP_TYPE_PP;
+	SPIPins.GPIOx_PinConfig.PinPUPDCtrl = GPIO_NO_PUPD;
+	SPIPins.GPIOx_PinConfig.PinSpeed = GPIO_OP_SPEED_FAST;
 
 	//SCLK Intialize
-	SPIPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_13;
+	SPIPins.GPIOx_PinConfig.PinNo = GPIO_PIN13;
 	GPIO_Init(&SPIPins);
 
 	//MOSI Intialize
-	SPIPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_15;
+	SPIPins.GPIOx_PinConfig.PinNo = GPIO_PIN15;
 	GPIO_Init(&SPIPins);
 
 //This test uses Full Duplex for only sending data
@@ -34,7 +35,7 @@ void SPI2_GPIOInits(void)
 void SPI2_Inits(void)
 {
 
-	SPI_Handle_t SPI2handle;
+	SPI_Handle SPI2handle;
 
 	SPI2handle.pSPIx = SPI2;
 	SPI2handle.SPIConfig.SPI_BusConfig = SPI_BUS_CONFIG_FD;             //Full Duplex
