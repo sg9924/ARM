@@ -7,8 +7,6 @@
 //commands
 #define COMMAND_LED_CTRL      0x50
 #define COMMAND_LED_READ      0x51
-#define COMMAND_PRINT         0x52
-#define COMMAND_ID_READ       0x53
 
 #define LED_ON     1
 #define LED_OFF    0
@@ -190,7 +188,6 @@ int main()
 	
 
 //-----------------> 2. Command for LED Read
-
 		//wait till button is pressed
 		while(!GPIO_ReadFromInputPin(GPIOA,GPIO_PIN0));
 
@@ -220,17 +217,14 @@ int main()
 
 			//do a dummy read to clear RXNE
 			SPI_ReceiveData(SPI2,&dummy_read,1);
-
 			delay();
 
-			//send dummy byte to fetch response from slave
-			SPI_SendData(SPI2,&dummy_write,1);
-
 			uint8_t led_status;
-
-            //receive data (status of led)
+            //receive status of led
 			SPI_ReceiveData(SPI2,&led_status,1);
-			printf("COMMAND_READ_LED: %d\n",led_status);
+
+			printf("COMMAND_READ_LED Executed");
+			printf("LED Status: %d\n",led_status);
 		}
 	}
 	return 0;
