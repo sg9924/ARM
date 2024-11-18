@@ -1,4 +1,5 @@
 #include "stm32f407xx_i2c_driver.h"
+#include "stm32f407xx_rcc_driver.h"
 
 
 /*--------------------------------------------------------------------------------------------------------------------------*/
@@ -351,6 +352,24 @@ void I2C_MasterReceiveData(I2C_Handle *pI2CHandle,uint8_t *pRxBuffer, uint8_t Le
 	}
 
 }
+
+
+//ACK management
+void I2C_ManageAcking(I2C_RegDef *pI2Cx, uint8_t mode)
+{
+	if(mode == I2C_ACK_ENABLE)
+	{
+		//enable the ack
+		pI2Cx->CR1 |= ( 1 << I2C_CR1_ACK);
+	}
+	else
+	{
+		//disable the ack
+		pI2Cx->CR1 &= ~( 1 << I2C_CR1_ACK);
+	}
+}
+
+
 
 // I2C - IRQ Interrupt Config
 void I2C_IRQInterruptConfig(uint8_t IRQNumber, uint8_t mode)
@@ -813,7 +832,7 @@ void I2C_ER_IRQHandling(I2C_Handle *pI2CHandle)
 
 
 // I2C - Application Event CallBack
-__attribute__((weak)) I2C_ApplicationEventCallback(I2C_Handle *pI2CHandle,uint8_t AppEv)
+__attribute__((weak)) void I2C_ApplicationEventCallback(I2C_Handle *pI2CHandle,uint8_t AppEv)
 {
 	// weak implementation
 }

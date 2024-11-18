@@ -133,7 +133,7 @@ void I2C_GenerateStopCondition(I2C_RegDef *pI2Cx);
 void I2C_SlaveEnableDisableCallbackEvents(I2C_RegDef *pI2Cx,uint8_t mode);
 
 // Application event Callback
-void I2C_ApplicationEventCallback(I2C_Handle *pI2CHandle,uint8_t AppEv);
+__attribute__((weak)) void I2C_ApplicationEventCallback(I2C_Handle *pI2CHandle,uint8_t AppEv);
 
 /******************************************* I2C API's Function Declarations End ********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
