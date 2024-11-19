@@ -186,9 +186,9 @@ static uint8_t binary_to_bcd(uint8_t value)
 
 	if(value >= 10)    //for decimal values greater than 10..
 	{
-		m = value/10;
-		n = value % 10;
-		bcd = (m << 4) | n ;
+		m = value/10;             //extract tenth's place
+		n = value % 10;           //extract one's place
+		bcd = (m << 4)|n;         //shift the tenth's place value by 4 bits and OR it with the one's place value
 	}
 
 	return bcd;
@@ -200,7 +200,7 @@ static uint8_t binary_to_bcd(uint8_t value)
 static uint8_t bcd_to_binary(uint8_t value)
 {
 	uint8_t m,n;
-	m = (uint8_t)((value >> 4 ) * 10);
-	n =  value&(uint8_t)0x0F;
-	return (m+n);
+	m = (uint8_t) ((value>>4)*10);   //extract the tenth's place value from bcd
+	n =  value & (uint8_t)0x0F;      //extract the one's place value from bcd   
+	return (m+n);                    //add both the values to get the equivaent binary value
 }
