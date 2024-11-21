@@ -7,7 +7,7 @@
 #define SYSTICK_TIM_CLK   16000000UL
 
 //Enable Macro to see time on LCD
-//#define PRINT_LCD
+#define PRINT_LCD
 
 
 static void delay(uint32_t cnt)
@@ -17,7 +17,7 @@ static void delay(uint32_t cnt)
 
 
 
-//systick timer 
+//systick timer
 void init_systick_timer(uint32_t tick_hz)
 {
 	//register addresses
@@ -46,7 +46,7 @@ void init_systick_timer(uint32_t tick_hz)
 //get day of the week
 char* get_day_of_week(uint8_t i)
 {
-	char* days[] = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+	char* days[] = {"Sun","Mon","Tues","Wed","Thur","Fri","Sat"};
 
 	return days[i-1];
 }
@@ -79,7 +79,7 @@ char* time_to_string(RTC_time *rtc_time)
 	buf[5]= ':';
 
     //convert hours, minutes & seconds to string
-	number_to_string(rtc_time->hours,buf);       
+	number_to_string(rtc_time->hours,buf);
 	number_to_string(rtc_time->minutes,&buf[3]);
 	number_to_string(rtc_time->seconds,&buf[6]);
 
@@ -135,19 +135,23 @@ int main(void)
 		printf("DS1307 initialization has failed\n");
 		while(1);
 	}
+	else
+	{
+		printf("DS1307 initialization was successful\n");
+	}
 
 	init_systick_timer(1);
 
     //date values
-	current_date.day = FRIDAY;
-	current_date.date = 15;
-	current_date.month = 1;
-	current_date.year = 21;
+	current_date.day = THUR;
+	current_date.date = 21;
+	current_date.month = 11;
+	current_date.year = 24;
 
     //time values
-	current_time.hours = 11;
-	current_time.minutes = 59;
-	current_time.seconds = 30;
+	current_time.hours = 05;
+	current_time.minutes = 42;
+	current_time.seconds = 00;
 	current_time.time_format = TIME_FORMAT_12HRS_PM;
 
     //set date and time
@@ -227,6 +231,7 @@ void SysTick_Handler(void)
     #else
 	lcd_set_cursor(2, 1);
 	lcd_send_string(date_to_string(&current_date));
+	lcd_set_cursor(2, 10);
 	lcd_send_char('<');
 	lcd_send_string(get_day_of_week(current_date.day));
 	lcd_send_char('>');

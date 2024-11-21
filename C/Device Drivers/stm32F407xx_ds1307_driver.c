@@ -1,3 +1,4 @@
+#include"stm32F407xx.h"
 #include"stm32F407xx_ds1307_driver.h"
 #include<string.h>
 
@@ -91,7 +92,6 @@ void ds1307_get_current_date(RTC_date *rtc_date)
 	rtc_date->date = bcd_to_binary(ds1307_read(DS1307_ADD_DATE));
 	rtc_date->month = bcd_to_binary(ds1307_read(DS1307_ADD_MONTH));
 	rtc_date->year = bcd_to_binary(ds1307_read(DS1307_ADD_YEAR));
-
 }
 
 
@@ -118,7 +118,7 @@ static void ds1307_i2c_pin_config()
     I2C_SCL.pGPIOx = DS1307_I2C_GPIO_PORT;
     I2C_SCL.GPIOx_PinConfig.PinAltFuncMode = 4;
     I2C_SCL.GPIOx_PinConfig.PinMode = GPIO_MODE_ALTFUN;
-    I2C_SCL.GPIOx_PinConfig.PinNo = DS1307_I2C_SDA_PIN;
+    I2C_SCL.GPIOx_PinConfig.PinNo = DS1307_I2C_SCL_PIN;
     I2C_SCL.GPIOx_PinConfig.PinOPType = GPIO_OP_TYPE_OD;
     I2C_SCL.GPIOx_PinConfig.PinPUPDCtrl = DS1307_I2C_PUPD;
     I2C_SCL.GPIOx_PinConfig.PinSpeed = GPIO_OP_SPEED_FAST;
@@ -132,7 +132,7 @@ static void ds1307_i2c_config()
     DS_1307.pI2Cx = DS1307_I2C;
     DS_1307.I2C_Config.I2C_AckControl = I2C_ACK_ENABLE;
     DS_1307.I2C_Config.I2C_SCLSpeed = DS1307_I2C_SPEED;
-    GPIO_Init(&DS_1307);
+    I2C_Init(&DS_1307);
 }
 
 
@@ -147,13 +147,21 @@ uint8_t ds1307_init()
 
     //enable I2C peripheral
     I2C_PeripheralControl(DS1307_I2C, ENABLE);
+
+    //4. Make clock halt = 0;
+    ds1307_write(0x00,DS1307_ADD_SEC);
+
+    //5. Read back clock halt bit
+    uint8_t clock_state = ds1307_read(DS1307_ADD_SEC);
+
+    return ((clock_state >> 7 ) & 0x1);
 }
 
 
 
 
 
-//write values to register in DS 1307 
+//write values to register in DS 1307
 static void ds1307_write(uint8_t value,uint8_t reg_addr)
 {
 	uint8_t tx[2];
@@ -164,7 +172,7 @@ static void ds1307_write(uint8_t value,uint8_t reg_addr)
 
 
 
-//read register values in DS 1307 
+//read register values in DS 1307
 static uint8_t ds1307_read(uint8_t reg_addr)
 {
 	uint8_t data;
@@ -201,6 +209,6 @@ static uint8_t bcd_to_binary(uint8_t value)
 {
 	uint8_t m,n;
 	m = (uint8_t) ((value>>4)*10);   //extract the tenth's place value from bcd
-	n =  value & (uint8_t)0x0F;      //extract the one's place value from bcd   
+	n =  value & (uint8_t)0x0F;      //extract the one's place value from bcd
 	return (m+n);                    //add both the values to get the equivaent binary value
 }

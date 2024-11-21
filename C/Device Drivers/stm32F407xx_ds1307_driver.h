@@ -2,9 +2,9 @@
 #define DS1307_H
 
 #include<stdint.h>
-#include"stm32F407xx.h"
 #include"stm32F407xx_gpio_driver.h"
 #include"stm32F407xx_i2c_driver.h"
+#include"stm32f407xx_rcc_driver.h"
 
 
 
@@ -32,13 +32,13 @@
 
 #define DS1307_I2C_ADDRESS          0x068
 
-#define SUNDAY                      1
-#define MONDAY                      2
-#define TUESDAY                     3
-#define WEDNESDAY                   4
-#define THURSDAY                    5
-#define FRIDAY                      6
-#define SATURDAY                    7
+#define SUN                         1
+#define MON                         2
+#define TUES                        3
+#define WED                         4
+#define THUR                        5
+#define FRI                         6
+#define SAT                         7
 
 
 typedef struct
