@@ -1,10 +1,25 @@
 #include "stm32f407xx_usart_driver.h"
+#include "stm32f407xx_rcc_driver.h"
 
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /********************************************** USART API's Definitions Start ***********************************************/
 
-// USART - Clock ENable
-void USART_ClkEnable(USART_RegDef *pUSARTx, uint8_t mode)
+
+// SART - Get Flag status
+uint8_t USART_GetFlagStatus(USART_RegDef *pUSARTx, uint8_t StatusFlagName)
+{
+    if(pUSARTx->SR & StatusFlagName)
+    {
+    	return SET;
+    }
+
+   return RESET;
+}
+
+
+
+// USART - Clock Enable
+void USART_CLkEnable(USART_RegDef *pUSARTx, uint8_t mode)
 {
 	if(mode == ENABLE)
 	{
@@ -69,7 +84,7 @@ void USART_SetBaudRate(USART_RegDef *pUSARTx, uint32_t BaudRate)
 	   usartdiv = ((25*PCLKx) / (4*BaudRate));
   }
 
-  //Calculate Mantissa 
+  //Calculate Mantissa
   M_part = usartdiv/100;
 
   //Place Mantissa part in respective bit position (USART_BRR)
@@ -329,7 +344,7 @@ uint8_t USART_SendDataIT(USART_Handle *pUSARTHandle,uint8_t *pTxBuffer, uint32_t
 		pUSARTHandle->pUSARTx->CR1 |= (1 << USART_CR1_TXEIE);
 
 		//Enable interrupt for TC
-		pUSARTHandle->pUSARTx->CR1 |= (1 << USART_CR1_TCIE); 
+		pUSARTHandle->pUSARTx->CR1 |= (1 << USART_CR1_TCIE);
 	}
 
 	return txstate;
@@ -484,7 +499,7 @@ void USART_IRQHandling(USART_Handle *pUSARTHandle)
 			if(pUSARTHandle->TxLen > 0)
 			{
 				//check word length for 8 bit or 9 bit
-				if(pUSARTHandle->USART_Config.USART_WordLength == USART_WORDLEN_9BITS) //if 9 bit 
+				if(pUSARTHandle->USART_Config.USART_WordLength == USART_WORDLEN_9BITS) //if 9 bit
 				{
 					//load the DR with 2 bytes masking the bits other than first 9 bits
 					pdata = (uint16_t*) pUSARTHandle->pTxBuffer;
@@ -569,7 +584,7 @@ void USART_IRQHandling(USART_Handle *pUSARTHandle)
 						//8 bits will be user data and 1 bit is parity
 						*pUSARTHandle->pRxBuffer = (pUSARTHandle->pUSARTx->DR & (uint8_t)0xFF);
 
-                        //increment buffer address 
+                        //increment buffer address
 						pUSARTHandle->pRxBuffer++;
 
                         //decrement length
@@ -631,7 +646,7 @@ void USART_IRQHandling(USART_Handle *pUSARTHandle)
 	temp3 = pUSARTHandle->pUSARTx->CR3 & (1 << USART_CR3_CTSIE);
 
     //if CTS and CTSE is set
-	if(temp1  && temp2)
+	if(temp1 && temp2)
 	{
 		//clear CTS flag in SR
 		pUSARTHandle->pUSARTx->SR &=  ~(1 << USART_SR_CTS);
@@ -647,7 +662,7 @@ void USART_IRQHandling(USART_Handle *pUSARTHandle)
 	//check state of IDLEIE bit in CR1
 	temp2 = pUSARTHandle->pUSARTx->CR1 & (1 << USART_CR1_IDLEIE);
 
-    //if IDEL & IDLEIE are set
+    //if IDLE & IDLEIE are set
 	if(temp1 && temp2)
 	{
 		//clear IDLE flag
@@ -665,7 +680,7 @@ void USART_IRQHandling(USART_Handle *pUSARTHandle)
 	temp2 = pUSARTHandle->pUSARTx->CR1 & USART_CR1_RXNEIE;
 
     //if ORE & RXNEIE are set
-	if(temp1  && temp2)
+	if(temp1 && temp2)
 	{
 		//Clear ORE
         pUSARTHandle->pUSARTx->SR &= ~(1 << USART_SR_ORE);
@@ -675,6 +690,6 @@ void USART_IRQHandling(USART_Handle *pUSARTHandle)
 		USART_ApplicationEventCallback(pUSARTHandle,USART_ERR_ORE);
 	}
 
-
+}
 /*********************************************** USART API's Definitions End ************************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
