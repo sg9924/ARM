@@ -8,7 +8,7 @@
 
 int LED = 13; //LED pin
 uint8_t active_command = 0xFF,led_status=0;  //default command code and led status
-char name_msg[32] = "Hi There! This is I2C test from STM32 to Arduino Uno\n"; //data to be sent
+char name_msg[50] = "I2C Test from Arduino to STM32\n"; //data to be sent
 
 
 //function to get len of data to be sent
@@ -37,7 +37,7 @@ void setup()
 //receive data
 void receiveEvent(int bytes)
 {
-  active_command = Wire.read();               // read one byte
+  active_command = Wire.read();               //read one byte
 }
 
 //send data on request

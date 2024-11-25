@@ -2,6 +2,7 @@
 #include<string.h>
 #include "stm32f407xx_gpio_driver.h"
 #include "stm32f407xx_i2c_driver.h"
+#include "stm32f407xx_rcc_driver.h"
 
 #define MY_ADDR       0x70
 #define SLAVE_ADDR    0x80
@@ -97,11 +98,11 @@ int main(void)
 	while(1)
 	{
 		//wait till button is pressed
-		while(!GPIO_ReadFromInputPin(GPIOA,GPIO_PIN0));
+		while(!GPIO_ReadIpPin(GPIOA,GPIO_PIN0));
 
 		delay();
 
-        //send command code to get length of data to be recived
+        //send command code to get length of data to be recieved
 		commandcode = 0x51;
 		I2C_MasterSendData(&I2C1Handle,&commandcode,1,SLAVE_ADDR,I2C_ENABLE_SR);
 		I2C_MasterReceiveData(&I2C1Handle,&len,1,SLAVE_ADDR,I2C_ENABLE_SR);
