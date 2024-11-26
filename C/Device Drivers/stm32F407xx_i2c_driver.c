@@ -540,7 +540,7 @@ static void I2C_MasterHandleRXNEInterrupt(I2C_Handle *pI2CHandle)
 			//increment buffer address
 			pI2CHandle->pRxBuffer++;
 
-			// dcrement data length
+			// decrement data length
 			pI2CHandle->RxLen--;
 	}
 

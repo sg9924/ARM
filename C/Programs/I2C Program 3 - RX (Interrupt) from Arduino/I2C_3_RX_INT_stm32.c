@@ -80,7 +80,6 @@ void GPIO_ButtonInit(void)
 	GpioLed.GPIOx_PinConfig.PinSpeed = GPIO_OP_SPEED_FAST;
 	GpioLed.GPIOx_PinConfig.PinOPType = GPIO_OP_TYPE_OD;
 	GpioLed.GPIOx_PinConfig.PinPUPDCtrl = GPIO_NO_PUPD;
-	GPIO_PeriClockControl(GPIOD,ENABLE);
 	GPIO_Init(&GpioLed);
 }
 
@@ -114,27 +113,27 @@ int main(void)
 	while(1)
 	{
 		//wait till button is pressed
-		while(!GPIO_ReadFromInputPin(GPIOA,GPIO_PIN0));
+		while(!GPIO_ReadIpPin(GPIOA,GPIO_PIN0));
 
 		delay();
 
         //get length of string to be received
 		commandcode = 0x51;
-		while(I2C_MasterSendDataIT(&I2C1Handle,&commandcode,1,SLAVE_ADDR,I2C_ENABLE_SR) != I2C_READY);   //send command via interrupts
-		while(I2C_MasterReceiveDataIT(&I2C1Handle,&len,1,SLAVE_ADDR,I2C_ENABLE_SR)!= I2C_READY);         //receive data via interrupts
-
+		while(I2C_MasterSendDataIT(&I2C1Handle,&commandcode,1,SLAVE_ADDR,I2C_ENABLE_SR)!=I2C_READY);   //send command via interrupts
+		while(I2C_MasterReceiveDataIT(&I2C1Handle,&len,1,SLAVE_ADDR,I2C_ENABLE_SR)!=I2C_READY);         //receive data via interrupts
 
         //get the string data
 		commandcode = 0x52;
-		while(I2C_MasterSendDataIT(&I2C1Handle,&commandcode,1,SLAVE_ADDR,I2C_ENABLE_SR) != I2C_READY);   //send command via interrupts
-		while(I2C_MasterReceiveDataIT(&I2C1Handle,rcv_buf,len,SLAVE_ADDR,I2C_DISABLE_SR)!= I2C_READY);   //receive data via interrupts
+		while(I2C_MasterSendDataIT(&I2C1Handle,&commandcode,1,SLAVE_ADDR,I2C_ENABLE_SR)!=I2C_READY);   //send command via interrupts
 
-		rxComplt = RESET;
+		rxComplt = RESET;//reset the receive complete flag
+		while(I2C_MasterReceiveDataIT(&I2C1Handle,rcv_buf,len,SLAVE_ADDR,I2C_DISABLE_SR)!=I2C_READY);   //receive data via interrupts
+
 
 		//wait till reception is completed
         while(rxComplt != SET)
         {
-
+        	;
         }
 
 		rcv_buf[len+1] = '\0';   //terminate the received string
