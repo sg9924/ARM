@@ -1,5 +1,9 @@
 #include <Wire.h>
 
+//Arduino: Master, STM32: Slave
+//A4: SDA
+//A5: SCL
+
 
 int LED = 13;
 uint8_t rcv_buf[512];   //string to be received
@@ -33,10 +37,9 @@ void loop()
 
   while(in_read != 's');
 
-  Serial.println("Starting I2C Comms....");
+  Serial.println("Starting I2C Communication....");
 
   Wire.beginTransmission(SLAVE_ADDR); //begin I2C communication with STM32 slave
-  
   Wire.write(0X51);                   //Send first command to get string length
   Wire.endTransmission();             //end transmission
 
@@ -52,7 +55,6 @@ void loop()
   Serial.println(data_len);
 
   Wire.beginTransmission(SLAVE_ADDR);
-  
   Wire.write(0X52);        //send the 2nd command to get the required string
   Wire.endTransmission();
 

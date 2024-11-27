@@ -602,6 +602,21 @@ void I2C_CloseSendData(I2C_Handle *pI2CHandle)
 }
 
 
+//I2C - Send Data for Slave
+void I2C_SlaveSendData(I2C_RegDef *pI2C,uint8_t data)
+{
+	pI2C->DR = data;
+}
+
+
+//I2C - Receive Data for Slave
+uint8_t I2C_SlaveReceiveData(I2C_RegDef *pI2C)
+{
+    return (uint8_t) pI2C->DR;
+}
+
+
+
 // I2C - Interrupt: Event Handling
 void I2C_EV_IRQHandling(I2C_Handle *pI2CHandle)
 {

@@ -15,7 +15,7 @@
 
 
 I2C_Handle I2C1Handle;
-uint8_t Tx_buf[32]  = "STM32 - Slave, Arduino - Master, Slave Transmit testing"; //string to be sent
+uint8_t Tx_buf[32]  = "Slave (Arduino) Transmit Testing"; //string to be sent
 
 
 void delay(void)
@@ -132,15 +132,19 @@ void I2C_ApplicationEventCallback(I2C_Handle *pI2CHandle,uint8_t AppEv)
 		}
         else if (commandCode == 0x52) //for the sending the required string
 		{
-			//send the string
-			I2C_SlaveSendData(pI2CHandle->pI2Cx,Tx_buf[Cnt++]);
-
+			if(Cnt<strlen((char*)Tx_buf))
+			{
+				//send the string
+				I2C_SlaveSendData(pI2CHandle->pI2Cx,Tx_buf[Cnt++]);
+			}
 		}
-	}else if (AppEv == I2C_EV_DATA_RCV)  //slave data reception
+	}
+	else if (AppEv == I2C_EV_DATA_RCV)  //slave data reception
 	{
 		commandCode = I2C_SlaveReceiveData(pI2CHandle->pI2Cx);
 
-	}else if (AppEv == I2C_ERROR_AF)     //ACK Failure
+	}
+	else if (AppEv == I2C_ERROR_AF)     //ACK Failure
 	{
 		//This happens during slave transmission.
 		//Master has sent NACK. slave doesn't need to send more data
