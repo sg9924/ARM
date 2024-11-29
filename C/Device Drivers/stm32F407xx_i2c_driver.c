@@ -186,7 +186,8 @@ void I2C_Init(I2C_Handle *pI2CHandle)
 		if(pI2CHandle->I2C_Config.I2C_FMDutyCycle == I2C_FM_DUTY_2)
 		{
 			ccr_value = (RCC_GetPCLK1Value() / (3 * pI2CHandle->I2C_Config.I2C_SCLSpeed));
-		}else
+		}
+		else
 		{
 			ccr_value = (RCC_GetPCLK1Value() / (25 * pI2CHandle->I2C_Config.I2C_SCLSpeed));
 		}
@@ -299,7 +300,7 @@ void I2C_MasterReceiveData(I2C_Handle *pI2CHandle,uint8_t *pRxBuffer, uint8_t Le
 		//clear the ADDR flag
 		I2C_ClearADDRFlag(pI2CHandle);
 
-		//wait until  RXNE becomes 1
+		//wait until RXNE becomes 1
 		while(!I2C_GetFlagStatus(pI2CHandle->pI2Cx,I2C_FLAG_RXNE));
 
 		//generate STOP condition
@@ -340,9 +341,7 @@ void I2C_MasterReceiveData(I2C_Handle *pI2CHandle,uint8_t *pRxBuffer, uint8_t Le
 
 			//increment the buffer address
 			pRxBuffer++;
-
 		}
-
 	}
 
 	//re-enable ACKing
@@ -592,7 +591,7 @@ void I2C_CloseSendData(I2C_Handle *pI2CHandle)
 	//Disable ITBUFEN Control Bit
 	pI2CHandle->pI2Cx->CR2 &= ~(1<<I2C_CR2_ITBUFEN);
 
-	//Disable ITEVFEN Control Bit
+	//Disable ITEVTEN Control Bit
 	pI2CHandle->pI2Cx->CR2 &= ~(1<<I2C_CR2_ITEVTEN);
 
 	// Reset the values for next I2C Transaction
