@@ -30,7 +30,7 @@ void SPI_CloseReception(SPI_Handle *pSPIHandle)
 
 
 // SPI TX Interrupt Handle - Helper
-static void  spi_txe_interrupt_handle(SPI_Handle *pSPIHandle)
+static void spi_txe_interrupt_handle(SPI_Handle *pSPIHandle)
 {
 	// check the DFF bit in CR1
 	if((pSPIHandle->pSPIx->CR1 & (1 << SPI_CR1_DFF)))
@@ -49,7 +49,7 @@ static void  spi_txe_interrupt_handle(SPI_Handle *pSPIHandle)
 		pSPIHandle->pTxBuffer++;
 	}
 
-	if(!(pSPIHandle->TxLen)) // if length of transmission data is  zero
+	if(!(pSPIHandle->TxLen)) // if length of transmission data is zero
 	{
 		//Close SPI Transmission
 		SPI_CloseTransmisson(pSPIHandle);
