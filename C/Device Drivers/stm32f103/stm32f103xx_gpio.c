@@ -146,7 +146,7 @@ void GPIO_Init(GPIO_Handle* pGPIOHandle)
         
         
         //5. configure enable and mask bits in NVIC side
-        uint8_t irq_no = nvic_irq_no_port_map(pGPIOHandle);
+        uint8_t irq_no = nvic_irq_gpio_port_map(pGPIOHandle);
         nvic_intrpt_enable(irq_no);
     
     }
