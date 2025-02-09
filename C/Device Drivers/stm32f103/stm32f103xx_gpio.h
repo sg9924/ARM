@@ -1,7 +1,8 @@
 #ifndef INC_stm32F103xx_GPIO_H
 #define INC_stm32F103xx_GPIO_H
 
-#include"stm32F103xx.h"
+#include"stm32f103xx.h"
+#include"stm32f103xx_rcc.h"
 
 /************************************************** GPIO Definitions Start **************************************************/
 
