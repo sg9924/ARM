@@ -33,7 +33,7 @@
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /************************************************ NVIC API's Declarations Start *********************************************/
 
-uint8_t nvic_irq_no_port_map(GPIO_Handle*);
+uint8_t nvic_irq_gpio_port_map(GPIO_Handle*);
 void nvic_intrpt_enable(uint8_t);
 void nvic_intrpt_disable(uint8_t);
 

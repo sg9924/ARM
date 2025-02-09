@@ -3,7 +3,7 @@
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /*********************************************** EXTI API's Definitions Start ***********************************************/
 
-uint8_t nvic_irq_no_port_map(GPIO_Handle* pGPIOHandle)
+uint8_t nvic_irq_gpio_port_map(GPIO_Handle* pGPIOHandle)
 {
     if(pGPIOHandle->GPIOx_PinConfig.PinNo<=4)
         return (pGPIOHandle->GPIOx_PinConfig.PinNo+6);
