@@ -32,7 +32,6 @@ void GPIO_PClk_init(GPIO_RegDef* pGPIOx, uint8_t setup_mode)
     {
         //TODO
     }
-
 }
 
 
@@ -49,57 +48,55 @@ void GPIO_Init(GPIO_Handle* pGPIOHandle)
     uint8_t bit_no = section_no*4;                                      //MODE bit position no
     uint32_t mode, config_type;
 
-    //2. configure the mode of GPIO pin
+    //2. frame the mode and config type value of GPIO pin
     if(pGPIOHandle->GPIOx_PinConfig.PinMode <= GPIO_MODE_AF)
     {
         //Non-Interrupt Mode    
-        //output mode + speed is configured + general purpose output config type
-        if(pGPIOHandle->GPIOx_PinConfig.PinMode == GPIO_MODE_OP && pGPIOHandle->GPIOx_PinConfig.PinOutputSpeed != 0 && pGPIOHandle->GPIOx_PinConfig.PinConfigType <= GPIO_GP_OP_OD)
+        //output/alternate function mode + speed is configured + any config type
+        if(pGPIOHandle->GPIOx_PinConfig.PinMode != GPIO_MODE_IP
+        && pGPIOHandle->GPIOx_PinConfig.PinOutputSpeed != 0
+        && pGPIOHandle->GPIOx_PinConfig.PinConfigType >= GPIO_CONFIG_GP_OP_OD
+        && pGPIOHandle->GPIOx_PinConfig.PinConfigType <= GPIO_CONFIG_AF_OP_OD)
         {
             mode = pGPIOHandle->GPIOx_PinConfig.PinOutputSpeed << (bit_no);
             config_type = pGPIOHandle->GPIOx_PinConfig.PinConfigType << (bit_no+2);
-            
-        }//output mode + speed is configured + alternate function output config type
-        else if(pGPIOHandle->GPIOx_PinConfig.PinMode == GPIO_MODE_OP && pGPIOHandle->GPIOx_PinConfig.PinOutputSpeed != 0 && pGPIOHandle->GPIOx_PinConfig.PinConfigType > GPIO_AF_OP_OD
-                && pGPIOHandle->GPIOx_PinConfig.PinConfigType <= GPIO_AF_OP_OD)
-        {
-            //to do
         }//input mode + floating/pull up/pull down/analog config type
-        else if(pGPIOHandle->GPIOx_PinConfig.PinMode == GPIO_MODE_IP && pGPIOHandle->GPIOx_PinConfig.PinConfigType <= GPIO_PD)
+        else if(pGPIOHandle->GPIOx_PinConfig.PinMode == GPIO_MODE_IP && pGPIOHandle->GPIOx_PinConfig.PinConfigType <= GPIO_CONFIG_PD)
         {
             mode = ~(3 << (bit_no)); //input mode
             
-            if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_ANALOG) //Analog
+            if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_CONFIG_ANALOG) //Analog
                 config_type = ~(~pGPIOHandle->GPIOx_PinConfig.PinConfigType << (bit_no+2)); //CNF bit position = MODE bit position + 2
-            else if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_PU) //Pull Up
+            else if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_CONFIG_PU) //Pull Up
             {
                 config_type = 2 << (bit_no+2);     //CNF bit position = MODE bit position + 2
                 pGPIOHandle->pGPIOx->ODR &= ~(1 << (pGPIOHandle->GPIOx_PinConfig.PinNo));
                 pGPIOHandle->pGPIOx->ODR |= 1 << (pGPIOHandle->GPIOx_PinConfig.PinNo);
             }
-            else if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_PD) //Pull Down
+            else if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_CONFIG_PD) //Pull Down
             {
                 config_type = 2 << (bit_no+2);     //CNF bit position = MODE bit position + 2
                 pGPIOHandle->pGPIOx->ODR &= ~(1 << (pGPIOHandle->GPIOx_PinConfig.PinNo));
             }
-            else if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_FLOAT) //No PUPD (ie) Floating
+            else if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_CONFIG_FLOAT) //No PUPD (ie) Floating
                 config_type = 1 << (bit_no+2);     //CNF bit position = MODE bit position + 2
         }
         
+        //3. configuring GPIO mode
         if(pGPIOHandle->GPIOx_PinConfig.PinMode == GPIO_MODE_IP)
         {
-            //configuring GPIO mode
             pGPIOHandle->pGPIOx->CR[reg_no] &= mode;
         }
         else
         {
-            //configuring GPIO mode
+            //clear mode bits
+            pGPIOHandle->pGPIOx->CR[reg_no] &= ~(3 << bit_no);
             pGPIOHandle->pGPIOx->CR[reg_no] |= mode;
         }
         
+        //4. configure GPIO config type
         //clear config bits
         pGPIOHandle->pGPIOx->CR[reg_no] &= ~(3 << (bit_no+2));
-        //configuring GPIO config type
         pGPIOHandle->pGPIOx->CR[reg_no] |= config_type;
     }
     else
@@ -108,20 +105,20 @@ void GPIO_Init(GPIO_Handle* pGPIOHandle)
         //1. configure for input
         mode = ~(3 << (bit_no)); //input mode
             
-        if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_ANALOG) //Analog
+        if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_CONFIG_ANALOG) //Analog
             config_type = ~(~pGPIOHandle->GPIOx_PinConfig.PinConfigType << (bit_no+2)); //CNF bit position = MODE bit position + 2
-        else if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_PU) //Pull Up
+        else if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_CONFIG_PU) //Pull Up
         {
             config_type = 2 << (bit_no+2);     //CNF bit position = MODE bit position + 2
             pGPIOHandle->pGPIOx->ODR &= ~(1 << (pGPIOHandle->GPIOx_PinConfig.PinNo));
             pGPIOHandle->pGPIOx->ODR |= 1 << (pGPIOHandle->GPIOx_PinConfig.PinNo);
         }
-        else if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_PD) //Pull Down
+        else if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_CONFIG_PD) //Pull Down
         {
             config_type = 2 << (bit_no+2);     //CNF bit position = MODE bit position + 2
             pGPIOHandle->pGPIOx->ODR &= ~(1 << (pGPIOHandle->GPIOx_PinConfig.PinNo));
         }
-        else if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_FLOAT) //No PUPD (ie) Floating
+        else if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_CONFIG_FLOAT) //No PUPD (ie) Floating
             config_type = 1 << (bit_no+2);     //CNF bit position = MODE bit position + 2
         
         //configuring GPIO mode
@@ -132,23 +129,18 @@ void GPIO_Init(GPIO_Handle* pGPIOHandle)
         //configuring GPIO config type
         pGPIOHandle->pGPIOx->CR[reg_no] |= config_type;
             
-        
         //2. configure edge triggering of interrupts in EXTI (peripheral side)
         exti_intrpt_trig_config(pGPIOHandle->GPIOx_PinConfig.PinNo, pGPIOHandle->GPIOx_PinConfig.PinMode);
-        
         
         //3. config exticr for port selection in AFIO (peripheral side)
         afio_exti_config(pGPIOHandle->pGPIOx, pGPIOHandle->GPIOx_PinConfig.PinNo);
         
-        
         //4. enable exti interrupts (peripheral side)
         exti_enable_intrpt(pGPIOHandle->GPIOx_PinConfig.PinNo);
-        
         
         //5. configure enable and mask bits in NVIC side
         uint8_t irq_no = nvic_irq_gpio_port_map(pGPIOHandle);
         nvic_intrpt_enable(irq_no);
-    
     }
 }
 

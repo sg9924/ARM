@@ -37,9 +37,9 @@
 #define GPIO_MODE_IP                    0           /*<Input Mode - Reset State>*/
 #define GPIO_MODE_OP                    1           /*<Output Mode>*/
 #define GPIO_MODE_AF                    2           /*<Alternate Function Mode>*/
-#define GPIO_MODE_INTRPT_FE_TRIG        3           /*<Alternate Function Mode>*/
-#define GPIO_MODE_INTRPT_RE_TRIG        4           /*<Alternate Function Mode>*/
-#define GPIO_MODE_INTRPT_FERE_TRIG      5           /*<Alternate Function Mode>*/
+#define GPIO_MODE_INTRPT_FE_TRIG        3           /*<Interrupt Falling Edge Trigger Mode>*/
+#define GPIO_MODE_INTRPT_RE_TRIG        4           /*<Interrupt Rising Edge Trigger Mode>*/
+#define GPIO_MODE_INTRPT_FERE_TRIG      5           /*<Interrupt Falling/Rising Edge Trigger Mode>*/
 
 // GPIO OP Mode Speeds
 #define GPIO_OP_SPEED_2                 2           /*<Output Mode - 2 MHz>*/
@@ -47,17 +47,17 @@
 #define GPIO_OP_SPEED_50                3           /*<Output Mode - 50 MHz>*/
 
 // GPIO OP Mode Config Types
-#define GPIO_GP_OP_PP                   0           /*<General Purpose Output Push Pull>>*/
-#define GPIO_GP_OP_OD                   1           /*<General Purpose Output Open Drain>*/
-#define GPIO_AF_OP_PP                   2           /*<Alternate Function Output Push Pull>*/
-#define GPIO_AF_OP_OD                   3           /*<Alternate Function Output Open Drain>*/
+#define GPIO_CONFIG_GP_OP_PP                   0           /*<General Purpose Output Push Pull>>*/
+#define GPIO_CONFIG_GP_OP_OD                   1           /*<General Purpose Output Open Drain>*/
+#define GPIO_CONFIG_AF_OP_PP                   2           /*<Alternate Function Output Push Pull>*/
+#define GPIO_CONFIG_AF_OP_OD                   3           /*<Alternate Function Output Open Drain>*/
 
 // GPIO Other Mode Config Types
-#define GPIO_ANALOG                     0           /*<Analog>*/
-#define GPIO_FLOAT                      1           /*<Float>*/
-#define GPIO_PU                         2           /*<Pull Up>*/
-#define GPIO_PD                         3           /*<Pull Down>*/
-#define GPIO_NO_PUPD                    GPIO_FLOAT
+#define GPIO_CONFIG_ANALOG                     0           /*<Analog>*/
+#define GPIO_CONFIG_FLOAT                      1           /*<Float>*/
+#define GPIO_CONFIG_PU                         2           /*<Pull Up>*/
+#define GPIO_CONFIG_PD                         3           /*<Pull Down>*/
+#define GPIO_CONFIG_NO_PUPD                    GPIO_FLOAT
 
 /*************************************************** GPIO Definitions End ***************************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
@@ -101,7 +101,7 @@ typedef struct
     uint8_t PinMode;                        /*<Pin mode><input, output, alternate function>*/
     uint8_t PinOutputSpeed;                 /*<Pin output speed><2MHz, 10 MHz & 50 MHz>*/
     uint8_t PinConfigType;                  /*<Pin config type><push pull and opendrain for utput and alternate function mode*/
-    uint8_t PinAltFuncMode;                 /*<!yet to defined!>*/
+    uint8_t PinAltFuncMode;                 /*<!yet to defined, NOt used currently!>*/
 }GPIO_PinConfig;
 
 
@@ -140,4 +140,4 @@ void GPIO_IRQHandling(uint8_t);                                                 
 
 /************************************************ GPIO API's Declarations End ***********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
-#endif /* INC_stm32F103xx_GPIO_H */
+#endif /*INC_stm32F103xx_GPIO_H*/
