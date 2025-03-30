@@ -8,21 +8,22 @@
 #include"stm32f103xx_memory_map.h"
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /********************************************* Generic Macros Definitions Start *********************************************/
+#define SYSCOR_CLK          8000000
 
-#define ENABLE                 1
+#define ENABLE              1
 #define DISABLE             0
 
 #define SET                 ENABLE
-#define RESET                 DISABLE
+#define RESET               DISABLE
 #define GPIO_PIN_SET        SET
 #define GPIO_PIN_RESET      RESET
 #define FLAG_RESET          RESET
-#define FLAG_SET             SET
+#define FLAG_SET            SET
 
 // Bit Manipulations !!Currently not used!!
-#define READ_BIT(reg,bit_field)        (reg>>bit_field)
-#define SET_BIT(reg,bit_field)         (reg |= 1<<bit_field)
-#define RESET_BIT(reg,bit_field)       (reg &= ~(1<<bit_field))
+#define READ_BIT(reg,bit_field)              (reg>>bit_field)
+#define SET_BIT(reg,bit_field)               (reg |= 1<<bit_field)
+#define RESET_BIT(reg,bit_field)             (reg &= ~(1<<bit_field))
 
 /********************************************** Generic Macros Definitions End **********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
@@ -73,6 +74,18 @@ typedef struct
     volatile uint32_t SWIER;        /*<Address Offset: 0x0C> <Software Interrupt Event>*/
     volatile uint32_t PR;           /*<Address Offset: 0x0C> <Pending>*/
 }EXTI_RegDef;
+
+// USART Register Definition Structure
+typedef struct
+{
+    volatile uint32_t SR;          /*<Address Offset: 0x00> <>*/
+    volatile uint32_t DR;          /*<Address Offset: 0x04> <>*/
+    volatile uint32_t BRR;         /*<Address Offset: 0x08> <>*/
+    volatile uint32_t CR1;         /*<Address Offset: 0x0C> <>*/
+    volatile uint32_t CR2;         /*<Address Offset: 0x10> <>*/
+    volatile uint32_t CR3;         /*<Address Offset: 0x14> <>*/
+    volatile uint32_t GTPR;        /*<Address Offset: 0x18> <>*/
+}USART_RegDef;
 
 /*************************************** Peripheral Registers Definition Structures End ***************************************/
 /*----------------------------------------------------------------------------------------------------------------------------*/

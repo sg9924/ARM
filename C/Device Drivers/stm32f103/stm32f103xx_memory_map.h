@@ -6,7 +6,7 @@
 //Memory Base Addresses
 #define FLASH_BASE_ADDR     0x08000000U
 #define SRAM_BASE_ADDR      0x20000000U
-
+#define PERIP_BASE_ADDR     0x40000000U
 
 //Bus Domain Bases Addresses
 #define APB1_BASE_ADDR      PERIP_BASE_ADDR
@@ -33,7 +33,14 @@
 //AHB1-EXTI Base Address
 #define EXTI_BASE_ADDR      (APB2_BASE_ADDR + 0x400)
 
+//USART Base Addresses
+#define USART1_BASE_ADDR    (APB2_BASE_ADDR + 0x3800)
+#define USART2_BASE_ADDR    (APB1_BASE_ADDR + 0x4400)
+#define USART3_BASE_ADDR    (APB1_BASE_ADDR + 0x4800)
+#define UART4_BASE_ADDR     (APB1_BASE_ADDR + 0x4C00)
+#define UART5_BASE_ADDR     (APB1_BASE_ADDR + 0x5000)
+
 /********************************************** Memory Address Definitions End **********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
-#endif /* INC_STM32F103XX_MEMORY_MAP_H */
+#endif /*INC_STM32F103XX_MEMORY_MAP_H*/
