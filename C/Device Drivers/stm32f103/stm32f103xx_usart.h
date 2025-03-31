@@ -103,7 +103,7 @@
 #define USART_CPHA_LOW             0
 #define USART_CPHA_HIGH            1
 
-/*************************************************** USART Definitions End **************************************************
+/*************************************************** USART Definitions End **************************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /************************************************ USART Macros Definitions Start ********************************************/
 
@@ -129,7 +129,7 @@ typedef struct
     uint8_t  stop_bits;
     uint8_t  clock_polarity;
     uint8_t  clock_phase;
-    char*    rx_data;
+    char*    prx_buffer;
 }USART_Config;
 
 // USART Handler Structure
@@ -142,4 +142,13 @@ typedef struct
 
 /********************************************* USART Structure Definitions Start ********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
-#endif /* INC_stm32F103xx_GPIO_H */
+
+void USART_PClk_init(USART_RegDef *pUSARTx, uint8_t mode);
+void USART_Config_Default(USART_Handle* pUSARTHandle);
+void USART_SetBaudRate(USART_Handle* pUSARTHandle);
+void USART_init(USART_Handle* pUSARTHandle, GPIO_Handle* pGPIOHandle,  USART_RegDef* pUSARTx);
+void USART_TX(USART_Handle* pUSARTHandle, char* data, uint32_t size);
+void USART_RX(USART_Handle* pUSARTHandle, char* data, uint32_t size);
+
+
+#endif /*INC_stm32F103xx_GPIO_H*/
