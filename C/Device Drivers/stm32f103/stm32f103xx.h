@@ -8,7 +8,7 @@
 #include"stm32f103xx_memory_map.h"
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /********************************************* Generic Macros Definitions Start *********************************************/
-#define SYSCOR_CLK          8000000
+#define SYSCORE_CLK          8000000
 
 #define ENABLE              1
 #define DISABLE             0
@@ -60,7 +60,7 @@ typedef struct
     volatile uint32_t AHBENR;       /*<Address offset: 0x14> <AHB Enable>*/
     volatile uint32_t APB2ENR;      /*<Address offset: 0x18> <APB2 Enable>*/
     volatile uint32_t APB1ENR;      /*<Address offset: 0x1C> <APB1 Enable>*/
-    volatile uint32_t BDCR;         /*<Address offset: 0x20> <Back Domain Clock>*/
+    volatile uint32_t BDCR;         /*<Address offset: 0x20> <Backup Domain Clock>*/
     volatile uint32_t CSR;          /*<Address offset: 0x24> <Control/Status>*/
 }RCC_RegDef;
 
