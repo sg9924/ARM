@@ -42,8 +42,9 @@
 #define GPIO_MODE_INTRPT_FERE_TRIG      5           /*<Interrupt Falling/Rising Edge Trigger Mode>*/
 
 // GPIO OP Mode Speeds
-#define GPIO_OP_SPEED_2                 2           /*<Output Mode - 2 MHz>*/
+#define GPIO_OP_SPEED_0                 0
 #define GPIO_OP_SPEED_10                1           /*<Output Mode - 10 MHz>*/
+#define GPIO_OP_SPEED_2                 2           /*<Output Mode - 2 MHz>*/
 #define GPIO_OP_SPEED_50                3           /*<Output Mode - 50 MHz>*/
 
 // GPIO OP Mode Config Types
@@ -101,7 +102,7 @@ typedef struct
     uint8_t PinMode;                        /*<Pin mode><input, output, alternate function>*/
     uint8_t PinOutputSpeed;                 /*<Pin output speed><2MHz, 10 MHz & 50 MHz>*/
     uint8_t PinConfigType;                  /*<Pin config type><push pull and opendrain for utput and alternate function mode*/
-    uint8_t PinAltFuncMode;                 /*<!yet to defined, NOt used currently!>*/
+    uint8_t PinAltFuncMode;                 /*<!yet to defined, Not used currently!>*/
 }GPIO_PinConfig;
 
 
@@ -119,6 +120,8 @@ typedef struct
 // GPIO Peripheral Clock Initialization
 void GPIO_PClk_init(GPIO_RegDef* pGPIOx, uint8_t setup_mode);                       /*<>*/
 
+//
+void GPIO_Config(GPIO_Handle* pGPIOHandle, GPIO_RegDef* pGPIOx, uint8_t mode, uint8_t config_type, uint8_t pin_no, uint8_t op_speed);
 
 // GPIO Initialisation & De-Initialisation
 void GPIO_Init(GPIO_Handle* pGPIOHandle);                                           /*<>*/

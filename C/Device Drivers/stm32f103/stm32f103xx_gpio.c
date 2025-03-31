@@ -35,6 +35,17 @@ void GPIO_PClk_init(GPIO_RegDef* pGPIOx, uint8_t setup_mode)
 }
 
 
+//Set Default GPIO Configuration
+void GPIO_Config(GPIO_Handle* pGPIOHandle, GPIO_RegDef* pGPIOx, uint8_t mode, uint8_t config_type, uint8_t pin_no, uint8_t op_speed)
+{
+    pGPIOHandle->pGPIOx = pGPIOx;
+    pGPIOHandle->GPIOx_PinConfig.PinMode = mode;
+    pGPIOHandle->GPIOx_PinConfig.PinConfigType = config_type;
+    pGPIOHandle->GPIOx_PinConfig.PinNo = pin_no;
+    pGPIOHandle->GPIOx_PinConfig.PinOutputSpeed = op_speed;
+}
+
+
 // GPIO Initialisation & De-Initialisation
 void GPIO_Init(GPIO_Handle* pGPIOHandle)
 {
@@ -52,11 +63,11 @@ void GPIO_Init(GPIO_Handle* pGPIOHandle)
     if(pGPIOHandle->GPIOx_PinConfig.PinMode <= GPIO_MODE_AF)
     {
         //Non-Interrupt Mode    
-        //output/alternate function mode + speed is configured + any config type
+        //output/alternate function mode + speed is configured + GP/AF config type
         if(pGPIOHandle->GPIOx_PinConfig.PinMode != GPIO_MODE_IP
         && pGPIOHandle->GPIOx_PinConfig.PinOutputSpeed != 0
-        && pGPIOHandle->GPIOx_PinConfig.PinConfigType >= GPIO_CONFIG_GP_OP_OD
-        && pGPIOHandle->GPIOx_PinConfig.PinConfigType <= GPIO_CONFIG_AF_OP_OD)
+        && pGPIOHandle->GPIOx_PinConfig.PinConfigType <= GPIO_CONFIG_AF_OP_OD
+        && pGPIOHandle->GPIOx_PinConfig.PinConfigType >= GPIO_CONFIG_GP_OP_PP)
         {
             mode = pGPIOHandle->GPIOx_PinConfig.PinOutputSpeed << (bit_no);
             config_type = pGPIOHandle->GPIOx_PinConfig.PinConfigType << (bit_no+2);
