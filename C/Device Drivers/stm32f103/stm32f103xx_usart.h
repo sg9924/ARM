@@ -2,6 +2,7 @@
 #define INC_stm32F103xx_USART_H
 
 #include"stm32f103xx.h"
+#include"stm32f103xx_nvic.h"
 /************************************************** USART Definitions Start *************************************************/
 
 //USART Peripherals
@@ -73,6 +74,11 @@
 #define USART_CR3_CTSIE            10
 
 
+//USART MODE
+#define USART_MODE_TX              0
+#define USART_MODE_RX              1
+#define USART_MODE_TXRX            2
+
 //USART Baudrate
 #define USART_BAUDRATE_2400        2400
 #define USART_BAUDRATE_4800        4800
@@ -81,6 +87,10 @@
 #define USART_BAUDRATE_57600       57600
 #define USART_BAUDRATE_115200      115200
 
+//USART Word Length
+#define USART_WORD_8BIT            0
+#define USART_WORD_9BIT            1
+
 //USART Parity Control
 #define USART_PARITY_DISABLE       0
 #define USART_PARITY_ENABLE        1
@@ -88,20 +98,29 @@
 //USART Parity Type
 #define USART_PARITY_EVEN          0
 #define USART_PARITY_ODD           1
+#define USART_PARITY_NONE          2
 
 //USART Stop Bits
-#define USART_STOPBIT_0_5          0
-#define USART_STOPBIT_1            1
-#define USART_STOPBIT_1_5          2
-#define USART_STOPBIT_2            3
+#define USART_STOPBIT_1            0
+#define USART_STOPBIT_0_5          1
+#define USART_STOPBIT_2            2
+#define USART_STOPBIT_1_5          3
+#define USART_STOPBIT_DEFAULT      USART_STOPBIT_1
 
 //USART Clock Polarity
 #define USART_CPOL_LOW             0
 #define USART_CPOL_HIGH            1
+#define USART_CPOL_DEFAULT         USART_CPOL_LOW
 
 //USART Clock Phase
 #define USART_CPHA_LOW             0
 #define USART_CPHA_HIGH            1
+#define USART_CPHA_DEFAULT         USART_CPHA_LOW
+
+//USART States
+#define USART_READY                0
+#define USART_TX_BUSY              1
+#define USART_RX_BUSY              2
 
 /*************************************************** USART Definitions End **************************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
@@ -123,32 +142,48 @@
 
 typedef struct
 {
+    uint8_t mode;
     uint32_t baudrate;
+    uint32_t word_length;
     uint8_t  parity_control;
     uint8_t  parity_type;
     uint8_t  stop_bits;
     uint8_t  clock_polarity;
     uint8_t  clock_phase;
-    char*    prx_buffer;
 }USART_Config;
 
 // USART Handler Structure
 typedef struct
 {
     USART_RegDef     *pUSARTx;              /*<USART Register Definition>*/
-    USART_Config     USARTx_Config;        /*<USART Config Settings>*/
+    USART_Config     USARTx_Config;         /*<USART Config Settings>*/
     GPIO_Handle      *pGPIOHandle;
+    uint8_t          *pTXBuffer;
+    uint8_t          *pRXBuffer;
+    uint32_t         TXLen;
+    uint32_t         RXLen;
+    uint8_t          TXState;
+    uint8_t          RXState;
 }USART_Handle;
 
 /********************************************* USART Structure Definitions Start ********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
 void USART_PClk_init(USART_RegDef *pUSARTx, uint8_t mode);
+
 void USART_Config_Default(USART_Handle* pUSARTHandle);
+void USART_Configure(USART_Handle* pUSARTHandle, uint8_t mode, uint32_t baudrate, uint8_t clk_phase,
+                    uint8_t clk_polarity, uint8_t word_len, uint8_t parity_ctrl, uint8_t parity_type, uint8_t stop_bits);
 void USART_SetBaudRate(USART_Handle* pUSARTHandle);
 void USART_init(USART_Handle* pUSARTHandle, GPIO_Handle* pGPIOHandle,  USART_RegDef* pUSARTx);
-void USART_TX(USART_Handle* pUSARTHandle, char* data, uint32_t size);
-void USART_RX(USART_Handle* pUSARTHandle, char* data, uint32_t size);
 
+void USART_TX(USART_Handle* pUSARTHandle, uint8_t* pbuffer, uint32_t size);
+void USART_RX(USART_Handle* pUSARTHandle, uint8_t* pbuffer, uint32_t size);
+
+void USART_IT_Config(USART_Handle* pUSARTHandle, uint8_t mode);
+void USART_IRQ_Handler(USART_Handle* pUSARTHandle);
+
+uint8_t USART_TX_IT(USART_Handle* pUSARTHandle, uint8_t* pbuffer, uint32_t size);
+uint8_t USART_RX_IT(USART_Handle* pUSARTHandle, uint8_t* pbuffer, uint32_t size);
 
 #endif /*INC_stm32F103xx_GPIO_H*/
