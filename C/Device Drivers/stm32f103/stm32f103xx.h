@@ -87,6 +87,20 @@ typedef struct
     volatile uint32_t GTPR;        /*<Address Offset: 0x18> <>*/
 }USART_RegDef;
 
+//SPI
+typedef struct
+{
+    uint32_t CR1;
+    uint32_t CR2;
+    uint32_t SR;
+    uint32_t DR;
+    uint32_t CRCPR;
+    uint32_t RXCRCR;
+    uint32_t TXCRCR;
+    uint32_t I2SCFGR;
+    uint32_t I2SPR;
+}SPI_RegDef;
+
 /*************************************** Peripheral Registers Definition Structures End ***************************************/
 /*----------------------------------------------------------------------------------------------------------------------------*/
 
