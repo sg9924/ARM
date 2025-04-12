@@ -40,7 +40,17 @@
 #define UART4_BASE_ADDR     (APB1_BASE_ADDR + 0x4C00)
 #define UART5_BASE_ADDR     (APB1_BASE_ADDR + 0x5000)
 
+//ADC Base Addresses
+#define ADC1_BASE_ADDR      (APB2_BASE_ADDR + 0x2800)
+#define ADC2_BASE_ADDR      (APB2_BASE_ADDR + 0x2400)
+#define ADC3_BASE_ADDR      (APB2_BASE_ADDR + 0x3C00)
+
+//SPI Base Addresses
+#define SPI1_BASE_ADDR      (APB2_BASE_ADDR + 0x3000)
+#define SPI2_BASE_ADDR      (APB1_BASE_ADDR + 0x3800)
+#define SPI3_BASE_ADDR      (APB1_BASE_ADDR + 0x3C00)
+
 /********************************************** Memory Address Definitions End **********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
-#endif /*INC_STM32F103XX_MEMORY_MAP_H*/
+#endif
