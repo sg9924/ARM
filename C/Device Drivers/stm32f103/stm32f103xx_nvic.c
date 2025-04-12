@@ -1,8 +1,9 @@
 #include"stm32f103xx_nvic.h"
 
 /*--------------------------------------------------------------------------------------------------------------------------*/
-/*********************************************** EXTI API's Definitions Start ***********************************************/
+/*********************************************** NVIC API's Definitions Start ***********************************************/
 
+//Get IRQ Number for GPIO Pins
 uint8_t nvic_irq_gpio_port_map(GPIO_Handle* pGPIOHandle)
 {
     if(pGPIOHandle->GPIOx_PinConfig.PinNo<=4)
@@ -16,7 +17,7 @@ uint8_t nvic_irq_gpio_port_map(GPIO_Handle* pGPIOHandle)
 }
 
 // NVIC Interrupt Enable
-void nvic_intrpt_enable(uint8_t irq_no)
+void nvic_intrpt_enable(uint16_t irq_no)
 {    
     if(irq_no<=31)
     {
@@ -54,7 +55,7 @@ void nvic_intrpt_enable(uint8_t irq_no)
 
 
 // NVIC Interrupt Disable
-void nvic_intrpt_disable(uint8_t irq_no)
+void nvic_intrpt_disable(uint16_t irq_no)
 {
     if(irq_no<=31)
     {
@@ -90,5 +91,5 @@ void nvic_intrpt_disable(uint8_t irq_no)
     }
 }
 
-/*********************************************** EXTI API's Definitions Start ***********************************************/
+/*********************************************** NVIC API's Definitions Start ***********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/

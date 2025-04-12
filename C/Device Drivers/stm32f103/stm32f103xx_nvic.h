@@ -28,14 +28,27 @@
 #define NVIC_ICER7            ((volatile uint32_t*)0XE000E19C)
 
 // NVIC Priority Register Address
-#define NVIC_PR_BASE_ADDR   ((volatile uint32_t*)0xE000E400)
+#define NVIC_PR_BASE_ADDR     ((volatile uint32_t*)0xE000E400)
+
+//IRQ Numbers
+#define USART1_IRQ_NO          37
+#define USART2_IRQ_NO          38
+#define USART3_IRQ_NO          39
+#define UART4_IRQ_NO           52
+#define UART5_IRQ_NO           53
+
+#define SPI1_IRQ_NO            35
+#define SPI2_IRQ_NO            36
+#define SPI3_IRQ_NO            51
+
+
 /*************************************************** NVIC Definitions End ***************************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /************************************************ NVIC API's Declarations Start *********************************************/
 
 uint8_t nvic_irq_gpio_port_map(GPIO_Handle*);
-void nvic_intrpt_enable(uint8_t);
-void nvic_intrpt_disable(uint8_t);
+void nvic_intrpt_enable(uint16_t);
+void nvic_intrpt_disable(uint16_t);
 
 /************************************************** NVIC API's Declarations End *********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
