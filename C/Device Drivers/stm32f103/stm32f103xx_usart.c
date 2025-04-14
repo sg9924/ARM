@@ -161,9 +161,9 @@ void USART_init(USART_Handle* pUSARTHandle, GPIO_Handle* pGPIOHandle,  USART_Reg
 //USART Send Data (Blocking)
 void USART_TX(USART_Handle* pUSARTHandle, uint8_t* pbuffer, uint32_t size)
 {
-    pUSARTHandle->pRXBuffer = pbuffer;
-    pUSARTHandle->RXLen = size;
-    pUSARTHandle->RXState = USART_TX_BUSY;
+    pUSARTHandle->pTXBuffer = pbuffer;
+    pUSARTHandle->TXLen = size;
+    pUSARTHandle->TXState = USART_TX_BUSY;
 
     while(size--)
     {
@@ -207,18 +207,18 @@ void USART_RX(USART_Handle* pUSARTHandle, uint8_t* pbuffer, uint32_t size)
         {
             if(pUSARTHandle->USARTx_Config.parity_type == USART_PARITY_DISABLE)
             {
-                *((uint16_t*)pUSARTHandle->pRXBuffer) = (pUSARTHandle->pUSARTx->DR & (uint16_t)0x01FF);
+                *((uint16_t*)pbuffer) = (pUSARTHandle->pUSARTx->DR & (uint16_t)0x01FF);
                 pbuffer += 2;
             }
             else
             {
-                *(pUSARTHandle->pRXBuffer) = pUSARTHandle->pUSARTx->DR;
+                *(pbuffer) = pUSARTHandle->pUSARTx->DR;
                 pbuffer++;
             }
         }
         else //8 bit word length
         {
-            *(pUSARTHandle->pRXBuffer) = pUSARTHandle->pUSARTx->DR;
+            *(pbuffer) = pUSARTHandle->pUSARTx->DR;
             pbuffer++;
         }
         
