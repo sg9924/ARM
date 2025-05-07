@@ -213,9 +213,114 @@ void I2C_Master_Send(I2C_Handle* pI2CHandle, uint8_t* ptxbuffer, uint32_t len, u
 }
 
 
+void I2C_Master_Receive(I2C_Handle* pI2CHandle, uint8_t* prxbuffer, uint32_t len, uint8_t slave_addr, uint8_t repeat_start)
+{
+    pI2CHandle->prxbuffer = prxbuffer;
+    pI2CHandle->rx_len = len;
+
+    //Enable ACK before Reception after PE is set
+    I2C_ACK_Enable(pI2CHandle);
+
+    //Generate the Start Condition
+    pI2CHandle->pI2Cx->CR1 |= 1<<I2C_CR1_START;
+
+    //wait till start generation is completed
+    while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_SB));
+
+    //Address Phase, send Slave address for Read
+    I2C_Address_Phase_Read(pI2CHandle, slave_addr);
+
+    //slave_addr = slave_addr<<1;  //first 7 bits are address
+    //slave_addr |= 1;             //last 8th bit is R/NW bit - 1 for read
+    //pI2CHandle->pI2Cx->DR = slave_addr;
+
+    //wait till address phase is completed
+    while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_ADDR));
+
+    //Read Data - single byte
+    if(pI2CHandle->rx_len == 1)
+    {
+        //Disable ACK as only one byte will be received
+        I2C_ACK_Disable(pI2CHandle);
+
+        //Clear ADDR Flag
+        pI2CHandle->pI2Cx->SR1 &= ~(1<<I2C_SR1_ADDR);
+
+        //Wait till RXNE becomes 1
+        while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_RXNE));
+
+        //Generate Stop Condition
+        if(repeat_start == I2C_REPEAT_START_DISABLE)
+            pI2CHandle->pI2Cx->CR1 |= 1<<I2C_CR1_STOP;
+
+        //Read Data into buffer
+        *prxbuffer = pI2CHandle->pI2Cx->DR;
+    }
+    else if(pI2CHandle->rx_len > 1)
+    {
+        //Clear ADDR flag
+        I2C_Clear_ADDR_Flag(pI2CHandle);
+
+        while(pI2CHandle->rx_len > 0)
+        {
+            //Wait till RXNE becomes 1
+            while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_RXNE));
+
+            if(pI2CHandle->rx_len == 2)
+            {
+                //Disable ACK
+                I2C_ACK_Disable(pI2CHandle);
+
+                //Generate Stop Condition
+                if(repeat_start == I2C_REPEAT_START_DISABLE)
+                    pI2CHandle->pI2Cx->CR1 |= 1<<I2C_CR1_STOP;
+            }
+
+            //Read Data into buffer
+            *prxbuffer = pI2CHandle->pI2Cx->DR;
+
+            prxbuffer++;
+            (pI2CHandle->rx_len)--;
+        }
+    }
+
+    //Re-enable ACK for future transactions
+    I2C_ACK_Enable(pI2CHandle);
+}
 
 
 
+
+
+// Helper Functions
+
+// ADDR Flag Clear
+void I2C_Clear_ADDR_Flag(I2C_Handle* pI2CHandle)
+{
+    uint32_t temp = 0;
+
+    //Device is Master and I2C is busy in Reception
+    if((pI2CHandle->pI2Cx->SR2 & 1<<I2C_SR2_MSL) && pI2CHandle->rx_state == I2C_STATE_RX_BUSY)
+    {
+        if(pI2CHandle->rx_len == 1)
+        {
+            //Disable ACK
+            pI2CHandle->pI2Cx->CR1 &= ~(1<<I2C_CR1_ACK);
+
+            //Clear ADDR - Read SR1 & SR2
+            temp = pI2CHandle->pI2Cx->SR1;
+            temp = pI2CHandle->pI2Cx->SR2;
+            (void)temp;
+        }
+    }
+    else //Device mode is slave or I2C is not busy in Reception
+    {
+        //Clear ADDR - Read SR1 & SR2
+        temp = pI2CHandle->pI2Cx->SR1;
+        temp = pI2CHandle->pI2Cx->SR2;
+        (void)temp;
+    }
+}
 
 // ACK Enable
 void I2C_ACK_Enable(I2C_Handle* pI2CHandle)
