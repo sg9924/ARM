@@ -89,3 +89,70 @@ void I2C_GPIO_init(I2C_Handle* pI2CHandle)
         GPIO_Init(pI2CHandle->pGPIOHandle);
     }
 }
+
+
+//I2C Peripheral Init
+void I2C_init(I2C_Handle* pI2CHandle, GPIO_Handle* pGPIOHandle, I2C_RegDef* pI2Cx)
+{
+    pI2CHandle->pGPIOHandle = pGPIOHandle;
+    pI2CHandle->pI2Cx       = pI2Cx;
+    
+    //Enable Peripheral Clock
+    I2C_PClk_init(pI2CHandle, ENABLE);
+
+    //Configure GPIO pins for I2C
+    I2C_GPIO_init(pI2CHandle);
+    
+
+    uint32_t temp = 0;
+
+    //Enable ACK (doesn't work when PE is 0)
+    //pI2CHandle->pI2Cx->CR1 |= (pI2CHandle->I2CConfig.ack_control)<<I2C_CR1_ACK;
+
+    //Configure Frequency
+    temp = 8000000/1000000;
+    pI2CHandle->pI2Cx->CR2 |= (temp & 0x3F)<<I2C_CR2_FREQ;
+
+    //5. Configure Host Device Address for Slave Mode
+    if(pI2CHandle->I2CConfig.mode == I2C_MODE_SLAVE)
+    {
+        if(pI2CHandle->I2CConfig.address_type == I2C_ADDR_7BIT)
+        {
+            temp=0;
+            temp = pI2CHandle->I2CConfig.device_address<<I2C_OAR1_ADD1;
+            pI2CHandle->pI2Cx->OAR1 |= temp;
+        }
+        else if(pI2CHandle->I2CConfig.address_type == I2C_ADDR_10BIT)
+        {
+            //to do
+        }
+    }
+
+    //Configure CCR
+    temp=0;
+    temp |= pI2CHandle->I2CConfig.mode_type<<I2C_CCR_FS;         // Standard or Fast Mode Config
+
+    if(pI2CHandle->I2CConfig.mode_type == I2C_MODE_TYPE_STD)
+    {
+        temp |= 8000000/(2 * pI2CHandle->I2CConfig.speed);
+    }
+    else
+    {
+        temp |= pI2CHandle->I2CConfig.fm_duty_cycle << I2C_CCR_DUTY;
+
+        if(pI2CHandle->I2CConfig.fm_duty_cycle == I2C_FM_DUTY_2)
+            temp |= 8000000/(3 * pI2CHandle->I2CConfig.speed);
+        else if(pI2CHandle->I2CConfig.fm_duty_cycle == I2C_FM_DUTY_16_9)
+            temp |= 8000000/(25 * pI2CHandle->I2CConfig.speed);
+    }
+    pI2CHandle->pI2Cx->CCR |= temp;
+
+    //Configure TRISE
+    if(pI2CHandle->I2CConfig.mode_type == I2C_MODE_TYPE_STD)
+        pI2CHandle->pI2Cx->TRISE |= ((8000000/1000000) + 1) << I2C_TRISE0;
+    else if(pI2CHandle->I2CConfig.mode_type == I2C_MODE_TYPE_FAST)
+        pI2CHandle->pI2Cx->TRISE |= ((8000000/1000000)*300 + 1) << I2C_TRISE0;
+
+    //8. Enable I2C Peripheral
+    I2C_P_init(pI2CHandle, ENABLE);
+}
