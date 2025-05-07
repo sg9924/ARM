@@ -101,13 +101,17 @@
 #define RCC_CSR_LPWRRSTF            31
 
 
+//Clock Source
+#define RCC_CLK_HSI                 0
+#define RCC_CLK_HSE                 1
+#define RCC_CLK_PLL                 2
 
-// MCO Clock Output
+//MCO Clock Source
 #define MCO_NO_CLK                  0
 #define MCO_SYSCLK                  4
 #define MCO_HSICLK                  5
 #define MCO_HSECLK                  6
-#define MCO_PLLCLK                  7
+#define MCO_PLLCLK_DIV_2            7
 
 /**************************************************** RCC Definitions End ***************************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
@@ -120,7 +124,12 @@
 // RCC Config Structure
 typedef struct 
 {
-    uint8_t Clock_Source;
+    uint8_t  Clock_Source;
+    uint32_t System_Clock;
+    uint32_t High_Clock;
+    uint32_t P_Clock_1;
+    uint32_t P_Clock_2;
+    uint8_t  MCO_Clock_Source;
 }RCC_Config;
 
 
@@ -132,7 +141,15 @@ typedef struct
 }RCC_Handle;
 
 
-void RCC_Clock_Source(RCC_Handle* pRCCHandle);
-void RCC_init(RCC_Handle* pRCCHandle);
+uint8_t RCC_Get_Clock_Source(RCC_Handle* pRCCHandle);
+uint32_t RCC_Get_HCLK(RCC_Handle* pRCCHandle);
+uint32_t RCC_Get_PCLK1(RCC_Handle* pRCCHandle);
+uint32_t RCC_Get_PCLK2(RCC_Handle* pRCCHandle);
+uint8_t RCC_Update_Clock_Source(RCC_Handle* pRCCHandle);
+uint32_t RCC_Update_HCLK(RCC_Handle* pRCCHandle);
+uint32_t RCC_Update_PCLK1(RCC_Handle* pRCCHandle);
+uint32_t RCC_Update_PCLK2(RCC_Handle* pRCCHandle);
+void RCC_Select_Clock_Source(RCC_Handle* pRCCHandle);
+void RCC_init(RCC_Handle* pRCCHandle, uint8_t clk_src);
 
 #endif /*INC_stm32F103xx_RCC_H*/
