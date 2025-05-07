@@ -1,7 +1,7 @@
 #include"stm32f103xx_serial.h"
 
 
-static USART_Handle U2;
+USART_Handle U2;
 static GPIO_Handle GA;
 
 uint8_t char_count;     // Initialize a counter for the number of characters printed
@@ -19,10 +19,18 @@ void _reset_buffer(uint32_t* buff_ind)
     *buff_ind = 0;
 }
 
-void _print_int(uint32_t value, char* buffer, uint32_t* buff_ind)
+void _print_int(int32_t value, char* buffer, uint32_t* buff_ind)
 {
-    int i= 0;
+    int i=0;
     char buff[32];
+
+    //negative integer
+    if(value<0)
+    {
+        buffer[*buff_ind] = '-';
+        ++(*buff_ind);
+        value = value - (2*value); //making the integer value positive
+    }
 
     // extract digits of integer in reverse
     while(value>0)
@@ -32,7 +40,7 @@ void _print_int(uint32_t value, char* buffer, uint32_t* buff_ind)
     }
     i--;
 
-    // print the digits in correct order
+    // store the digits in correct order
     while(i>=0)
     {
         buffer[(*buff_ind)++] = buff[i--];
@@ -56,7 +64,8 @@ void _serial_init()
 void Serial_init()
 {
     _serial_init();
-    Serialprint("\n\rSerial Communication has been initialized.\r\n");
+    Serialprint("\r\n");
+    Serialprint("Serial Communication has been initialized.\r\n");
 }
 
 uint8_t Serialprint(const char *format, ...)
@@ -136,12 +145,12 @@ uint8_t Serialprint(const char *format, ...)
 
     va_end(args); // Clean up the argument list
 
-    wait(2);
+    wait(SERIAL_DELAY);
     return char_count; // Return the number of characters printed
 }
 
 
-//not working, need to fix
+//!!!!!!not working, need to fix!!!!!!!!
 uint8_t Serialprintln(char *format, ...)
 {
     //add line break at end of the formatted string
@@ -222,21 +231,20 @@ uint8_t Serialprintln(char *format, ...)
 
     va_end(args); // Clean up the argument list
 
-    wait(2);
+    //wait(2);
     return char_count; // Return the number of characters printed
 }
 
 
 
-void SerialInput(char* msg, uint8_t datatype, char* rx_buffer)
+void SerialInput(char* msg, uint8_t datatype, void* var)
 {
-    char* a = rx_buffer;
-    uint8_t b_ind = 0;
-
     Serialprint(msg);
 
     if(datatype == SERIAL_RX_STRING)
     {
+        char* a = (char*)var;
+        uint8_t b_ind = 0;
         while(1)
         {
             USART_RX(&U2, (uint8_t*)a, 1);
@@ -246,6 +254,73 @@ void SerialInput(char* msg, uint8_t datatype, char* rx_buffer)
                 break;
             a++;
         }
-        rx_buffer[--b_ind] = '\0';
+        *a = '\0';
+    }
+    else if(datatype == SERIAL_RX_CHAR)
+    {
+        char* a = (char*)var;
+        while(1)
+        {
+            USART_RX(&U2, (uint8_t*)a, 1);
+            USART_TX(&U2, (uint8_t*)a, 1);
+            break;
+        }
+    }
+    else if(datatype == SERIAL_RX_INT)
+    {
+        char rx_buffer[33];
+        char* a = rx_buffer;
+        uint8_t b_ind = 0;
+        while(1)
+        {
+            USART_RX(&U2, (uint8_t*)a, 1);
+            USART_TX(&U2, (uint8_t*)a, 1);
+            b_ind++;
+            if(*a == '\r')
+                break;
+            a++;
+        }
+        *a = '\0';
+
+        *((int32_t*)var) = string_to_int(rx_buffer);
     }
 }
+
+
+/*
+void SerialInput(char* msg, char* format, ...)
+{
+    Serialprint(msg);
+
+    va_list args;                 // initializing list pointer 
+    va_start(args, format);       // Initialize the argument list
+
+    while (*format != '\0')       // Iterate over each character in the format string
+    {
+        if (*format == '%')       // Check for the start of a conversion specifier
+        {
+            format++;             // Move to the next character after '%'
+            if (*format == 'c')   // Case: Input is a character
+            {
+                char* ch = va_arg(args, char*);
+                USART_RX(&U2, (uint8_t*)ch, 1);
+                USART_TX(&U2, (uint8_t*)ch, 1);
+            }
+            else if (*format == 's')                // Case: Input is a string
+            {
+                char* str = va_arg(args, char*);    // Fetch the next argument as char*
+                while(1)
+                {
+                    USART_RX(&U2, (uint8_t*)str, 1);
+                    USART_TX(&U2, (uint8_t*)str, 1);
+                    if(*str == '\r')
+                        break;
+                    str++;
+                }
+                *(--str) = '\0';
+            }
+        format++; // Move to the next character in the format string
+        }
+    }
+}
+*/
