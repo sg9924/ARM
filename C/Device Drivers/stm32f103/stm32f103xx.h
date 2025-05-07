@@ -101,6 +101,20 @@ typedef struct
     uint32_t I2SPR;
 }SPI_RegDef;
 
+//I2C
+typedef struct
+{
+    uint32_t CR1;
+    uint32_t CR2;
+    uint32_t OAR1;
+    uint32_t OAR2;
+    uint32_t DR;
+    uint32_t SR1;
+    uint32_t SR2;
+    uint32_t CCR;
+    uint32_t TRISE;
+}I2C_RegDef;
+
 /*************************************** Peripheral Registers Definition Structures End ***************************************/
 /*----------------------------------------------------------------------------------------------------------------------------*/
 
