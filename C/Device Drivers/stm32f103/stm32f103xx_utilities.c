@@ -21,10 +21,35 @@ uint32_t get_size(char* data)
 void string_concat(char* s1, char* s2)
 {
     //traverse to end of s1
-    while(*s1++ !='\0');
+    while(*(s1++) !='\0');
+    s1--;
+    
     while(*s2 != '\0')
-        *s1++ = *s2++;
-    *s2='\0';
+    {
+        *(s1++) = *(s2++);
+    }
+    *s1='\0';
 }
 
 
+int32_t string_to_int(char* str)
+{
+    int8_t sign = 1;
+    int32_t result = 0;
+
+    if(*str == '-')
+    {
+        sign = -1;
+        str++;
+    }
+
+    for(;*str != '\0'; str++)
+    {
+        if(*str >= '0' && *str <= '9')
+            result = (result*10) + (*str - '0');
+        else
+            return 1;
+    }
+
+    return (sign * result);
+}
