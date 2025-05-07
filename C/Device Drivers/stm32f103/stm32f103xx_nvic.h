@@ -31,15 +31,23 @@
 #define NVIC_PR_BASE_ADDR     ((volatile uint32_t*)0xE000E400)
 
 //IRQ Numbers
+//USART/UART
 #define USART1_IRQ_NO          37
 #define USART2_IRQ_NO          38
 #define USART3_IRQ_NO          39
 #define UART4_IRQ_NO           52
 #define UART5_IRQ_NO           53
 
+//SPI
 #define SPI1_IRQ_NO            35
 #define SPI2_IRQ_NO            36
 #define SPI3_IRQ_NO            51
+
+//I2C
+#define I2C1_EV_IRQ_NO         38
+#define I2C1_ER_IRQ_NO         39
+#define I2C2_EV_IRQ_NO         40
+#define I2C3_ER_IRQ_NO         41
 
 
 /*************************************************** NVIC Definitions End ***************************************************/
@@ -53,4 +61,4 @@ void nvic_intrpt_disable(uint16_t);
 /************************************************** NVIC API's Declarations End *********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
-#endif /*INC_stm32F103xx_NVIC_H*/
+#endif
