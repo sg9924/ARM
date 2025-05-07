@@ -156,3 +156,101 @@ void I2C_init(I2C_Handle* pI2CHandle, GPIO_Handle* pGPIOHandle, I2C_RegDef* pI2C
     //8. Enable I2C Peripheral
     I2C_P_init(pI2CHandle, ENABLE);
 }
+
+
+void I2C_Master_Send(I2C_Handle* pI2CHandle, uint8_t* ptxbuffer, uint32_t len, uint8_t slave_addr, uint8_t repeat_start)
+{
+    pI2CHandle->ptxbuffer = ptxbuffer;
+    pI2CHandle->tx_len = len;
+
+    //Enable ACK before Reception after PE is set
+    //I2C_ACK_Enable(pI2CHandle);
+
+    //wait till bus is free
+    while((pI2CHandle->pI2Cx->SR2 & 1<<I2C_SR2_BUSY));
+
+    //Generate Start Condition
+    pI2CHandle->pI2Cx->CR1 |= 1<<I2C_CR1_START;
+
+    //wait till start generation is completed
+    while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_SB));
+
+    //Address Phase, send Slave address for write
+    I2C_Address_Phase_Write(pI2CHandle, slave_addr);
+
+    //slave_addr = slave_addr<<1;  //first 7 bits are address
+    //slave_addr &= ~(1);          //last 8th bit is R/NW bit - 0 for write
+    //pI2CHandle->pI2Cx->DR = slave_addr;
+
+    //wait till address phase is completed
+    while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_ADDR));
+
+    //clear the ADDR flag, SCL will be pulled to LOW until ADDR is cleared
+    I2C_Clear_ADDR_Flag(pI2CHandle);
+
+    //wait till TXE is set
+    while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_TXE));
+
+    //send the data until length becomes zero
+    while(pI2CHandle->tx_len > 0)
+    {
+        //wait till TXE is set
+        while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_TXE));
+
+        //load data in DR
+        pI2CHandle->pI2Cx->DR = *ptxbuffer;
+        ptxbuffer++;
+        (pI2CHandle->tx_len)--;
+    }
+
+    //when length becomes 0, wait for TXE=1 and BTF=1
+    while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_TXE));
+    while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_BTF));
+
+    //Generate Stop Condition, this also automatically clears the BTF
+    if(repeat_start == I2C_REPEAT_START_DISABLE)
+        pI2CHandle->pI2Cx->CR1 |= 1<<I2C_CR1_STOP;
+}
+
+
+
+
+
+
+// ACK Enable
+void I2C_ACK_Enable(I2C_Handle* pI2CHandle)
+{
+    pI2CHandle->pI2Cx->CR1 |= 1<<I2C_CR1_ACK;
+}
+
+// ACK Disable
+void I2C_ACK_Disable(I2C_Handle* pI2CHandle)
+{
+    pI2CHandle->pI2Cx->CR1 &= ~(1<<I2C_CR1_ACK);
+}
+
+// STOP Set
+void I2C_STOP_Set(I2C_Handle* pI2CHandle)
+{
+    pI2CHandle->pI2Cx->CR1 |= 1<<I2C_CR1_STOP;
+}
+
+// STOP Reset
+void I2C_STOP_Reset(I2C_Handle* pI2CHandle)
+{
+    pI2CHandle->pI2Cx->CR1 &= ~(1<<I2C_CR1_STOP);
+}
+
+void I2C_Address_Phase_Read(I2C_Handle* pI2CHandle, uint8_t slave_addr)
+{
+    slave_addr = slave_addr<<1;    //first 7 bits are address
+    slave_addr |= 1;               //last 8th bit is R/NW bit - 1 for read
+    pI2CHandle->pI2Cx->DR = slave_addr;
+}
+
+void I2C_Address_Phase_Write(I2C_Handle* pI2CHandle, uint8_t slave_addr)
+{
+    slave_addr = slave_addr<<1;     //first 7 bits are address
+    slave_addr &= ~(1);             //last 8th bit is R/NW bit - 0 for write
+    pI2CHandle->pI2Cx->DR = slave_addr;
+}
