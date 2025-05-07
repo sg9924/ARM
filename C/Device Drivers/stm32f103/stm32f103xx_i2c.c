@@ -163,9 +163,6 @@ void I2C_Master_Send(I2C_Handle* pI2CHandle, uint8_t* ptxbuffer, uint32_t len, u
     pI2CHandle->ptxbuffer = ptxbuffer;
     pI2CHandle->tx_len = len;
 
-    //Enable ACK before Reception after PE is set
-    //I2C_ACK_Enable(pI2CHandle);
-
     //wait till bus is free
     while((pI2CHandle->pI2Cx->SR2 & 1<<I2C_SR2_BUSY));
 
@@ -177,10 +174,6 @@ void I2C_Master_Send(I2C_Handle* pI2CHandle, uint8_t* ptxbuffer, uint32_t len, u
 
     //Address Phase, send Slave address for write
     I2C_Address_Phase_Write(pI2CHandle, slave_addr);
-
-    //slave_addr = slave_addr<<1;  //first 7 bits are address
-    //slave_addr &= ~(1);          //last 8th bit is R/NW bit - 0 for write
-    //pI2CHandle->pI2Cx->DR = slave_addr;
 
     //wait till address phase is completed
     while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_ADDR));
@@ -229,10 +222,6 @@ void I2C_Master_Receive(I2C_Handle* pI2CHandle, uint8_t* prxbuffer, uint32_t len
 
     //Address Phase, send Slave address for Read
     I2C_Address_Phase_Read(pI2CHandle, slave_addr);
-
-    //slave_addr = slave_addr<<1;  //first 7 bits are address
-    //slave_addr |= 1;             //last 8th bit is R/NW bit - 1 for read
-    //pI2CHandle->pI2Cx->DR = slave_addr;
 
     //wait till address phase is completed
     while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_ADDR));
@@ -288,6 +277,118 @@ void I2C_Master_Receive(I2C_Handle* pI2CHandle, uint8_t* prxbuffer, uint32_t len
     I2C_ACK_Enable(pI2CHandle);
 }
 
+
+void I2C_Slave_Send(I2C_Handle* pI2CHandle, uint8_t* ptxbuffer, uint32_t len, uint8_t repeat_start)
+{
+    pI2CHandle->ptxbuffer = ptxbuffer;
+    pI2CHandle->tx_len = len;
+
+    //Enable ACK before Reception after PE is set
+    I2C_ACK_Enable(pI2CHandle);
+
+    //wait till ADDR becomes 1 (Slave Address is matched)
+    while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_ADDR));
+
+    //clear the ADDR flag, SCL will be pulled to LOW until ADDR is cleared
+    I2C_Clear_ADDR_Flag(pI2CHandle);
+
+    //send the data until length becomes zero
+    while(pI2CHandle->tx_len > 0)
+    {
+        //wait till TXE is set
+        while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_TXE));
+
+        //load data in DR
+        pI2CHandle->pI2Cx->DR = *ptxbuffer;
+        ptxbuffer++;
+        (pI2CHandle->tx_len)--;
+    }
+
+    //when length becomes 0, wait for TXE=1 and AF=1
+    while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_TXE));
+    while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_AF));
+
+    //clear AF flag
+    pI2CHandle->pI2Cx->SR1 &= ~(1<<I2C_SR1_AF);
+
+    //After NACK, release bus by setting STOP
+    if(repeat_start == I2C_REPEAT_START_DISABLE)
+    {
+        //Release SCL and SDA lines
+        pI2CHandle->pI2Cx->CR1 |= 1<<I2C_CR1_STOP;
+    }
+}
+
+
+
+void I2C_Slave_Receive(I2C_Handle* pI2CHandle, uint8_t* prxbuffer, uint8_t len, uint8_t repeat_start)
+{
+    pI2CHandle->prxbuffer = prxbuffer;
+    pI2CHandle->rx_len = len;
+
+    //Enable ACK before Reception after PE is set
+    I2C_ACK_Enable(pI2CHandle);
+
+    //clear STOP flag if set
+    if(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_STOPF)
+        I2C_STOP_Reset(pI2CHandle);
+
+    //wait till ADDR becomes 1 (Slave Address is matched)
+    while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_ADDR));
+
+    //Clear ADDR Flag
+    I2C_Clear_ADDR_Flag(pI2CHandle);
+
+    //Receive Data
+    if(pI2CHandle->rx_len == 1)
+    {
+        //Disable ACK
+        I2C_ACK_Disable(pI2CHandle);
+
+        //Wait till RXNE becomes 1
+        while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_RXNE));
+
+        //Check for Stop Condition
+        if(repeat_start == I2C_REPEAT_START_DISABLE)
+        {
+            //wait until STOP condition is detected
+            while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_STOPF));
+            //Release SCL and SDA lines
+            pI2CHandle->pI2Cx->CR1 |= 1<<I2C_CR1_STOP;
+        }
+
+        //Read Data into buffer
+        *prxbuffer = pI2CHandle->pI2Cx->DR;
+    }
+    else if(pI2CHandle->rx_len > 1)
+    {
+        while(pI2CHandle->rx_len > 0)
+        {
+            //Wait till RXNE becomes 1
+            while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_RXNE));
+
+            if(pI2CHandle->rx_len == 2)
+            {
+                //Check for Stop Condition
+                if(repeat_start == I2C_REPEAT_START_DISABLE)
+                {
+                    //wait until STOP condition is detected
+                    while(!(pI2CHandle->pI2Cx->SR1 & 1<<I2C_SR1_STOPF));
+                    //Release SCL and SDA lines
+                    pI2CHandle->pI2Cx->CR1 |= 1<<I2C_CR1_STOP;
+                }
+            }
+            //Read Data into buffer
+            *prxbuffer = pI2CHandle->pI2Cx->DR;
+
+            prxbuffer++;
+            (pI2CHandle->rx_len)--;
+        }
+    }
+
+    //Re-enable ACK for future transactions
+    I2C_ACK_Enable(pI2CHandle);
+}
 
 
 
