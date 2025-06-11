@@ -192,7 +192,7 @@ void DMA_PClk_init(DMA_Handle* pDMAHandle, uint8_t mode);
 void DMA_Configure(DMA_Handle* pDMAHandle, DMA_RegDef* pDMAx, uint8_t channel, uint8_t channel_priority, uint8_t direction, uint16_t no_of_data, uint8_t peri_size, uint8_t mem_size,
                    uint8_t peri_inc, uint8_t mem_inc, uint8_t mem_to_mem_mode);
 void DMA_Address_init(DMA_Handle* pDMAHandle, uint32_t peri_addr, uint32_t mem_addr);
-void DMA_Interrupt_int(DMA_Handle* pDMAHandle, uint8_t interrupt, uint8_t mode);
+void DMA_Interrupt_init(DMA_Handle* pDMAHandle, uint8_t interrupt, uint8_t mode);
 void DMA_init(DMA_Handle* pDMAHandle);
 
 
