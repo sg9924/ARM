@@ -5,6 +5,18 @@
 #include"stm32f103xx_rcc.h"
 #include"stm32f103xx_nvic.h"
 
+enum DMA_Channel {
+    _ADC1 = 0,
+    _TIM2_CH3 = 0,
+    _TIM4_CH1 = 0,
+    _USART3_TX = 1,
+    _TIM1_CH1 = 1,
+    _TIM2_UP = 1,
+    _TIM3_CH3 = 1,
+    _SPI1_RX = 1
+};
+
+
 typedef struct
 {
     uint8_t direction;
