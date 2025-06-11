@@ -87,6 +87,7 @@ typedef struct
     volatile uint32_t GTPR;        /*<Address Offset: 0x18> <>*/
 }USART_RegDef;
 
+
 //SPI
 typedef struct
 {
@@ -115,7 +116,23 @@ typedef struct
     uint32_t TRISE;
 }I2C_RegDef;
 
+//DMA
+typedef struct
+{
+    uint32_t CCR;
+    uint32_t CNDTR;
+    uint32_t CPAR;
+    uint32_t CMAR;
+}DMA_Channel_RegDef;
+
+typedef struct
+{
+    uint32_t ISR;
+    uint32_t IFCR;
+    DMA_Channel_RegDef Channel[7];
+}DMA_RegDef;
+
 /*************************************** Peripheral Registers Definition Structures End ***************************************/
 /*----------------------------------------------------------------------------------------------------------------------------*/
 
-#endif /* INC_STM32F103XX_H */
+#endif

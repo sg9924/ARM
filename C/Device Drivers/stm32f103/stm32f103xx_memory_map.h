@@ -33,7 +33,7 @@
 //AHB1-EXTI Base Address
 #define EXTI_BASE_ADDR      (APB2_BASE_ADDR + 0x400)
 
-//USART Base Addresses
+//USART/USART Base Addresses
 #define USART1_BASE_ADDR    (APB2_BASE_ADDR + 0x3800)
 #define USART2_BASE_ADDR    (APB1_BASE_ADDR + 0x4400)
 #define USART3_BASE_ADDR    (APB1_BASE_ADDR + 0x4800)
@@ -50,9 +50,13 @@
 #define I2C2_BASE_ADDR      (PERIP_BASE_ADDR + 0x5800)
 
 //ADC Base Addresses
-#define ADC1_BASE_ADDR      (APB2_BASE_ADDR + 0x2800)
-#define ADC2_BASE_ADDR      (APB2_BASE_ADDR + 0x2400)
+#define ADC1_BASE_ADDR      (APB2_BASE_ADDR + 0x2400)
+#define ADC2_BASE_ADDR      (APB2_BASE_ADDR + 0x2800)
 #define ADC3_BASE_ADDR      (APB2_BASE_ADDR + 0x3C00)
+
+//DMA
+#define DMA1_BASE_ADDR      (0x40020000)
+#define DMA2_BASE_ADDR      (0x40020400)
 
 /********************************************** Memory Address Definitions End **********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
