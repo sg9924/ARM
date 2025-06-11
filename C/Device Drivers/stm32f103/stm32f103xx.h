@@ -102,6 +102,25 @@ typedef struct
     uint32_t I2SPR;
 }SPI_RegDef;
 
+//ADC
+typedef struct
+{
+    uint32_t SR;
+    uint32_t CR1;
+    uint32_t CR2;
+    uint32_t SMPR1;
+    uint32_t SMPR2;
+    uint32_t JOFR[4];
+    uint32_t HTR;
+    uint32_t LTR;
+    uint32_t SQR1;
+    uint32_t SQR2;
+    uint32_t SQR3;
+    uint32_t JSQR;
+    uint32_t JDR[4];
+    uint32_t DR;
+}ADC_RegDef;
+
 //I2C
 typedef struct
 {
