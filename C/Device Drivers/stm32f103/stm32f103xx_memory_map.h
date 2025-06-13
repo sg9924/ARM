@@ -58,6 +58,17 @@
 #define DMA1_BASE_ADDR      (0x40020000)
 #define DMA2_BASE_ADDR      (0x40020400)
 
+//TIMER Base Addresses
+#define TIM2_BASE_ADDR      (PERIP_BASE_ADDR)
+#define TIM3_BASE_ADDR      (PERIP_BASE_ADDR + 0x0400)
+#define TIM4_BASE_ADDR      (PERIP_BASE_ADDR + 0x0800)
+#define TIM5_BASE_ADDR      (PERIP_BASE_ADDR + 0x0C00)
+#define TIM6_BASE_ADDR      (PERIP_BASE_ADDR + 0x1000)
+#define TIM7_BASE_ADDR      (PERIP_BASE_ADDR + 0x1400)
+#define TIM12_BASE_ADDR     (PERIP_BASE_ADDR + 0x1800)
+#define TIM13BASE_ADDR      (PERIP_BASE_ADDR + 0x1C00)
+#define TIM14_BASE_ADDR     (PERIP_BASE_ADDR + 0x2000)
+
 /********************************************** Memory Address Definitions End **********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
