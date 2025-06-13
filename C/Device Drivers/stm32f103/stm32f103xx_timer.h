@@ -332,6 +332,14 @@ void TIM_Base_Stop(TIM_Handle* pTIMHandle);
 
 //General Timer Functions
 
+//Timer OC Functions
+void TIM_OC_Configure(TIM_Handle* pTIMHandle, TIM_OC_Handle* pTIMOCHandle, uint8_t oc_mode, uint8_t oc_channel, uint8_t oc_polarity, uint8_t oc_preload, uint16_t oc_value);
+void TIM_OC_init(TIM_OC_Handle* pTIMOCHandle);
+void TIM_OC_Channel_init(TIM_OC_Handle* pTIMOCHandle);
+void TIM_OC_Start(TIM_OC_Handle* pTIMOCHandle, uint8_t channel);
+void TIM_OC_Stop(TIM_OC_Handle* pTIMOCHandle, uint8_t channel);
+
+
 
 //DMA
 void TIM_DMA_Init(TIM_RegDef* pTIMx, uint8_t dma_type, uint8_t channel, uint8_t mode);
