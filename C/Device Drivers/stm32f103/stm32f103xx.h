@@ -102,6 +102,7 @@ typedef struct
     uint32_t I2SPR;
 }SPI_RegDef;
 
+
 //ADC
 typedef struct
 {
@@ -150,6 +151,26 @@ typedef struct
     uint32_t IFCR;
     DMA_Channel_RegDef Channel[7];
 }DMA_RegDef;
+
+//TIMER
+typedef struct
+{
+    uint32_t CR1;
+    uint32_t CR2;
+    uint32_t SMCR;
+    uint32_t DIER;
+    uint32_t SR;
+    uint32_t EGR;
+    uint32_t CCMR[2];
+    uint32_t CCER;
+    uint32_t CNT;
+    uint32_t PSC;
+    uint32_t ARR;
+    uint32_t CCR[4];
+    uint32_t DCR;
+    uint32_t DMAR;
+
+}TIM_RegDef;
 
 /*************************************** Peripheral Registers Definition Structures End ***************************************/
 /*----------------------------------------------------------------------------------------------------------------------------*/
