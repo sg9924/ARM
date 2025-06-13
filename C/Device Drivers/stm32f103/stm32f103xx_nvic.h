@@ -43,11 +43,13 @@
 #define SPI2_IRQ_NO            36
 #define SPI3_IRQ_NO            51
 
-//I2C
-#define I2C1_EV_IRQ_NO         38
-#define I2C1_ER_IRQ_NO         39
-#define I2C2_EV_IRQ_NO         40
-#define I2C3_ER_IRQ_NO         41
+//TIM
+#define TIM2_IRQ_NO            28
+#define TIM3_IRQ_NO            29
+#define TIM4_IRQ_NO            30
+#define TIM5_IRQ_NO            50
+#define TIM6_IRQ_NO            54
+#define TIM7_IRQ_NO            55
 
 
 /*************************************************** NVIC Definitions End ***************************************************/
