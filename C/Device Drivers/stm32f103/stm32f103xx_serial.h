@@ -17,6 +17,7 @@
 
 void _print_buffer(char* buffer, uint32_t* buff_ind);
 void _print_int(int32_t value, char* buffer, uint32_t* buff_ind);
+void _print_hex(int32_t value, char* buffer, uint32_t* buff_ind);
 void _reset_buffer(uint32_t* buff_ind);
 void _serial_init();
 void Serial_init();

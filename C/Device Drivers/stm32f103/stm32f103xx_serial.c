@@ -53,6 +53,45 @@ void _print_int(int32_t value, char* buffer, uint32_t* buff_ind)
     char_count += (*buff_ind);
 }
 
+void _print_hex(int32_t value, char* buffer, uint32_t* buff_ind)
+{
+    int i=0;
+    char buff[32];
+
+    //negative integer
+    if(value<0)
+    {
+        buffer[*buff_ind] = '-';
+        ++(*buff_ind);
+        value = value - (2*value); //making the integer value positive
+    }
+
+    buffer[*buff_ind] = '0';
+    ++(*buff_ind);
+    buffer[*buff_ind] = 'x';
+    ++(*buff_ind);
+
+    //extract digits of integer in reverse in hexadecimal
+    while(value>0)
+    {
+        buff[i++] = "0123456789ABCDEF"[value % 16];
+        value = value/16;
+    }
+    i--;
+
+    // store the digits in correct order
+    while(i>=0)
+    {
+        buffer[(*buff_ind)++] = buff[i--];
+        if (*buff_ind == BUFF_SIZE)
+        {
+            _print_buffer(buffer, buff_ind);
+            char_count += (*buff_ind);
+        }
+    }
+    char_count += (*buff_ind);
+}
+
 
 void _serial_init()
 {
@@ -123,6 +162,11 @@ uint8_t Serialprint(const char *format, ...)
             {
                 int value = va_arg(args, int);
                 _print_int(value, buffer, &buff_ind);
+            }
+            else if(*format == 'x')
+            {
+                int value = va_arg(args, int);
+                _print_hex(value, buffer, &buff_ind);
             }
         }
         else // Case: Regular character, not a conversion specifier
