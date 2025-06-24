@@ -289,26 +289,36 @@ typedef struct
 #define TIM2                         ((TIM_RegDef*)TIM2_BASE_ADDR)
 #define TIM3                         ((TIM_RegDef*)TIM3_BASE_ADDR)
 #define TIM4                         ((TIM_RegDef*)TIM4_BASE_ADDR)
+#define TIM5                         ((TIM_RegDef*)TIM5_BASE_ADDR)
+#define TIM6                         ((TIM_RegDef*)TIM6_BASE_ADDR)
 
 //Timer Peripheral Clock Enable
 #define TIM2_PCLK_ENABLE()           (RCC->APB1ENR |= 1<<RCC_APB1ENR_TIM2EN)
 #define TIM3_PCLK_ENABLE()           (RCC->APB1ENR |= 1<<RCC_APB1ENR_TIM3EN)
 #define TIM4_PCLK_ENABLE()           (RCC->APB1ENR |= 1<<RCC_APB1ENR_TIM4EN)
+#define TIM5_PCLK_ENABLE()           (RCC->APB1ENR |= 1<<RCC_APB1ENR_TIM5EN)
+#define TIM6_PCLK_ENABLE()           (RCC->APB1ENR |= 1<<RCC_APB1ENR_TIM6EN)
 
 //Timer Peripheral Clock Disable
 #define TIM2_PCLK_DISABLE()          (RCC->APB1ENR &= ~(1<<RCC_APB1ENR_TIM2EN))
 #define TIM3_PCLK_DISABLE()          (RCC->APB1ENR &= ~(1<<RCC_APB1ENR_TIM3EN))
 #define TIM4_PCLK_DISABLE()          (RCC->APB1ENR &= ~(1<<RCC_APB1ENR_TIM4EN))
+#define TIM5_PCLK_DISABLE()          (RCC->APB1ENR &= ~(1<<RCC_APB1ENR_TIM5EN))
+#define TIM6_PCLK_DISABLE()          (RCC->APB1ENR &= ~(1<<RCC_APB1ENR_TIM6EN))
 
 //Timer Peripheral Enable
 #define TIM2_ENABLE()                (TIM2->CR1 |= 1<<TIM_CR1_CEN)
 #define TIM3_ENABLE()                (TIM3->CR1 |= 1<<TIM_CR1_CEN)
 #define TIM4_ENABLE()                (TIM4->CR1 |= 1<<TIM_CR1_CEN)
+#define TIM5_ENABLE()                (TIM5->CR1 |= 1<<TIM_CR1_CEN)
+#define TIM6_ENABLE()                (TIM6->CR1 |= 1<<TIM_CR1_CEN)
 
 //Timer Peripheral Disable
 #define TIM2_DISABLE()               (TIM2->CR1 &= ~(1<<TIM_CR1_CEN))
 #define TIM3_DISABLE()               (TIM3->CR1 &= ~(1<<TIM_CR1_CEN))
 #define TIM4_DISABLE()               (TIM4->CR1 &= ~(1<<TIM_CR1_CEN))
+#define TIM5_DISABLE()               (TIM5->CR1 &= ~(1<<TIM_CR1_CEN))
+#define TIM6_DISABLE()               (TIM6->CR1 &= ~(1<<TIM_CR1_CEN))
 
 
 //Function Declarations
@@ -322,23 +332,15 @@ void TIM_Interrupt_init(TIM_RegDef* pTIMx, uint8_t interrupt_type, uint8_t chann
 
 //Base Timer Functions
 //Timer Configure
-void TIM_Base_Configure(TIM_Handle* pTIMHandle, TIM_RegDef* pTIMx, uint8_t count_direction, uint32_t count_value, uint32_t prescale_value, uint32_t autoreload_value, uint8_t ar_preload);
+void TIM_Base_Configure(TIM_Handle* pTIMHandle, TIM_RegDef* pTIMx, uint8_t count_direction, uint32_t prescale_value, uint32_t autoreload_value, uint8_t ar_preload);
 //Timer Init
 void TIM_Base_init(TIM_Handle* pTIMHandle);
 //Timer Start
 void TIM_Base_Start(TIM_Handle* pTIMHandle);
-//Timer Stop
+//Timer Start
 void TIM_Base_Stop(TIM_Handle* pTIMHandle);
 
 //General Timer Functions
-
-//Timer OC Functions
-void TIM_OC_Configure(TIM_Handle* pTIMHandle, TIM_OC_Handle* pTIMOCHandle, uint8_t oc_mode, uint8_t oc_channel, uint8_t oc_polarity, uint8_t oc_preload, uint16_t oc_value);
-void TIM_OC_init(TIM_OC_Handle* pTIMOCHandle);
-void TIM_OC_Channel_init(TIM_OC_Handle* pTIMOCHandle);
-void TIM_OC_Start(TIM_OC_Handle* pTIMOCHandle, uint8_t channel);
-void TIM_OC_Stop(TIM_OC_Handle* pTIMOCHandle, uint8_t channel);
-
 
 
 //DMA

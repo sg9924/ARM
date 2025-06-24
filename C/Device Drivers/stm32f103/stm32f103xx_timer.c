@@ -39,12 +39,11 @@ void TIM_P_init(TIM_Handle* pTIMHandle, uint8_t mode)
 }
 
 
-void TIM_Base_Configure(TIM_Handle* pTIMHandle, TIM_RegDef* pTIMx, uint8_t count_direction, uint32_t count_value, uint32_t prescale_value, uint32_t autoreload_value, uint8_t ar_preload)
+void TIM_Base_Configure(TIM_Handle* pTIMHandle, TIM_RegDef* pTIMx, uint8_t count_direction, uint32_t prescale_value, uint32_t autoreload_value, uint8_t ar_preload)
 {
     pTIMHandle->pTIMx                                = pTIMx;
     pTIMHandle->TIMx_Base_Config.ar_preload          = ar_preload;
     pTIMHandle->TIMx_Base_Config.autoreload_value    = autoreload_value;
-    pTIMHandle->TIMx_Base_Config.count               = count_value;
     pTIMHandle->TIMx_Base_Config.count_direction     = count_direction;
     pTIMHandle->TIMx_Base_Config.prescale_value      = prescale_value;
 }
@@ -58,7 +57,7 @@ void TIM_Base_init(TIM_Handle* pTIMHandle)
     if(pTIMHandle->TIMx_Base_Config.count_direction == TIM_COUNT_DIR_DOWN)
         pTIMHandle->pTIMx->CR1 |= 1<<TIM_CR1_DIR;
     else if(pTIMHandle->TIMx_Base_Config.count_direction == TIM_COUNT_DIR_UP)
-        pTIMHandle->pTIMx->CR1 &= ~(1<<TIM_CR1_DIR);
+        pTIMHandle->pTIMx->CR1 &= ~(1<<TIM_CR1_DIR); //default direction
     
     //configure prescale value
     TIM_Prescaler_Load(pTIMHandle, pTIMHandle->TIMx_Base_Config.prescale_value);
@@ -71,9 +70,6 @@ void TIM_Base_init(TIM_Handle* pTIMHandle)
         pTIMHandle->pTIMx->CR1 |= 1<<TIM_CR1_ARPE;
     else if(pTIMHandle->TIMx_Base_Config.ar_preload == TIM_AR_PRELOAD_DISABLE)
         pTIMHandle->pTIMx->CR1 &= ~(1<<TIM_CR1_ARPE);
-
-    //enable ARR preload
-    pTIMHandle->pTIMx->CR1 |= 1<<TIM_CR1_ARPE;
 }
 
 
@@ -149,18 +145,12 @@ void TIM_OC_init(TIM_OC_Handle* pTIMOCHandle)
 
 void TIM_Base_Start(TIM_Handle* pTIMHandle)
 {
-    if(pTIMHandle->pTIMx == TIM2)
-        TIM2_ENABLE();
-    else if(pTIMHandle->pTIMx == TIM3)
-        TIM3_ENABLE();
+    TIM_P_init(pTIMHandle, ENABLE);
 }
 
 void TIM_Base_Stop(TIM_Handle* pTIMHandle)
 {
-    if(pTIMHandle->pTIMx == TIM2)
-        TIM2_DISABLE();
-    else if(pTIMHandle->pTIMx == TIM3)
-        TIM3_DISABLE();
+    TIM_P_init(pTIMHandle, DISABLE);
 }
 
 void TIM_OC_Start(TIM_OC_Handle* pTIMOCHandle, uint8_t channel)
