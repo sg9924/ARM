@@ -13,6 +13,18 @@
 #define APB2_BASE_ADDR      0x40010000U
 #define AHB_BASE_ADDR       0x40018000U
 
+//System Timer Base
+#define SYSTICK_BASE_ADDR   0xE000E010U
+
+//System Control Block
+#define SCB_BASE_ADDR       0xE000ED00U
+
+//CRC
+#define CRC_BASE_ADDR       0x40023000U
+
+//Memory Protection Unit
+#define MPU_BASE_ADDR       0xE000ED90U
+
 //RCC Base Address
 #define RCC_BASE_ADDR       0x40021000U
 
@@ -54,10 +66,6 @@
 #define ADC2_BASE_ADDR      (APB2_BASE_ADDR + 0x2800)
 #define ADC3_BASE_ADDR      (APB2_BASE_ADDR + 0x3C00)
 
-//DMA
-#define DMA1_BASE_ADDR      (0x40020000)
-#define DMA2_BASE_ADDR      (0x40020400)
-
 //TIMER Base Addresses
 #define TIM2_BASE_ADDR      (PERIP_BASE_ADDR)
 #define TIM3_BASE_ADDR      (PERIP_BASE_ADDR + 0x0400)
@@ -68,6 +76,10 @@
 #define TIM12_BASE_ADDR     (PERIP_BASE_ADDR + 0x1800)
 #define TIM13BASE_ADDR      (PERIP_BASE_ADDR + 0x1C00)
 #define TIM14_BASE_ADDR     (PERIP_BASE_ADDR + 0x2000)
+
+//DMA
+#define DMA1_BASE_ADDR      (0x40020000)
+#define DMA2_BASE_ADDR      (0x40020400)
 
 /********************************************** Memory Address Definitions End **********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
