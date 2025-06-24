@@ -13,9 +13,12 @@
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /************************************************ EXTI API's Declarations Start *********************************************/
 
-void exti_intrpt_trig_config(uint8_t, uint8_t);
-void exti_enable_intrpt(uint8_t);
-void exti_enable_event(uint8_t);
+void EXTI_Intrpt_Config(uint8_t pin_no, uint8_t intrpt_mode, uint8_t mode);
+void EXTI_Pend_Clear(uint8_t exti_no);
+uint8_t EXTI_Pend_Check(uint8_t exti_no);
+void EXTI_Intrpt_Mask(uint8_t exti_no, uint8_t mode);
+void EXTI_Event_Mask(uint8_t exti_no, uint8_t mode);
+void EXTI_SWIE(uint8_t exti_no, uint8_t mode);
 
 /************************************************** EXTI API's Declarations End *********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
