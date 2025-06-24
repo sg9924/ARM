@@ -48,9 +48,31 @@ void _print_int(int32_t value, char* buffer, uint32_t* buff_ind)
         {
             _print_buffer(buffer, buff_ind);
             char_count += (*buff_ind);
+            _reset_buffer(buff_ind);
         }
     }
     char_count += (*buff_ind);
+}
+
+void _print_float(double value, char* buffer, uint32_t* buff_ind, uint8_t precision)
+{
+    int32_t integral = value;
+    float fractional = (float)value - integral;
+
+    _print_int(integral, buffer, buff_ind);
+
+    if(precision!=0)
+    {
+        buffer[(*buff_ind)++] = '.';
+
+        while(precision>0)
+        {
+            fractional = fractional * 10;
+            precision--;
+        }
+    }
+
+    _print_int((int32_t)fractional,buffer, buff_ind);
 }
 
 void _print_hex(int32_t value, char* buffer, uint32_t* buff_ind)
@@ -87,6 +109,7 @@ void _print_hex(int32_t value, char* buffer, uint32_t* buff_ind)
         {
             _print_buffer(buffer, buff_ind);
             char_count += (*buff_ind);
+            _reset_buffer(buff_ind);
         }
     }
     char_count += (*buff_ind);
@@ -167,6 +190,17 @@ uint8_t Serialprint(const char *format, ...)
             {
                 int value = va_arg(args, int);
                 _print_hex(value, buffer, &buff_ind);
+            }
+            else if(*format == '.' && *(format+2) == 'f')
+            {
+                double value = va_arg(args, double);
+                _print_float(value, buffer, &buff_ind, *(++format) - '0');
+                ++format;
+            }
+            else if(*format == 'f')
+            {
+                double value = va_arg(args, double);
+                _print_float(value, buffer, &buff_ind, FLOAT_PRECISION_MAX);
             }
         }
         else // Case: Regular character, not a conversion specifier

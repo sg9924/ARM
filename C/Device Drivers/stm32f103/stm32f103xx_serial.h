@@ -7,6 +7,8 @@
 
 #include<stdarg.h>
 
+#define FLOAT_PRECISION_MAX 6
+
 #define BUFF_SIZE      1024
 #define SERIAL_DELAY   0
 
@@ -18,6 +20,7 @@
 void _print_buffer(char* buffer, uint32_t* buff_ind);
 void _print_int(int32_t value, char* buffer, uint32_t* buff_ind);
 void _print_hex(int32_t value, char* buffer, uint32_t* buff_ind);
+void _print_float(double value, char* buffer, uint32_t* buff_ind, uint8_t precision);
 void _reset_buffer(uint32_t* buff_ind);
 void _serial_init();
 void Serial_init();
