@@ -91,6 +91,10 @@
                                         (x == GPIOF)?5:\
                                         (x == GPIOG)?6:0)
 
+//GPIO Config Lock Unlock
+#define GPIO_CONFIG_LOCK
+#define GPIO_CONFIG_UNLOCK
+
 /************************************************** GPIO Macros Definitions End *********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /********************************************* GPIO Structure Definitions Start *********************************************/
@@ -113,14 +117,31 @@ typedef struct
     GPIO_PinConfig  GPIOx_PinConfig;        /*<GPIO Port Pin Config Settings>*/
 }GPIO_Handle;
 
+/* to explore
+// GPIO Pins Used
+typedef struct
+{
+    uint8_t GPIOA_pins[16];
+    uint8_t GPIOB_pins[16];
+    uint8_t GPIOC_pins[16];
+    uint8_t GPIOD_pins[16];
+    uint8_t GPIOE_pins[16];
+    uint8_t GPIOF_pins[16];
+    uint8_t 
+    */
+
 /********************************************** GPIO Structure Definitions End **********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /*********************************************** GPIO API's Declarations Start **********************************************/
+/*to explore
+void GPIO_Used_init();
+void GPIO_Used_Update(uint32_t GPIOx, uint8_t* pins, size_t size);
+*/
 
 // GPIO Peripheral Clock Initialization
 void GPIO_PClk_init(GPIO_RegDef* pGPIOx, uint8_t setup_mode);                       /*<>*/
 
-//
+//GPIO Configuration
 void GPIO_Config(GPIO_Handle* pGPIOHandle, GPIO_RegDef* pGPIOx, uint8_t mode, uint8_t config_type, uint8_t pin_no, uint8_t op_speed);
 
 // GPIO Initialisation & De-Initialisation
@@ -130,17 +151,23 @@ void GPIO_DeInit(GPIO_RegDef* pGPIOx);                                          
 
 // GPIO Read & Write
 // GPIO Read & Write from & to Pin
-uint8_t GPIO_ReadIpPin(GPIO_RegDef* pGPIOx, uint8_t pin_no);                        /*<>*/
 void GPIO_WriteOpPin(GPIO_RegDef* pGPIOx, uint8_t pin_no, uint8_t value);           /*<>*/
+uint8_t GPIO_ReadIpPin(GPIO_RegDef* pGPIOx, uint8_t pin_no);                        /*<>*/
+void GPIO_WriteOpPort(GPIO_RegDef* pGPIOx, uint16_t value);                         /*<>*/
+uint16_t GPIO_ReadIpPort(GPIO_RegDef* pGPIOx);                                      /*<>*/
+void GPIO_Bit_Set(GPIO_Handle* pGPIOHandle, uint8_t pin_no);
+void GPIO_Bit_Reset(GPIO_Handle* pGPIOHandle, uint8_t pin_no);
 
 
 // GPIO Toggle Output
 void GPIO_OpToggle(GPIO_RegDef* pGPIOx, uint8_t pin_no);                            /*<>*/
 
 
+//GPIO IRQ Configure
+void GPIO_IRQ_Config(GPIO_Handle* pGPIOHandle, uint8_t mode);
 // GPIO IRQ Handler
 void GPIO_IRQHandling(uint8_t);                                                     /*<>*/
 
 /************************************************ GPIO API's Declarations End ***********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
-#endif /*INC_stm32F103xx_GPIO_H*/
+#endif

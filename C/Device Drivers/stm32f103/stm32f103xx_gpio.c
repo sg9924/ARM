@@ -1,12 +1,78 @@
-#include "stm32f103xx.h"
 #include "stm32f103xx_gpio.h"
 #include "stm32f103xx_afio.h"
 #include "stm32f103xx_exti.h"
 #include "stm32f103xx_nvic.h"
+#include "stm32f103xx_utilities.h"
 
+//GPIO_Pins GPIO_Used;
 
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /*********************************************** GPIO API's Definitions Start ***********************************************/
+
+/* to test later
+void GPIO_Used_init()
+{
+    uint8_t i=0;
+    while(i<16)
+    {
+        GPIO_Used.GPIOA_pins[i] = 0;
+        GPIO_Used.GPIOB_pins[i] = 0;
+        GPIO_Used.GPIOC_pins[i] = 0;
+        GPIO_Used.GPIOD_pins[i] = 0;
+        GPIO_Used.GPIOE_pins[i] = 0;
+        GPIO_Used.GPIOF_pins[i] = 0;
+        GPIO_Used.GPIOG_pins[i] = 0;
+        i++;
+    }
+}
+
+// GPIO Pins used Update
+void GPIO_Used_Update(uint32_t GPIOx, uint8_t* pins, size_t size)
+{
+    if(GPIOx == GPIOA_BASE_ADDR)
+    {
+        while((size--)!=0)
+        {
+            GPIO_Used.GPIOA_pins[*pins++] = 1;
+        }
+    }
+    else if(GPIOx == GPIOB_BASE_ADDR)
+    {
+        while((size--)!=0)
+        {
+            //GPIO_Used.GPIOB_pins[*pins++] = 1;
+        }
+    }
+    else if(GPIOx == GPIOC_BASE_ADDR)
+    {
+        while((size--)!=0)
+        {
+            //GPIO_Used.GPIOC_pins[*pins++] = 1;
+        }
+    }
+    else if(GPIOx == GPIOD_BASE_ADDR)
+    {
+        while((size--)!=0)
+        {
+            //GPIO_Used.GPIOD_pins[*pins++] = 1;
+        }
+    }
+    else if(GPIOx == GPIOF_BASE_ADDR)
+    {
+        while((size--)!=0)
+        {
+            //GPIO_Used.GPIOE_pins[*pins++] = 1;
+        }
+    }
+    else if(GPIOx == GPIOG_BASE_ADDR)
+    {
+        while((size--)!=0)
+        {
+            //GPIO_Used.GPIOF_pins[*pins++] = 1;
+        }
+    }
+}
+*/
 
 // GPIO Peripheral Clock Setup
 void GPIO_PClk_init(GPIO_RegDef* pGPIOx, uint8_t setup_mode)
@@ -113,7 +179,7 @@ void GPIO_Init(GPIO_Handle* pGPIOHandle)
     else
     {
         //Interrupt mode
-        //1. configure for input
+        //configure for input
         mode = ~(3 << (bit_no)); //input mode
             
         if(pGPIOHandle->GPIOx_PinConfig.PinConfigType == GPIO_CONFIG_ANALOG) //Analog
@@ -140,18 +206,7 @@ void GPIO_Init(GPIO_Handle* pGPIOHandle)
         //configuring GPIO config type
         pGPIOHandle->pGPIOx->CR[reg_no] |= config_type;
             
-        //2. configure edge triggering of interrupts in EXTI (peripheral side)
-        exti_intrpt_trig_config(pGPIOHandle->GPIOx_PinConfig.PinNo, pGPIOHandle->GPIOx_PinConfig.PinMode);
-        
-        //3. config exticr for port selection in AFIO (peripheral side)
-        afio_exti_config(pGPIOHandle->pGPIOx, pGPIOHandle->GPIOx_PinConfig.PinNo);
-        
-        //4. enable exti interrupts (peripheral side)
-        exti_enable_intrpt(pGPIOHandle->GPIOx_PinConfig.PinNo);
-        
-        //5. configure enable and mask bits in NVIC side
-        uint8_t irq_no = nvic_irq_gpio_port_map(pGPIOHandle);
-        nvic_intrpt_enable(irq_no);
+        GPIO_IRQ_Config(pGPIOHandle, ENABLE);
     }
 }
 
@@ -194,6 +249,7 @@ uint8_t GPIO_ReadIpPin(GPIO_RegDef* pGPIOx, uint8_t pin_no)
    return value;
 }
 
+
 // GPIO Write to Pin
 void GPIO_WriteOpPin(GPIO_RegDef* pGPIOx, uint8_t pin_no, uint8_t value)
 {
@@ -204,15 +260,67 @@ void GPIO_WriteOpPin(GPIO_RegDef* pGPIOx, uint8_t pin_no, uint8_t value)
 }
 
 
+//GPIO Read from Port
+uint16_t GPIO_ReadIpPort(GPIO_RegDef* pGPIOx)
+{
+   uint16_t value;
+   value = (uint16_t)(pGPIOx->IDR & 0xFFFF);
+   return value;
+}
+
+
+//GPIO Write to Port
+void GPIO_WriteOpPort(GPIO_RegDef* pGPIOx, uint16_t value)
+{
+    pGPIOx->ODR = value;
+}
+
+
+//GPIO IRQ Config
+void GPIO_IRQ_Config(GPIO_Handle* pGPIOHandle, uint8_t mode)
+{
+    //configure edge triggering of interrupts in EXTI (peripheral side)
+    EXTI_Intrpt_Config(pGPIOHandle->GPIOx_PinConfig.PinNo, pGPIOHandle->GPIOx_PinConfig.PinMode, mode);
+    
+    //configure exticr for port selection in AFIO (peripheral side)
+    AFIO_EXTI_Config(pGPIOHandle->pGPIOx, pGPIOHandle->GPIOx_PinConfig.PinNo, mode);
+    
+    //enable exti interrupts (peripheral side)
+    EXTI_Intrpt_Mask(pGPIOHandle->GPIOx_PinConfig.PinNo, mode);
+    
+    //configure enable and mask bits in NVIC side
+    uint8_t irq_no = nvic_irq_gpio_port_map(pGPIOHandle);
+
+    if(mode == ENABLE)
+        nvic_intrpt_enable(irq_no);
+    else if(mode == DISABLE)
+        nvic_intrpt_disable(irq_no);
+}
+
 
 // GPIO Interrupt Handling
 void GPIO_IRQHandling(uint8_t pin_no)
 {
-    if(EXTI->PR & (1 << pin_no)) // If the PR register is set for the Pin Number,
+    if(EXTI_Pend_Check(pin_no)) // If the PR register is set for the Pin Number,
     {
         //clear the EXTI PR register for the specified Pin Number
-        EXTI->PR |= (1 << pin_no);
+        EXTI_Pend_Clear(pin_no);
     }
 }
+
+
+void GPIO_Bit_Set(GPIO_Handle* pGPIOHandle, uint8_t pin_no)
+{
+    uint8_t offset = pin_no;
+    pGPIOHandle->pGPIOx->BSRR |= 1<<offset;
+}
+
+
+void GPIO_Bit_Reset(GPIO_Handle* pGPIOHandle, uint8_t pin_no)
+{
+    uint8_t offset = pin_no + 16;
+    pGPIOHandle->pGPIOx->BSRR |= 1 << offset;
+}
+
 /*********************************************** GPIO API's Definitions Start ***********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
