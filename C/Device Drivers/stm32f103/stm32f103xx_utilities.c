@@ -10,7 +10,7 @@ void wait(uint8_t d)
 	wait_ms(d*1000);
 }
 
-uint32_t get_size(char* data)
+uint32_t string_size(char* data)
 {
     uint32_t c=0;
     while(*data++ != '\0')
@@ -52,4 +52,17 @@ int32_t string_to_int(char* str)
     }
 
     return (sign * result);
+}
+
+
+uint32_t power(uint8_t num, uint8_t power)
+{
+    uint32_t result=1;
+    while(power!=0)
+    {
+        result = result*num;
+        power--;
+    }
+
+    return result;
 }
