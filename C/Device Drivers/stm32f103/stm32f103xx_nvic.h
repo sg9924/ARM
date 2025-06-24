@@ -43,6 +43,12 @@
 #define SPI2_IRQ_NO            36
 #define SPI3_IRQ_NO            51
 
+//I2C
+#define I2C1_EV_IRQ_NO         31
+#define I2C1_ER_IRQ_NO         32
+#define I2C2_EV_IRQ_NO         33
+#define I2C3_ER_IRQ_NO         34
+
 //TIM
 #define TIM2_IRQ_NO            28
 #define TIM3_IRQ_NO            29
@@ -50,6 +56,20 @@
 #define TIM5_IRQ_NO            50
 #define TIM6_IRQ_NO            54
 #define TIM7_IRQ_NO            55
+
+//DMA
+#define DMA1_Channel1_IRQ_NO     11
+#define DMA1_Channel2_IRQ_NO     12
+#define DMA1_Channel3_IRQ_NO     13
+#define DMA1_Channel4_IRQ_NO     14
+#define DMA1_Channel5_IRQ_NO     15
+#define DMA1_Channel6_IRQ_NO     16
+#define DMA1_Channel7_IRQ_NO     17
+
+#define DMA2_Channel1_IRQ_NO     56
+#define DMA2_Channel2_IRQ_NO     57
+#define DMA2_Channel3_IRQ_NO     58
+#define DMA2_Channel4_5_IRQ_NO   59
 
 
 /*************************************************** NVIC Definitions End ***************************************************/
