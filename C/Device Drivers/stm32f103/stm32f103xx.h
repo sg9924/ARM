@@ -29,6 +29,23 @@
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /************************************* Peripheral Registers Definition Structures Start *************************************/
 
+//CRC Register Definition Structure
+typedef struct 
+{
+    uint32_t DR;
+    uint32_t IDR;
+    uint32_t CR;
+}CRC_RegDef;
+
+//Systick Register Definition Structure
+typedef struct
+{
+    uint32_t CTRL;
+    uint32_t LOAD;
+    uint32_t VAL;
+    uint32_t CALIB;
+}SysTick_RegDef;
+
 // GPIO Register Definition Structure
 typedef struct
 {
@@ -122,6 +139,28 @@ typedef struct
     uint32_t DR;
 }ADC_RegDef;
 
+
+
+//TIMER
+typedef struct
+{
+    uint32_t CR1;
+    uint32_t CR2;
+    uint32_t SMCR;
+    uint32_t DIER;
+    uint32_t SR;
+    uint32_t EGR;
+    uint32_t CCMR[2];
+    uint32_t CCER;
+    uint32_t CNT;
+    uint32_t PSC;
+    uint32_t ARR;
+    uint32_t CCR[4];
+    uint32_t DCR;
+    uint32_t DMAR;
+
+}TIM_RegDef;
+
 //I2C
 typedef struct
 {
@@ -151,26 +190,6 @@ typedef struct
     uint32_t IFCR;
     DMA_Channel_RegDef Channel[7];
 }DMA_RegDef;
-
-//TIMER
-typedef struct
-{
-    uint32_t CR1;
-    uint32_t CR2;
-    uint32_t SMCR;
-    uint32_t DIER;
-    uint32_t SR;
-    uint32_t EGR;
-    uint32_t CCMR[2];
-    uint32_t CCER;
-    uint32_t CNT;
-    uint32_t PSC;
-    uint32_t ARR;
-    uint32_t CCR[4];
-    uint32_t DCR;
-    uint32_t DMAR;
-
-}TIM_RegDef;
 
 /*************************************** Peripheral Registers Definition Structures End ***************************************/
 /*----------------------------------------------------------------------------------------------------------------------------*/
