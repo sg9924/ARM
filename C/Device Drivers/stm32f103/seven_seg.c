@@ -9,7 +9,7 @@ void seven_seg_init(GPIO_Handle* pGPIOh)
 	pGPIOh->pGPIOx                         = GPIOA;
 	pGPIOh->GPIOx_PinConfig.PinMode        = GPIO_MODE_OP;
 	pGPIOh->GPIOx_PinConfig.PinOutputSpeed = GPIO_OP_SPEED_10;
-	pGPIOh->GPIOx_PinConfig.PinConfigType  = GPIO_GP_OP_PP;
+	pGPIOh->GPIOx_PinConfig.PinConfigType  = GPIO_CONFIG_GP_OP_PP;
 	
 	
 	pGPIOh->GPIOx_PinConfig.PinNo = SEG_A;
