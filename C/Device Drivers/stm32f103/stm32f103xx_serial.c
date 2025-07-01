@@ -21,7 +21,7 @@ void _reset_buffer(uint32_t* buff_ind)
 
 void _print_int(int32_t value, char* buffer, uint32_t* buff_ind)
 {
-    int i=0;
+    int8_t i=0;   //!!!don't change datatype to uint!!!
     char buff[32];
 
     //negative integer
@@ -30,6 +30,11 @@ void _print_int(int32_t value, char* buffer, uint32_t* buff_ind)
         buffer[*buff_ind] = '-';
         ++(*buff_ind);
         value = value - (2*value); //making the integer value positive
+    }
+    else if(value == 0)
+    {
+        buffer[*buff_ind] = '0';
+        ++(*buff_ind);
     }
 
     // extract digits of integer in reverse
@@ -56,7 +61,15 @@ void _print_int(int32_t value, char* buffer, uint32_t* buff_ind)
 
 void _print_float(double value, char* buffer, uint32_t* buff_ind, uint8_t precision)
 {
-    int32_t integral = value;
+    int32_t integral;
+    int8_t i=0;       //!!!don't change datatype to uint!!!
+    char buff[32];
+
+    if(value>0)
+        integral = value;
+    else if(value<0)
+        integral=0;
+    
     float fractional = (float)value - integral;
 
     _print_int(integral, buffer, buff_ind);
@@ -68,11 +81,38 @@ void _print_float(double value, char* buffer, uint32_t* buff_ind, uint8_t precis
         while(precision>0)
         {
             fractional = fractional * 10;
+            if(((uint32_t)fractional)%10 == 0)
+                buffer[(*buff_ind)++] = '0';
             precision--;
         }
+
+        
+        uint32_t f = (uint32_t)fractional;
+
+        // extract digits of integer in reverse
+        while(f>0)
+        {
+            buff[i++] = '0' + (f%10);
+            f/=10;
+        }
+        i--;
+
+        // store the digits in correct order
+        while(i>=0)
+        {
+            buffer[(*buff_ind)++] = buff[i--];
+            if (*buff_ind == BUFF_SIZE)
+            {
+                _print_buffer(buffer, buff_ind);
+                char_count += (*buff_ind);
+                _reset_buffer(buff_ind);
+            }
+        }
+        char_count += (*buff_ind);
+        
     }
 
-    _print_int((int32_t)fractional,buffer, buff_ind);
+    //_print_int((int32_t)fractional,buffer, buff_ind);
 }
 
 void _print_hex(int32_t value, char* buffer, uint32_t* buff_ind)
