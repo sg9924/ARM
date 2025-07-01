@@ -16,28 +16,27 @@ enum DMA_Channel {
     _SPI1_RX = 1
 };
 
-
 typedef struct
 {
-    uint8_t direction;
-    uint8_t peripheral_inc;
-    uint8_t memory_inc;
-    uint8_t circular_mode;
-    uint8_t channel_priority;
-    uint8_t memory_size;
-    uint8_t peripheral_size;
-    uint16_t no_of_data;
-    uint8_t mem_to_mem_mode;
+    uint8_t   direction;
+    uint8_t   peripheral_inc;
+    uint8_t   memory_inc;
+    uint8_t   circular_mode;
+    uint8_t   channel_priority;
+    uint8_t   memory_size;
+    uint8_t   peripheral_size;
+    uint16_t  no_of_data;
+    uint8_t   mem_to_mem_mode;
 }DMA_Config;
 
 typedef struct 
 {
     DMA_RegDef* pDMAx;
-    DMA_Config DMAx_Config;
-    uint8_t channel;
-    uint32_t peripheral_addr;
-    uint32_t memory_addr_1;
-    uint32_t memory_addr_2;
+    DMA_Config  DMAx_Config;
+    uint8_t     channel;
+    uint32_t    peripheral_addr;
+    uint32_t    memory_addr_1;
+    uint32_t    memory_addr_2;
 }DMA_Handle;
 
 
@@ -202,10 +201,13 @@ typedef struct
 //Function API Declarations
 void DMA_PClk_init(DMA_Handle* pDMAHandle, uint8_t mode);
 void DMA_Configure(DMA_Handle* pDMAHandle, DMA_RegDef* pDMAx, uint8_t channel, uint8_t channel_priority, uint8_t direction, uint16_t no_of_data, uint8_t peri_size, uint8_t mem_size,
-                   uint8_t peri_inc, uint8_t mem_inc, uint8_t mem_to_mem_mode);
-void DMA_Address_init(DMA_Handle* pDMAHandle, uint32_t peri_addr, uint32_t mem_addr);
-void DMA_Interrupt_init(DMA_Handle* pDMAHandle, uint8_t interrupt, uint8_t mode);
+                   uint8_t peri_inc, uint8_t mem_inc, uint8_t mem_to_mem_mode, uint8_t circ_mode);
+void DMA_Address_Config(DMA_Handle* pDMAHandle, uint32_t peri_addr, uint32_t mem_addr);
 void DMA_init(DMA_Handle* pDMAHandle);
+
+//DMA Interrupts
+void DMA_IT_Config(DMA_Handle* pDMAHandle, uint8_t interrupt, uint8_t mode);
+void DMA_IRQ_Config(DMA_Handle* pDMAHandle, uint8_t mode, uint8_t channel);
 
 
 #endif
