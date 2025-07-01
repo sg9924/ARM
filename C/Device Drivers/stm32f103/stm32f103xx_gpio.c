@@ -269,6 +269,13 @@ uint16_t GPIO_ReadIpPort(GPIO_RegDef* pGPIOx)
 }
 
 
+//GPIO Read from Port
+uint16_t GPIO_ReadOpPort(GPIO_RegDef* pGPIOx)
+{
+    return (pGPIOx->ODR && 0xFFFF);
+}
+
+
 //GPIO Write to Port
 void GPIO_WriteOpPort(GPIO_RegDef* pGPIOx, uint16_t value)
 {

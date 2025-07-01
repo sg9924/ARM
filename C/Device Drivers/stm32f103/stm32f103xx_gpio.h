@@ -4,6 +4,8 @@
 #include"stm32f103xx.h"
 #include"stm32f103xx_rcc.h"
 
+#include <stddef.h>
+
 /************************************************** GPIO Definitions Start **************************************************/
 
 // GPIO Ports
@@ -115,9 +117,10 @@ typedef struct
 {
     GPIO_RegDef    *pGPIOx;                 /*<GPIO Port Register Definition>*/
     GPIO_PinConfig  GPIOx_PinConfig;        /*<GPIO Port Pin Config Settings>*/
+    uint16_t        GPIO_Pins_Used;
 }GPIO_Handle;
 
-/* to explore
+/*to explore
 // GPIO Pins Used
 typedef struct
 {
@@ -127,12 +130,14 @@ typedef struct
     uint8_t GPIOD_pins[16];
     uint8_t GPIOE_pins[16];
     uint8_t GPIOF_pins[16];
-    uint8_t 
-    */
+    uint8_t GPIOG_pins[16];
+}GPIO_Pins;
+*/
 
 /********************************************** GPIO Structure Definitions End **********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /*********************************************** GPIO API's Declarations Start **********************************************/
+
 /*to explore
 void GPIO_Used_init();
 void GPIO_Used_Update(uint32_t GPIOx, uint8_t* pins, size_t size);
@@ -141,7 +146,7 @@ void GPIO_Used_Update(uint32_t GPIOx, uint8_t* pins, size_t size);
 // GPIO Peripheral Clock Initialization
 void GPIO_PClk_init(GPIO_RegDef* pGPIOx, uint8_t setup_mode);                       /*<>*/
 
-//GPIO Configuration
+//GPIO COnfiguration
 void GPIO_Config(GPIO_Handle* pGPIOHandle, GPIO_RegDef* pGPIOx, uint8_t mode, uint8_t config_type, uint8_t pin_no, uint8_t op_speed);
 
 // GPIO Initialisation & De-Initialisation
@@ -155,6 +160,7 @@ void GPIO_WriteOpPin(GPIO_RegDef* pGPIOx, uint8_t pin_no, uint8_t value);       
 uint8_t GPIO_ReadIpPin(GPIO_RegDef* pGPIOx, uint8_t pin_no);                        /*<>*/
 void GPIO_WriteOpPort(GPIO_RegDef* pGPIOx, uint16_t value);                         /*<>*/
 uint16_t GPIO_ReadIpPort(GPIO_RegDef* pGPIOx);                                      /*<>*/
+uint16_t GPIO_ReadOpPort(GPIO_RegDef* pGPIOx);                                      /*<>*/
 void GPIO_Bit_Set(GPIO_Handle* pGPIOHandle, uint8_t pin_no);
 void GPIO_Bit_Reset(GPIO_Handle* pGPIOHandle, uint8_t pin_no);
 
