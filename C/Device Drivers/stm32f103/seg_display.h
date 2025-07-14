@@ -4,7 +4,7 @@
 #include"stm32f103xx.h"
 #include"stm32f103xx_gpio.h"
 #include"stm32f103xx_utilities.h"
-#include"seg_3461BS.h"
+#include"seg_3461BS.h" //any one config file should be provided here
 
 
 typedef struct
