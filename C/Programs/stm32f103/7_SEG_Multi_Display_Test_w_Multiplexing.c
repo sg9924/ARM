@@ -1,5 +1,5 @@
 #include"stm32f103xx_init.h"
-#include"seg_display.h"
+#include"seg_display.h" //3461BS config header should be included inside this
 
 SevSeg_Handle S;
 GPIO_Handle G;
