@@ -1,47 +1,63 @@
 #include "stm32f103xx_systick.h"
+#include "stm32f103xx_serial.h"
+
+uint32_t current_tick;
 
 
-void SysTick_Load(uint32_t load_value)
+void Systick_Configure(uint8_t clk_src, uint8_t exception)
 {
-    SYSTICK->LOAD = load_value;
-}
-
-
-void SysTick_Clear()
-{
-    SYSTICK->VAL = 0;
-}
-
-
-void Systick_Configure(uint32_t load_value, uint8_t clk_src, uint8_t exception)
-{
+    //Disable Systick
+    SYSTICK_DISABLE();
     //set clock source
     if(clk_src == SYSTICK_CLK_SRC_AHB_DIV_8)
-        SYSTICK->CTRL &= ~(1<<STK_CTRL_CLKSOURCE);
+        SYSTICK->CSR &= ~(1<<SYST_CSR_CLKSOURCE);
     else if(clk_src == SYSTICK_CLK_SRC_AHB)
-        SYSTICK->CTRL |= 1<<STK_CTRL_CLKSOURCE;
+        SYSTICK->CSR |= 1<<SYST_CSR_CLKSOURCE;
 
     //enable exception
     if(exception == SYSTICK_EXCEPTION_DISABLE)
-        SYSTICK->CTRL &= ~(1<<STK_CTRL_TICKINT);
+        SYSTICK_DISABLE_INTERRUPT();
     else if(exception == SYSTICK_EXCEPTION_ENABLE)
-        SYSTICK->CTRL |= 1<<STK_CTRL_TICKINT;
+        SYSTICK_ENABLE_INTERRUPT();
 
-    //Load Value
-    SysTick_Load(load_value);
+    //Load Reload Value
+    SYSTICK_LOAD(SYSTICK_LOAD_VALUE_DEFAULT - 1);
 
-    //Clear VAL Register
-    SysTick_Clear();
+    //Clear current value
+    SYSTICK_CLEAR();
 }
 
 
-uint8_t SysTick_Check_Flag()
+void Systick_init()
 {
-    return (SYSTICK->CTRL && (1<<STK_CTRL_COUNTFLAG));
+    SYSTICK_ENABLE();
 }
 
 
-uint32_t SysTick_Get()
+uint32_t Systick_get_tick()
 {
-    return SYSTICK->VAL;
+    return current_tick;
 }
+
+void Systick_Tick_Inc(void)
+{
+    current_tick += 1;
+}
+
+
+void Systick_delay(uint32_t delay_ms)
+{
+    uint32_t tick_start = Systick_get_tick();
+    uint32_t wait = delay_ms;
+
+    while((Systick_get_tick() - tick_start) < wait);
+}
+
+
+//Systick Interrupt Handler - gets called if the Systick Exception has been enabled
+#if ENABLE_SYSTICK_HANDLER_DEFAULT == 1
+void SysTick_Handler(void)
+{
+    SYSTICK_TICK_INC();
+}
+#endif
