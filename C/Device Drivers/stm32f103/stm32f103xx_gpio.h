@@ -60,7 +60,7 @@
 #define GPIO_CONFIG_FLOAT                      1           /*<Float>*/
 #define GPIO_CONFIG_PU                         2           /*<Pull Up>*/
 #define GPIO_CONFIG_PD                         3           /*<Pull Down>*/
-#define GPIO_CONFIG_NO_PUPD                    GPIO_FLOAT
+#define GPIO_CONFIG_NO_PUPD                    GPIO_CONFIG_FLOAT
 
 /*************************************************** GPIO Definitions End ***************************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
