@@ -286,6 +286,7 @@ typedef struct
 
 
 //TIMER Peripherals Definition
+#define TIM1                         ((TIM_RegDef*)TIM1_BASE_ADDR)
 #define TIM2                         ((TIM_RegDef*)TIM2_BASE_ADDR)
 #define TIM3                         ((TIM_RegDef*)TIM3_BASE_ADDR)
 #define TIM4                         ((TIM_RegDef*)TIM4_BASE_ADDR)
@@ -293,6 +294,7 @@ typedef struct
 #define TIM6                         ((TIM_RegDef*)TIM6_BASE_ADDR)
 
 //Timer Peripheral Clock Enable
+#define TIM1_PCLK_ENABLE()           (RCC->APB2ENR |= 1<<RCC_APB2ENR_TIM1EN)
 #define TIM2_PCLK_ENABLE()           (RCC->APB1ENR |= 1<<RCC_APB1ENR_TIM2EN)
 #define TIM3_PCLK_ENABLE()           (RCC->APB1ENR |= 1<<RCC_APB1ENR_TIM3EN)
 #define TIM4_PCLK_ENABLE()           (RCC->APB1ENR |= 1<<RCC_APB1ENR_TIM4EN)
@@ -300,6 +302,7 @@ typedef struct
 #define TIM6_PCLK_ENABLE()           (RCC->APB1ENR |= 1<<RCC_APB1ENR_TIM6EN)
 
 //Timer Peripheral Clock Disable
+#define TIM1_PCLK_DISABLE()          (RCC->APB2ENR &= ~(1<<RCC_APB2ENR_TIM1EN))
 #define TIM2_PCLK_DISABLE()          (RCC->APB1ENR &= ~(1<<RCC_APB1ENR_TIM2EN))
 #define TIM3_PCLK_DISABLE()          (RCC->APB1ENR &= ~(1<<RCC_APB1ENR_TIM3EN))
 #define TIM4_PCLK_DISABLE()          (RCC->APB1ENR &= ~(1<<RCC_APB1ENR_TIM4EN))
@@ -307,6 +310,7 @@ typedef struct
 #define TIM6_PCLK_DISABLE()          (RCC->APB1ENR &= ~(1<<RCC_APB1ENR_TIM6EN))
 
 //Timer Peripheral Enable
+#define TIM1_ENABLE()                (TIM1->CR1 |= 1<<TIM_CR1_CEN)
 #define TIM2_ENABLE()                (TIM2->CR1 |= 1<<TIM_CR1_CEN)
 #define TIM3_ENABLE()                (TIM3->CR1 |= 1<<TIM_CR1_CEN)
 #define TIM4_ENABLE()                (TIM4->CR1 |= 1<<TIM_CR1_CEN)
@@ -314,6 +318,7 @@ typedef struct
 #define TIM6_ENABLE()                (TIM6->CR1 |= 1<<TIM_CR1_CEN)
 
 //Timer Peripheral Disable
+#define TIM1_DISABLE()               (TIM1->CR1 &= ~(1<<TIM_CR1_CEN))
 #define TIM2_DISABLE()               (TIM2->CR1 &= ~(1<<TIM_CR1_CEN))
 #define TIM3_DISABLE()               (TIM3->CR1 &= ~(1<<TIM_CR1_CEN))
 #define TIM4_DISABLE()               (TIM4->CR1 &= ~(1<<TIM_CR1_CEN))
