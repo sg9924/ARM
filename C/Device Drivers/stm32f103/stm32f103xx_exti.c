@@ -48,21 +48,21 @@ void EXTI_Intrpt_Config(uint8_t pin_no, uint8_t intrpt_mode, uint8_t mode)
 
 void EXTI_Pend_Clear(uint8_t exti_no)
 {
-    if(exti_no<=18)
+    if(exti_no<=18 && (EXTI->PR)>>exti_no == 1)
         EXTI->PR |= 1<<(exti_no);
 }
 
 uint8_t EXTI_Pend_Check(uint8_t exti_no)
 {
-    return (EXTI->PR && (1<<exti_no));
+    return (EXTI->PR & (1<<exti_no));
 }
 
 void EXTI_Intrpt_Mask(uint8_t exti_no, uint8_t mode)
 {
     if(mode == DISABLE)
-        EXTI->IMR &= ~(1<<(exti_no));
+        EXTI->IMR &= ~(1<<exti_no);
     else if(mode == ENABLE)
-        EXTI->IMR |= 1<<(exti_no);
+        EXTI->IMR |= 1<<exti_no;
 }
 
 void EXTI_Event_Mask(uint8_t exti_no, uint8_t mode)
@@ -79,7 +79,7 @@ void EXTI_SWIE(uint8_t exti_no, uint8_t mode)
         EXTI->SWIER |= 1<<exti_no;
     else if(mode == DISABLE)
     {
-        if(EXTI->SWIER && (1<<exti_no)) //clear bit only when it is set
+        if(EXTI->SWIER & (1<<exti_no)) //clear bit only when it is set
             EXTI->SWIER |= 1<<exti_no;
     }
 }
