@@ -164,7 +164,6 @@ void RCC_MCO_Config(RCC_Handle* pRCC_Handle, uint8_t mco_clk_src)
     GPIO_Handle G_MCO;
     GPIO_Config(&G_MCO, GPIOA, GPIO_MODE_AF, GPIO_CONFIG_AF_OP_PP, GPIO_PIN8, GPIO_OP_SPEED_2);
     GPIO_Init(&G_MCO);
-
 }
 
 
