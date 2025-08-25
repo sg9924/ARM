@@ -2,8 +2,8 @@
 #define INC_stm32F103xx_NVIC_H
 
 #include<stdint.h>
-#include"stm32F103xx.h"
-#include"stm32F103xx_gpio.h"
+#include"stm32f103xx.h"
+#include"stm32f103xx_gpio.h"
 
 
 /************************************************** NVIC Definitions Start **************************************************/
@@ -50,6 +50,10 @@
 #define I2C3_ER_IRQ_NO         34
 
 //TIM
+#define TIM1_BRK_IRQ_NO        24
+#define TIM1_UP_IRQ_NO         25
+#define TIM1_TRG_COM_IRQ_NO    26
+#define TIM1_CC_IRQ_NO         27
 #define TIM2_IRQ_NO            28
 #define TIM3_IRQ_NO            29
 #define TIM4_IRQ_NO            30
