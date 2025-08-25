@@ -13,12 +13,6 @@
 #define APB2_BASE_ADDR      0x40010000U
 #define AHB_BASE_ADDR       0x40018000U
 
-//System Timer Base
-#define SYSTICK_BASE_ADDR   0xE000E010U
-
-//System Control Block
-#define SCB_BASE_ADDR       0xE000ED00U
-
 //CRC
 #define CRC_BASE_ADDR       0x40023000U
 
@@ -67,6 +61,7 @@
 #define ADC3_BASE_ADDR      (APB2_BASE_ADDR + 0x3C00)
 
 //TIMER Base Addresses
+#define TIM1_BASE_ADDR      (APB2_BASE_ADDR + 0x2C00)
 #define TIM2_BASE_ADDR      (PERIP_BASE_ADDR)
 #define TIM3_BASE_ADDR      (PERIP_BASE_ADDR + 0x0400)
 #define TIM4_BASE_ADDR      (PERIP_BASE_ADDR + 0x0800)
@@ -74,7 +69,7 @@
 #define TIM6_BASE_ADDR      (PERIP_BASE_ADDR + 0x1000)
 #define TIM7_BASE_ADDR      (PERIP_BASE_ADDR + 0x1400)
 #define TIM12_BASE_ADDR     (PERIP_BASE_ADDR + 0x1800)
-#define TIM13BASE_ADDR      (PERIP_BASE_ADDR + 0x1C00)
+#define TIM13_BASE_ADDR     (PERIP_BASE_ADDR + 0x1C00)
 #define TIM14_BASE_ADDR     (PERIP_BASE_ADDR + 0x2000)
 
 //DMA
