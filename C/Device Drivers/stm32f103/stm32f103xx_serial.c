@@ -4,6 +4,10 @@
 USART_Handle U2;
 static GPIO_Handle GA;
 
+//Buffer
+static uint32_t buff_ind;
+static char buffer[BUFF_SIZE];
+
 uint8_t char_count;     // Initialize a counter for the number of characters printed
 
 void _print_buffer(char* buffer, uint32_t* buff_ind)
@@ -115,41 +119,51 @@ void _print_float(double value, char* buffer, uint32_t* buff_ind, uint8_t precis
     //_print_int((int32_t)fractional,buffer, buff_ind);
 }
 
-void _print_hex(int32_t value, char* buffer, uint32_t* buff_ind)
+void _print_hex(uint32_t value, char* buffer, uint32_t* buff_ind)
 {
     int i=0;
     char buff[32];
 
     //negative integer
+    /*
     if(value<0)
     {
         buffer[*buff_ind] = '-';
         ++(*buff_ind);
         value = value - (2*value); //making the integer value positive
     }
+    */
 
     buffer[*buff_ind] = '0';
     ++(*buff_ind);
     buffer[*buff_ind] = 'x';
     ++(*buff_ind);
 
-    //extract digits of integer in reverse in hexadecimal
-    while(value>0)
+    if(value == 0)
     {
-        buff[i++] = "0123456789ABCDEF"[value % 16];
-        value = value/16;
+        buffer[*buff_ind] = '0';
+        ++(*buff_ind);;
     }
-    i--;
-
-    // store the digits in correct order
-    while(i>=0)
+    else
     {
-        buffer[(*buff_ind)++] = buff[i--];
-        if (*buff_ind == BUFF_SIZE)
+        //extract digits of integer in reverse in hexadecimal
+        while(value>0)
         {
-            _print_buffer(buffer, buff_ind);
-            char_count += (*buff_ind);
-            _reset_buffer(buff_ind);
+            buff[i++] = "0123456789ABCDEF"[value % 16];
+            value = value/16;
+        }
+        i--;
+
+        // store the digits in correct order
+        while(i>=0)
+        {
+            buffer[(*buff_ind)++] = buff[i--];
+            if (*buff_ind == BUFF_SIZE)
+            {
+                _print_buffer(buffer, buff_ind);
+                char_count += (*buff_ind);
+                _reset_buffer(buff_ind);
+            }
         }
     }
     char_count += (*buff_ind);
@@ -172,8 +186,6 @@ void Serial_init()
 
 uint8_t Serialprint(const char *format, ...)
 {
-    uint32_t buff_ind;            // Buffer index
-    char buffer[BUFF_SIZE];
     char_count = 0;
     buff_ind = 0;
 
@@ -228,7 +240,7 @@ uint8_t Serialprint(const char *format, ...)
             }
             else if(*format == 'x')
             {
-                int value = va_arg(args, int);
+                unsigned int value = va_arg(args, unsigned int);
                 _print_hex(value, buffer, &buff_ind);
             }
             else if(*format == '.' && *(format+2) == 'f')
