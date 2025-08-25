@@ -22,8 +22,9 @@
 
 // Bit Manipulations !!Currently not used!!
 #define READ_BIT(reg,bit_field)              (reg>>bit_field)
-#define SET_BIT(reg,bit_field)               (reg |= 1<<bit_field)
-#define RESET_BIT(reg,bit_field)             (reg &= ~(1<<bit_field))
+#define SET_BIT(reg,bit_field)               (reg |= 1U<<bit_field)
+#define RESET_BIT(reg,bit_field)             (reg &= ~(1U<<bit_field))
+#define CHECK_BIT(reg,bit_position)          (reg & (1U<<bit_position) >> bit_position)
 
 /********************************************** Generic Macros Definitions End **********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
@@ -32,18 +33,18 @@
 //CRC Register Definition Structure
 typedef struct 
 {
-    uint32_t DR;
-    uint32_t IDR;
-    uint32_t CR;
+    volatile uint32_t DR;
+    volatile uint32_t IDR;
+    volatile uint32_t CR;
 }CRC_RegDef;
 
 //Systick Register Definition Structure
 typedef struct
 {
-    uint32_t CTRL;
-    uint32_t LOAD;
-    uint32_t VAL;
-    uint32_t CALIB;
+    volatile uint32_t CSR;
+    volatile uint32_t RVR;
+    volatile uint32_t CVR;
+    volatile uint32_t CALIB;
 }SysTick_RegDef;
 
 // GPIO Register Definition Structure
@@ -108,35 +109,35 @@ typedef struct
 //SPI
 typedef struct
 {
-    uint32_t CR1;
-    uint32_t CR2;
-    uint32_t SR;
-    uint32_t DR;
-    uint32_t CRCPR;
-    uint32_t RXCRCR;
-    uint32_t TXCRCR;
-    uint32_t I2SCFGR;
-    uint32_t I2SPR;
+    volatile uint32_t CR1;
+    volatile uint32_t CR2;
+    volatile uint32_t SR;
+    volatile uint32_t DR;
+    volatile uint32_t CRCPR;
+    volatile uint32_t RXCRCR;
+    volatile uint32_t TXCRCR;
+    volatile uint32_t I2SCFGR;
+    volatile uint32_t I2SPR;
 }SPI_RegDef;
 
 
 //ADC
 typedef struct
 {
-    uint32_t SR;
-    uint32_t CR1;
-    uint32_t CR2;
-    uint32_t SMPR1;
-    uint32_t SMPR2;
-    uint32_t JOFR[4];
-    uint32_t HTR;
-    uint32_t LTR;
-    uint32_t SQR1;
-    uint32_t SQR2;
-    uint32_t SQR3;
-    uint32_t JSQR;
-    uint32_t JDR[4];
-    uint32_t DR;
+    volatile uint32_t SR;
+    volatile uint32_t CR1;
+    volatile uint32_t CR2;
+    volatile uint32_t SMPR1;
+    volatile uint32_t SMPR2;
+    volatile uint32_t JOFR[4];
+    volatile uint32_t HTR;
+    volatile uint32_t LTR;
+    volatile uint32_t SQR1;
+    volatile uint32_t SQR2;
+    volatile uint32_t SQR3;
+    volatile uint32_t JSQR;
+    volatile uint32_t JDR[4];
+    volatile uint32_t DR;
 }ADC_RegDef;
 
 
@@ -144,50 +145,49 @@ typedef struct
 //TIMER
 typedef struct
 {
-    uint32_t CR1;
-    uint32_t CR2;
-    uint32_t SMCR;
-    uint32_t DIER;
-    uint32_t SR;
-    uint32_t EGR;
-    uint32_t CCMR[2];
-    uint32_t CCER;
-    uint32_t CNT;
-    uint32_t PSC;
-    uint32_t ARR;
-    uint32_t CCR[4];
-    uint32_t DCR;
-    uint32_t DMAR;
-
+    volatile uint32_t CR1;
+    volatile uint32_t CR2;
+    volatile uint32_t SMCR;
+    volatile uint32_t DIER;
+    volatile uint32_t SR;
+    volatile uint32_t EGR;
+    volatile uint32_t CCMR[2];
+    volatile uint32_t CCER;
+    volatile uint32_t CNT;
+    volatile uint32_t PSC;
+    volatile uint32_t ARR;
+    volatile uint32_t CCR[4];
+    volatile uint32_t DCR;
+    volatile uint32_t DMAR;
 }TIM_RegDef;
 
 //I2C
 typedef struct
 {
-    uint32_t CR1;
-    uint32_t CR2;
-    uint32_t OAR1;
-    uint32_t OAR2;
-    uint32_t DR;
-    uint32_t SR1;
-    uint32_t SR2;
-    uint32_t CCR;
-    uint32_t TRISE;
+    volatile uint32_t CR1;
+    volatile uint32_t CR2;
+    volatile uint32_t OAR1;
+    volatile uint32_t OAR2;
+    volatile uint32_t DR;
+    volatile uint32_t SR1;
+    volatile uint32_t SR2;
+    volatile uint32_t CCR;
+    volatile uint32_t TRISE;
 }I2C_RegDef;
 
 //DMA
 typedef struct
 {
-    uint32_t CCR;
-    uint32_t CNDTR;
-    uint32_t CPAR;
-    uint32_t CMAR;
+    volatile uint32_t CCR;
+    volatile uint32_t CNDTR;
+    volatile uint32_t CPAR;
+    volatile uint32_t CMAR;
 }DMA_Channel_RegDef;
 
 typedef struct
 {
-    uint32_t ISR;
-    uint32_t IFCR;
+    volatile uint32_t ISR;
+    volatile uint32_t IFCR;
     DMA_Channel_RegDef Channel[7];
 }DMA_RegDef;
 
