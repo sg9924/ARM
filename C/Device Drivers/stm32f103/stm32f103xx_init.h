@@ -5,6 +5,8 @@
 
 
 void board_init();
+void led_init();
+void led_toggle();
 void tim_delay_ms(uint16_t delay);
 void tim_delay_us(uint16_t delay);
 
