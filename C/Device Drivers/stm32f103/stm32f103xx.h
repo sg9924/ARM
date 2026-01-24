@@ -191,6 +191,84 @@ typedef struct
     DMA_Channel_RegDef Channel[7];
 }DMA_RegDef;
 
+
+//PWR
+typedef struct
+{
+    volatile uint32_t CR;
+    volatile uint32_t CSR;
+}PWR_RegDef;
+
+//BKP
+typedef struct
+{
+    volatile uint32_t RESERVED;
+    volatile uint32_t DR1;
+    volatile uint32_t DR2;
+    volatile uint32_t DR3;
+    volatile uint32_t DR4;
+    volatile uint32_t DR5;
+    volatile uint32_t DR6;
+    volatile uint32_t DR7;
+    volatile uint32_t DR8;
+    volatile uint32_t DR9;
+    volatile uint32_t DR10;
+    volatile uint32_t RTCCR;
+    volatile uint32_t CR;
+    volatile uint32_t CSR;
+    volatile uint32_t RESERVED2;
+    volatile uint32_t RESERVED3;
+    volatile uint32_t DR11;
+    volatile uint32_t DR12;
+    volatile uint32_t DR13;
+    volatile uint32_t DR14;
+    volatile uint32_t DR15;
+    volatile uint32_t DR16;
+    volatile uint32_t DR17;
+    volatile uint32_t DR18;
+    volatile uint32_t DR19;
+    volatile uint32_t DR20;
+    volatile uint32_t DR21;
+    volatile uint32_t DR22;
+    volatile uint32_t DR23;
+    volatile uint32_t DR24;
+    volatile uint32_t DR25;
+    volatile uint32_t DR26;
+    volatile uint32_t DR27;
+    volatile uint32_t DR28;
+    volatile uint32_t DR29;
+    volatile uint32_t DR30;
+    volatile uint32_t DR31;
+    volatile uint32_t DR32;
+    volatile uint32_t DR33;
+    volatile uint32_t DR34;
+    volatile uint32_t DR35;
+    volatile uint32_t DR36;
+    volatile uint32_t DR37;
+    volatile uint32_t DR38;
+    volatile uint32_t DR39;
+    volatile uint32_t DR40;
+    volatile uint32_t DR41;
+    volatile uint32_t DR42;
+}BKP_RegDef;
+
+
+//RTC
+typedef struct
+{
+    volatile uint32_t CRH;
+    volatile uint32_t CRL;
+    volatile uint32_t PRLH;
+    volatile uint32_t PRLL;
+    volatile uint32_t DIVH;
+    volatile uint32_t DIVL;
+    volatile uint32_t CNTH;
+    volatile uint32_t CNTL;
+    volatile uint32_t ALRH;
+    volatile uint32_t ALRL;
+
+}RTC_RegDef;
+
 /*************************************** Peripheral Registers Definition Structures End ***************************************/
 /*----------------------------------------------------------------------------------------------------------------------------*/
 

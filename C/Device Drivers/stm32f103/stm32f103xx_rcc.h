@@ -89,6 +89,15 @@
 #define RCC_APB1ENR_PWREN           28
 #define RCC_APB1ENR_DACEN           29
 
+//RCC_BDCR Bit Fields
+#define RCC_BDCR_LSEON              0
+#define RCC_BDCR_LSERDY             1
+#define RCC_BDCR_LSEBYP             2
+#define RCC_BDCR_RTCSEL0            8
+#define RCC_BDCR_RTCSEL1            9
+#define RCC_BDCR_RTCEN              15
+#define RCC_BDCR_BDRST              16
+
 //RCC_CSR Bit Fields
 #define RCC_CSR_LSION               0
 #define RCC_CSR_LSIRDY              1
@@ -116,7 +125,11 @@
 /**************************************************** RCC Definitions End ***************************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /************************************************* RCC Macros Definitions Start *********************************************/
+#define PWR_PLCK_ENABLE()      (RCC->APB1ENR |= 1<<RCC_APB1ENR_PWREN)
+#define PWR_PLCK_DISABLE()     (RCC->APB1ENR &= ~(1<<RCC_APB1ENR_PWREN))
 
+#define BKP_PLCK_ENABLE()      (RCC->APB1ENR |= 1<<RCC_APB1ENR_BKPEN)
+#define BKP_PLCK_DISABLE()     (RCC->APB1ENR &= ~(1<<RCC_APB1ENR_BKPEN))
 
 
 /************************************************* GPIO Macros Definitions Start *********************************************/
