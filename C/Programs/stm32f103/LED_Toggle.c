@@ -1,5 +1,6 @@
-#include"stm32f103xx_init.h"
-#include"stm32f103xx_gpio.h"
+#include"../../Device_Drivers/stm32f103/inc/stm32f103xx_init.h"
+#include"../../Device_Drivers/stm32f103/inc/stm32f103xx_gpio.h"
+#include"../../Device_Drivers/stm32f103/inc/stm32f103xx_serial.h"
 
 
 int main()
@@ -14,7 +15,7 @@ int main()
 	{
 		//Toggle PC13 Led Pin
 		GPIO_OpToggle(led.pGPIOx, led.GPIOx_PinConfig.PinNo);
-		wait(1);
-        Serialprint("LED at GPIOC Pin 13 is being toggled!\r\n\0");
+		tim_delay_ms(1000);
+        Serialprintln("LED at GPIOC Pin 13 is being toggled!", INFO);
 	}
 }

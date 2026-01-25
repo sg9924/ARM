@@ -1,0 +1,1879 @@
+Archive member included to satisfy reference by file (symbol)
+
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+                              stm32f103xx_serial.o (__aeabi_fmul)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_cmpdf2.o)
+                              stm32f103xx_serial.o (__aeabi_dcmplt)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixdfsi.o)
+                              stm32f103xx_serial.o (__aeabi_d2iz)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+                              stm32f103xx_serial.o (__aeabi_d2f)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+                              stm32f103xx_serial.o (__aeabi_fsub)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixsfsi.o)
+                              stm32f103xx_utilities.o (__aeabi_f2iz)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixunssfsi.o)
+                              stm32f103xx_serial.o (__aeabi_f2uiz)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-exit.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crt0.o (exit)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-exit.o) (__stdio_exit_handler)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fwalk.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o) (_fwalk_sglue)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o) (__sread)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crt0.o (memset)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-closer.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o) (_close_r)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-reent.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-closer.o) (errno)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-impure.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-reent.o) (_impure_ptr)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lseekr.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o) (_lseek_r)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-readr.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o) (_read_r)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-writer.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o) (_write_r)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-errno.o)
+                              ../../Device_Drivers/stm32f103/src/syscalls.o (__errno)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crt0.o (__libc_init_array)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o) (__retarget_lock_init_recursive)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-freer.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-reent.o) (_free_r)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o) (_malloc_r)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-freer.o) (__malloc_lock)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fflush.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o) (_fflush_r)
+C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-sbrkr.o)
+                              C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o) (_sbrk_r)
+
+Discarded input sections
+
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc LED_toggle.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_gpio.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_gpio.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_gpio.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_gpio.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_gpio.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_gpio.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_gpio.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_gpio.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_gpio.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_gpio.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_gpio.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_gpio.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_gpio.o
+ .debug_macro   0x00000000       0x16 stm32f103xx_gpio.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_gpio.o
+ .group         0x00000000        0xc stm32f103xx_afio.o
+ .group         0x00000000        0xc stm32f103xx_afio.o
+ .group         0x00000000        0xc stm32f103xx_afio.o
+ .group         0x00000000        0xc stm32f103xx_afio.o
+ .group         0x00000000        0xc stm32f103xx_afio.o
+ .group         0x00000000        0xc stm32f103xx_afio.o
+ .group         0x00000000        0xc stm32f103xx_afio.o
+ .group         0x00000000        0xc stm32f103xx_afio.o
+ .group         0x00000000        0xc stm32f103xx_afio.o
+ .group         0x00000000        0xc stm32f103xx_afio.o
+ .group         0x00000000        0xc stm32f103xx_afio.o
+ .group         0x00000000        0xc stm32f103xx_afio.o
+ .group         0x00000000        0xc stm32f103xx_afio.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_afio.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_afio.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_afio.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_afio.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_afio.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_afio.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_afio.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_afio.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_afio.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_afio.o
+ .group         0x00000000        0xc stm32f103xx_exti.o
+ .group         0x00000000        0xc stm32f103xx_exti.o
+ .group         0x00000000        0xc stm32f103xx_exti.o
+ .group         0x00000000        0xc stm32f103xx_exti.o
+ .group         0x00000000        0xc stm32f103xx_exti.o
+ .group         0x00000000        0xc stm32f103xx_exti.o
+ .group         0x00000000        0xc stm32f103xx_exti.o
+ .group         0x00000000        0xc stm32f103xx_exti.o
+ .group         0x00000000        0xc stm32f103xx_exti.o
+ .group         0x00000000        0xc stm32f103xx_exti.o
+ .group         0x00000000        0xc stm32f103xx_exti.o
+ .group         0x00000000        0xc stm32f103xx_exti.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_exti.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_exti.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_exti.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_exti.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_exti.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_exti.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_exti.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_exti.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_exti.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_exti.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_exti.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_exti.o
+ .group         0x00000000        0xc stm32f103xx_nvic.o
+ .group         0x00000000        0xc stm32f103xx_nvic.o
+ .group         0x00000000        0xc stm32f103xx_nvic.o
+ .group         0x00000000        0xc stm32f103xx_nvic.o
+ .group         0x00000000        0xc stm32f103xx_nvic.o
+ .group         0x00000000        0xc stm32f103xx_nvic.o
+ .group         0x00000000        0xc stm32f103xx_nvic.o
+ .group         0x00000000        0xc stm32f103xx_nvic.o
+ .group         0x00000000        0xc stm32f103xx_nvic.o
+ .group         0x00000000        0xc stm32f103xx_nvic.o
+ .group         0x00000000        0xc stm32f103xx_nvic.o
+ .group         0x00000000        0xc stm32f103xx_nvic.o
+ .group         0x00000000        0xc stm32f103xx_nvic.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_nvic.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_nvic.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_nvic.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_nvic.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_nvic.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_nvic.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_nvic.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_nvic.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_nvic.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_nvic.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_nvic.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_nvic.o
+ .debug_macro   0x00000000      0x136 stm32f103xx_nvic.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_usart.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_usart.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_usart.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_usart.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_usart.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_usart.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_usart.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_usart.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_usart.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_usart.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_usart.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_usart.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_usart.o
+ .debug_macro   0x00000000      0x136 stm32f103xx_usart.o
+ .debug_macro   0x00000000      0x21a stm32f103xx_usart.o
+ .debug_macro   0x00000000      0x172 stm32f103xx_usart.o
+ .debug_macro   0x00000000       0x10 stm32f103xx_usart.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rcc.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_rcc.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_rcc.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_rcc.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_rcc.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_rcc.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_rcc.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_rcc.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_rcc.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_rcc.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_rcc.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_rcc.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_rcc.o
+ .debug_macro   0x00000000      0x13c stm32f103xx_rcc.o
+ .debug_macro   0x00000000      0x21a stm32f103xx_rcc.o
+ .debug_macro   0x00000000       0x16 stm32f103xx_rcc.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_rcc.o
+ .debug_macro   0x00000000       0x58 stm32f103xx_rcc.o
+ .debug_macro   0x00000000       0x94 stm32f103xx_rcc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_rtc.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_rtc.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_rtc.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_rtc.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_rtc.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_rtc.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_rtc.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_rtc.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_rtc.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_rtc.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_rtc.o
+ .debug_macro   0x00000000       0x16 stm32f103xx_rtc.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_rtc.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_rtc.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_rtc.o
+ .debug_macro   0x00000000      0x13c stm32f103xx_rtc.o
+ .debug_macro   0x00000000      0x21a stm32f103xx_rtc.o
+ .debug_macro   0x00000000       0x58 stm32f103xx_rtc.o
+ .debug_macro   0x00000000       0x94 stm32f103xx_rtc.o
+ .group         0x00000000        0xc stm32f103xx_spi.o
+ .group         0x00000000        0xc stm32f103xx_spi.o
+ .group         0x00000000        0xc stm32f103xx_spi.o
+ .group         0x00000000        0xc stm32f103xx_spi.o
+ .group         0x00000000        0xc stm32f103xx_spi.o
+ .group         0x00000000        0xc stm32f103xx_spi.o
+ .group         0x00000000        0xc stm32f103xx_spi.o
+ .group         0x00000000        0xc stm32f103xx_spi.o
+ .group         0x00000000        0xc stm32f103xx_spi.o
+ .group         0x00000000        0xc stm32f103xx_spi.o
+ .group         0x00000000        0xc stm32f103xx_spi.o
+ .group         0x00000000        0xc stm32f103xx_spi.o
+ .group         0x00000000        0xc stm32f103xx_spi.o
+ .group         0x00000000        0xc stm32f103xx_spi.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_spi.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_spi.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_spi.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_spi.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_spi.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_spi.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_spi.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_spi.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_spi.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_spi.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_spi.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_spi.o
+ .debug_macro   0x00000000      0x136 stm32f103xx_spi.o
+ .group         0x00000000        0xc stm32f103xx_adc.o
+ .group         0x00000000        0xc stm32f103xx_adc.o
+ .group         0x00000000        0xc stm32f103xx_adc.o
+ .group         0x00000000        0xc stm32f103xx_adc.o
+ .group         0x00000000        0xc stm32f103xx_adc.o
+ .group         0x00000000        0xc stm32f103xx_adc.o
+ .group         0x00000000        0xc stm32f103xx_adc.o
+ .group         0x00000000        0xc stm32f103xx_adc.o
+ .group         0x00000000        0xc stm32f103xx_adc.o
+ .group         0x00000000        0xc stm32f103xx_adc.o
+ .group         0x00000000        0xc stm32f103xx_adc.o
+ .group         0x00000000        0xc stm32f103xx_adc.o
+ .group         0x00000000        0xc stm32f103xx_adc.o
+ .group         0x00000000        0xc stm32f103xx_adc.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_adc.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_adc.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_adc.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_adc.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_adc.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_adc.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_adc.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_adc.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_adc.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_adc.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_adc.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_adc.o
+ .debug_macro   0x00000000      0x13c stm32f103xx_adc.o
+ .group         0x00000000        0xc stm32f103xx_i2c.o
+ .group         0x00000000        0xc stm32f103xx_i2c.o
+ .group         0x00000000        0xc stm32f103xx_i2c.o
+ .group         0x00000000        0xc stm32f103xx_i2c.o
+ .group         0x00000000        0xc stm32f103xx_i2c.o
+ .group         0x00000000        0xc stm32f103xx_i2c.o
+ .group         0x00000000        0xc stm32f103xx_i2c.o
+ .group         0x00000000        0xc stm32f103xx_i2c.o
+ .group         0x00000000        0xc stm32f103xx_i2c.o
+ .group         0x00000000        0xc stm32f103xx_i2c.o
+ .group         0x00000000        0xc stm32f103xx_i2c.o
+ .group         0x00000000        0xc stm32f103xx_i2c.o
+ .group         0x00000000        0xc stm32f103xx_i2c.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_i2c.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_i2c.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_i2c.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_i2c.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_i2c.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_i2c.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_i2c.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_i2c.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_i2c.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_i2c.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_i2c.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_i2c.o
+ .group         0x00000000        0xc stm32f103xx_timer.o
+ .group         0x00000000        0xc stm32f103xx_timer.o
+ .group         0x00000000        0xc stm32f103xx_timer.o
+ .group         0x00000000        0xc stm32f103xx_timer.o
+ .group         0x00000000        0xc stm32f103xx_timer.o
+ .group         0x00000000        0xc stm32f103xx_timer.o
+ .group         0x00000000        0xc stm32f103xx_timer.o
+ .group         0x00000000        0xc stm32f103xx_timer.o
+ .group         0x00000000        0xc stm32f103xx_timer.o
+ .group         0x00000000        0xc stm32f103xx_timer.o
+ .group         0x00000000        0xc stm32f103xx_timer.o
+ .group         0x00000000        0xc stm32f103xx_timer.o
+ .group         0x00000000        0xc stm32f103xx_timer.o
+ .group         0x00000000        0xc stm32f103xx_timer.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_timer.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_timer.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_timer.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_timer.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_timer.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_timer.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_timer.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_timer.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_timer.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_timer.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_timer.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_timer.o
+ .debug_macro   0x00000000      0x13c stm32f103xx_timer.o
+ .group         0x00000000        0xc stm32f103xx_dma.o
+ .group         0x00000000        0xc stm32f103xx_dma.o
+ .group         0x00000000        0xc stm32f103xx_dma.o
+ .group         0x00000000        0xc stm32f103xx_dma.o
+ .group         0x00000000        0xc stm32f103xx_dma.o
+ .group         0x00000000        0xc stm32f103xx_dma.o
+ .group         0x00000000        0xc stm32f103xx_dma.o
+ .group         0x00000000        0xc stm32f103xx_dma.o
+ .group         0x00000000        0xc stm32f103xx_dma.o
+ .group         0x00000000        0xc stm32f103xx_dma.o
+ .group         0x00000000        0xc stm32f103xx_dma.o
+ .group         0x00000000        0xc stm32f103xx_dma.o
+ .group         0x00000000        0xc stm32f103xx_dma.o
+ .group         0x00000000        0xc stm32f103xx_dma.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_dma.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_dma.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_dma.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_dma.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_dma.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_dma.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_dma.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_dma.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_dma.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_dma.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_dma.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_dma.o
+ .debug_macro   0x00000000      0x13c stm32f103xx_dma.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_systick.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_systick.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_systick.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_systick.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_systick.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_systick.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_systick.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_systick.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_systick.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_systick.o
+ .debug_macro   0x00000000      0x270 stm32f103xx_systick.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_systick.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_systick.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_systick.o
+ .debug_macro   0x00000000      0x13c stm32f103xx_systick.o
+ .debug_macro   0x00000000      0x21a stm32f103xx_systick.o
+ .debug_macro   0x00000000       0x16 stm32f103xx_systick.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_systick.o
+ .debug_macro   0x00000000       0x58 stm32f103xx_systick.o
+ .debug_macro   0x00000000       0x94 stm32f103xx_systick.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_init.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_init.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_init.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_init.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_init.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_init.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_init.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_init.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_init.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_init.o
+ .debug_macro   0x00000000      0x270 stm32f103xx_init.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_init.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_init.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_init.o
+ .debug_macro   0x00000000      0x13c stm32f103xx_init.o
+ .debug_macro   0x00000000      0x541 stm32f103xx_init.o
+ .debug_macro   0x00000000       0x16 stm32f103xx_init.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_init.o
+ .debug_macro   0x00000000       0x58 stm32f103xx_init.o
+ .debug_macro   0x00000000       0x94 stm32f103xx_init.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_serial.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_serial.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_serial.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_serial.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_serial.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_serial.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_serial.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_serial.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_serial.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_serial.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_serial.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_serial.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_serial.o
+ .debug_macro   0x00000000      0x13c stm32f103xx_serial.o
+ .debug_macro   0x00000000      0x21a stm32f103xx_serial.o
+ .debug_macro   0x00000000       0x16 stm32f103xx_serial.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_serial.o
+ .debug_macro   0x00000000       0x58 stm32f103xx_serial.o
+ .debug_macro   0x00000000       0x94 stm32f103xx_serial.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000      0x270 stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000      0x13c stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000      0x21a stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000       0x16 stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000       0x58 stm32f103xx_fault_handlers.o
+ .debug_macro   0x00000000       0x94 stm32f103xx_fault_handlers.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .group         0x00000000        0xc stm32f103xx_utilities.o
+ .debug_macro   0x00000000      0xaba stm32f103xx_utilities.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_utilities.o
+ .debug_macro   0x00000000       0x8e stm32f103xx_utilities.o
+ .debug_macro   0x00000000       0x51 stm32f103xx_utilities.o
+ .debug_macro   0x00000000      0x103 stm32f103xx_utilities.o
+ .debug_macro   0x00000000       0x6a stm32f103xx_utilities.o
+ .debug_macro   0x00000000      0x1df stm32f103xx_utilities.o
+ .debug_macro   0x00000000       0x16 stm32f103xx_utilities.o
+ .debug_macro   0x00000000       0x22 stm32f103xx_utilities.o
+ .debug_macro   0x00000000      0x124 stm32f103xx_utilities.o
+ .debug_macro   0x00000000       0x52 stm32f103xx_utilities.o
+ .debug_macro   0x00000000      0x25a stm32f103xx_utilities.o
+ .debug_macro   0x00000000      0x190 stm32f103xx_utilities.o
+ .debug_macro   0x00000000      0x166 stm32f103xx_utilities.o
+ .debug_macro   0x00000000      0x13c stm32f103xx_utilities.o
+ .debug_macro   0x00000000      0x21a stm32f103xx_utilities.o
+ .debug_macro   0x00000000       0x58 stm32f103xx_utilities.o
+ .debug_macro   0x00000000       0x94 stm32f103xx_utilities.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .debug_macro   0x00000000      0xaba ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .debug_macro   0x00000000       0x22 ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .debug_macro   0x00000000       0x8e ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .debug_macro   0x00000000       0x51 ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .debug_macro   0x00000000      0x103 ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .debug_macro   0x00000000       0x6a ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .debug_macro   0x00000000      0x1df ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .group         0x00000000        0xc ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00000000      0xaba ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00000000       0x22 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00000000      0x190 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00000000       0x6a ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00000000      0x103 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00000000      0x1df ../../Device_Drivers/stm32f103/src/syscalls.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x08000000         0x00020000         xr
+SRAM             0x20000000         0x00005000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crti.o
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crt0.o
+LOAD LED_toggle.o
+LOAD stm32f103xx_gpio.o
+LOAD stm32f103xx_afio.o
+LOAD stm32f103xx_exti.o
+LOAD stm32f103xx_nvic.o
+LOAD stm32f103xx_usart.o
+LOAD stm32f103xx_rcc.o
+LOAD stm32f103xx_rtc.o
+LOAD stm32f103xx_spi.o
+LOAD stm32f103xx_adc.o
+LOAD stm32f103xx_i2c.o
+LOAD stm32f103xx_timer.o
+LOAD stm32f103xx_dma.o
+LOAD stm32f103xx_systick.o
+LOAD stm32f103xx_init.o
+LOAD stm32f103xx_serial.o
+LOAD stm32f103xx_fault_handlers.o
+LOAD stm32f103xx_utilities.o
+LOAD ../../Device_Drivers/stm32f103/others/bp_startup.o
+LOAD ../../Device_Drivers/stm32f103/src/syscalls.o
+START GROUP
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a
+END GROUP
+START GROUP
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a
+END GROUP
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtend.o
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtn.o
+
+.text           0x08000000     0x76ac
+ *(.isr_vector)
+ .isr_vector    0x08000000      0x130 ../../Device_Drivers/stm32f103/others/bp_startup.o
+                0x08000000                vectors
+ *(.text*)
+ .text          0x08000130        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crti.o
+ .text          0x08000130        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+ .text.deregister_tm_clones
+                0x08000130       0x1c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+ .text.register_tm_clones
+                0x0800014c       0x24 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+ .text.__do_global_dtors_aux
+                0x08000170       0x28 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+ .text.frame_dummy
+                0x08000198       0x24 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+ .text          0x080001bc       0x7c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crt0.o
+                0x080001bc                _stack_init
+                0x080001c4                _start
+                0x080001c4                _mainCRTStartup
+ .text          0x08000238       0x50 LED_toggle.o
+                0x08000238                main
+ .text          0x08000288      0x710 stm32f103xx_gpio.o
+                0x08000288                GPIO_PClk_init
+                0x0800035c                GPIO_Config
+                0x0800039a                GPIO_Init
+                0x0800068a                GPIO_DeInit
+                0x080007a8                GPIO_OpToggle
+                0x080007d0                GPIO_ReadIpPin
+                0x080007fa                GPIO_WriteOpPin
+                0x08000842                GPIO_ReadIpPort
+                0x0800085c                GPIO_ReadOpPort
+                0x0800087e                GPIO_WriteOpPort
+                0x0800089a                GPIO_IRQ_Config
+                0x08000908                GPIO_IRQHandling
+                0x08000930                GPIO_Bit_Set
+                0x08000962                GPIO_Bit_Reset
+ .text          0x08000998      0x178 stm32f103xx_afio.o
+                0x08000998                AFIO_EXTI_Config
+                0x08000a8c                AFIO_EVENT_Config
+ .text          0x08000b10      0x2b4 stm32f103xx_exti.o
+                0x08000b10                EXTI_Intrpt_Config
+                0x08000c40                EXTI_Pend_Clear
+                0x08000c80                EXTI_Pend_Check
+                0x08000cac                EXTI_Intrpt_Mask
+                0x08000d04                EXTI_Event_Mask
+                0x08000d5c                EXTI_SWIE
+ .text          0x08000dc4      0x334 stm32f103xx_nvic.o
+                0x08000dc4                nvic_irq_gpio_port_map
+                0x08000e12                nvic_intrpt_enable
+                0x08000f84                nvic_intrpt_disable
+ .text          0x080010f8      0x6d4 stm32f103xx_usart.o
+                0x080010f8                USART_PClk_init
+                0x08001198                USART_Config_Default
+                0x080011f2                USART_Configure
+                0x08001262                USART_SetBaudRate
+                0x080012a4                USART_init
+                0x080013c0                USART_TX
+                0x08001460                USART_RX
+                0x08001500                USART_IT_Config
+                0x080015e8                USART_TX_IT
+                0x08001642                USART_RX_IT
+                0x0800168c                USART_IRQ_Handler
+ .text          0x080017cc      0x3c8 stm32f103xx_rcc.o
+                0x080017cc                RCC_Get_Clock_Source
+                0x080017e2                RCC_Get_HCLK
+                0x080017f8                RCC_Get_PCLK1
+                0x0800180e                RCC_Get_PCLK2
+                0x08001824                RCC_Update_Clock_Source
+                0x0800187a                RCC_Update_HCLK
+                0x08001942                RCC_Update_PCLK1
+                0x080019be                RCC_Update_PCLK2
+                0x08001a3a                RCC_Select_Clock_Source
+                0x08001b00                RCC_init
+                0x08001b44                RCC_MCO_Config
+ .text          0x08001b94      0x540 stm32f103xx_rtc.o
+                0x08001c58                RTC_Clk_select
+                0x08001ca4                RTC_Clk_LSE
+                0x08001d00                RTC_Init
+                0x08001dc8                RTC_Counter_Get
+                0x08001e00                RTC_Counter_Set
+                0x08001e5c                RTC_Time_Get
+                0x08001e82                RTC_Time_Set
+                0x08001eb0                RTC_Time_Format
+                0x08001ec2                RTC_Time_Print
+                0x08001f04                RTC_Alarm_SetAbsolute
+                0x08001f50                RTC_Alarm_SetSeconds
+                0x08001f70                RTC_Alarm_SetTime
+                0x08001fe4                RTC_Alarm_SecondsUntil
+                0x0800201c                RTC_ALARM_InterruptEnable
+                0x08002064                RTC_Alarm_InterruptDisable
+                0x0800209c                RTC_Alarm_IRQHandler
+ .text          0x080020d4      0x79c stm32f103xx_spi.o
+                0x080020d4                SPI_Flag_Check
+                0x08002100                SPI_PClk_init
+                0x080021c0                SPI_Pinit
+                0x0800227c                SPI_Configure
+                0x080022ee                SPI_init
+                0x0800255c                SPI_TX
+                0x080025f8                SPI_RX
+                0x08002698                SPI_IT_Config
+                0x08002730                SPI_TX_IT
+                0x0800277c                SPI_IRQ_Handler
+ .text          0x08002870      0x4dc stm32f103xx_adc.o
+                0x08002900                ADC_PClk_init
+                0x080029c0                ADC_Configure
+                0x080029fe                ADC_Sequence_Configure
+                0x08002a3c                ADC_init
+                0x08002b00                ADC_Channel_init
+                0x08002b2a                ADC_Sequence_init
+                0x08002b82                ADC_IT_Config
+                0x08002b8e                ADC_Reg_Seq_Config
+                0x08002ca4                ADC_No_Of_Conv
+                0x08002d0c                ADC_Start
+                0x08002d3e                ADC_DMA_Start
+ .text          0x08002d4c      0x8b8 stm32f103xx_i2c.o
+                0x08002d4c                I2C_PClk_init
+                0x08002dd8                I2C_P_init
+                0x08002e60                I2C_Configure
+                0x08002ed6                I2C_GPIO_init
+                0x08002f90                I2C_init
+                0x080030d4                I2C_Master_Send
+                0x080031c0                I2C_Master_Receive
+                0x080032e2                I2C_Slave_Send
+                0x0800339a                I2C_Slave_Receive
+                0x080034b8                I2C_Clear_ADDR_Flag
+                0x08003522                I2C_ACK_Enable
+                0x08003544                I2C_ACK_Disable
+                0x08003566                I2C_STOP_Set
+                0x08003588                I2C_STOP_Reset
+                0x080035aa                I2C_Address_Phase_Read
+                0x080035d6                I2C_Address_Phase_Write
+ .text          0x08003604      0x6e8 stm32f103xx_timer.o
+                0x08003604                TIM_PClk_init
+                0x0800368c                TIM_P_init
+                0x08003718                TIM_Base_Configure
+                0x08003754                TIM_Base_init
+                0x08003806                TIM_OC_Configure
+                0x08003854                TIM_OC_Channel_init
+                0x080039c0                TIM_OC_init
+                0x080039fa                TIM_Base_Start
+                0x08003a12                TIM_Base_Stop
+                0x08003a2a                TIM_OC_Start
+                0x08003a66                TIM_OC_Stop
+                0x08003aa4                TIM_Prescaler_Load
+                0x08003aca                TIM_AutoReload_Load
+                0x08003af0                TIM_Shadow_Reg_Update
+                0x08003b12                TIM_Status_Clear
+                0x08003b3c                TIM_Count_Reset
+                0x08003b56                TIM_Update_Event_Check
+                0x08003b7e                TIM_Update_Event_Trigger
+                0x08003bb0                TIM_Interrupt_init
+                0x08003c80                TIM_DMA_Init
+ .text          0x08003cec      0x614 stm32f103xx_dma.o
+                0x08003cec                DMA_PClk_init
+                0x08003d78                DMA_P_init
+                0x08003e58                DMA_Configure
+                0x08003ec6                DMA_Address_Config
+                0x08003f00                DMA_init
+                0x080040c8                DMA_IT_Config
+                0x0800416a                DMA_IRQ_Config
+ .text          0x08004300      0x100 stm32f103xx_systick.o
+                0x08004300                Systick_Configure
+                0x08004384                Systick_init
+                0x080043a0                Systick_get_tick
+                0x080043b4                Systick_Tick_Inc
+                0x080043d0                Systick_delay
+ .text          0x08004400      0x224 stm32f103xx_init.o
+                0x08004400                board_init
+                0x08004424                led_init
+                0x08004454                led_toggle
+                0x08004468                display_cpu_info
+                0x080044dc                display_clk_src
+                0x08004534                display_clk_freqs
+                0x08004594                tim_delay_ms
+                0x080045e0                tim_delay_us
+ .text          0x08004624      0xc0c stm32f103xx_serial.o
+                0x08004624                _print_buffer
+                0x08004650                _reset_buffer
+                0x08004668                _print_int
+                0x08004798                _print_float
+                0x08004960                _print_hex
+                0x08004a58                Serial_UART_init
+                0x08004a9c                Serial_init
+                0x08004ac8                Serialprint
+                0x08004e04                Serialprintln
+                0x0800514c                SerialInput
+ .text          0x08005230      0x3ec stm32f103xx_fault_handlers.o
+                0x08005230                decode_MMFSR
+                0x080052d8                decode_BFSR
+                0x08005398                decode_UFSR
+                0x08005454                decode_HFSR
+                0x080054b0                decode_CFSR
+                0x08005608                HardFault_Handler
+ .text          0x0800561c      0x728 stm32f103xx_utilities.o
+                0x0800561c                wait_ms
+                0x0800564e                wait
+                0x08005678                string_size
+                0x080056a4                string_truncate
+                0x080056e2                string_concat
+                0x08005728                string_trim
+                0x080057a2                string_format
+                0x08005944                array_reverse
+                0x080059a0                string_reverse
+                0x080059c4                end_of_string
+                0x080059ea                string_copy
+                0x08005a28                digit_extract
+                0x08005af0                parse_int
+                0x08005b38                parse_float
+                0x08005c40                string_to_int
+                0x08005cb2                power
+                0x08005cea                no_of_digits
+ .text          0x08005d44       0x90 ../../Device_Drivers/stm32f103/others/bp_startup.o
+                0x08005d44                Reset_Handler
+                0x08005dcc                TIM8_TRG_COM_IRQHandler
+                0x08005dcc                TIM8_CC_IRQHandler
+                0x08005dcc                DebugMon_Handler
+                0x08005dcc                TIM1_CC_IRQHandler
+                0x08005dcc                TAMP_IRQHandler
+                0x08005dcc                TIM6_IRQHandler
+                0x08005dcc                SysTick_Handler
+                0x08005dcc                PVD_IRQHandler
+                0x08005dcc                SDIO_IRQHandler
+                0x08005dcc                PendSV_Handler
+                0x08005dcc                NMI_Handler
+                0x08005dcc                EXTI3_IRQHandler
+                0x08005dcc                USB_HP_CAN_TX_IRQHandler
+                0x08005dcc                EXTI0_IRQHandler
+                0x08005dcc                I2C2_EV_IRQHandler
+                0x08005dcc                UsageFault_Handler
+                0x08005dcc                ADC1_2_IRQHandler
+                0x08005dcc                SPI1_IRQHandler
+                0x08005dcc                TIM8_UP_IRQHandler
+                0x08005dcc                DMA2_Channel2_IRQHandler
+                0x08005dcc                DMA1_Channel4_IRQHandler
+                0x08005dcc                USART3_IRQHandler
+                0x08005dcc                RTC_IRQHandler
+                0x08005dcc                DMA1_Channel7_IRQHandler
+                0x08005dcc                EXTI2_IRQHandler
+                0x08005dcc                CAN1_RX1_IRQHandler
+                0x08005dcc                UART5_IRQHandler
+                0x08005dcc                USB_HP_CAN_RX0_IRQHandler
+                0x08005dcc                ADC3_IRQHandler
+                0x08005dcc                TIM4_IRQHandler
+                0x08005dcc                DMA2_Channel1_IRQHandler
+                0x08005dcc                I2C1_EV_IRQHandler
+                0x08005dcc                DMA1_Channel6_IRQHandler
+                0x08005dcc                UART4_IRQHandler
+                0x08005dcc                TIM3_IRQHandler
+                0x08005dcc                RCC_IRQHandler
+                0x08005dcc                TIM1_TRG_COM_IRQHandler
+                0x08005dcc                DMA1_Channel1_IRQHandler
+                0x08005dcc                Default_Handler
+                0x08005dcc                EXTI15_10_IRQHandler
+                0x08005dcc                TIM7_IRQHandler
+                0x08005dcc                TIM5_IRQHandler
+                0x08005dcc                EXTI9_5_IRQHandler
+                0x08005dcc                SPI2_IRQHandler
+                0x08005dcc                MemManage_Handler
+                0x08005dcc                SVC_Handler
+                0x08005dcc                DMA1_Channel5_IRQHandler
+                0x08005dcc                EXTI4_IRQHandler
+                0x08005dcc                DMA1_Channel3_IRQHandler
+                0x08005dcc                FSMC_IRQHandler
+                0x08005dcc                TIM1_UP_IRQHandler
+                0x08005dcc                WWDG_IRQHandler
+                0x08005dcc                TIM2_IRQHandler
+                0x08005dcc                TIM1_BRK_IRQHandler
+                0x08005dcc                EXTI1_IRQHandler
+                0x08005dcc                DMA2_Channel4_5_IRQHandler
+                0x08005dcc                USART2_IRQHandler
+                0x08005dcc                I2C2_ER_IRQHandler
+                0x08005dcc                DMA1_Channel2_IRQHandler
+                0x08005dcc                TIM8_BRK_IRQHandler
+                0x08005dcc                CAN1_SCE_IRQHandler
+                0x08005dcc                BusFault_Handler
+                0x08005dcc                USART1_IRQHandler
+                0x08005dcc                SPI3_IRQHandler
+                0x08005dcc                I2C1_ER_IRQHandler
+                0x08005dcc                USB_WKUP_IRQHandler
+                0x08005dcc                DMA2_Channel3_IRQHandler
+ .text          0x08005dd4      0x25c ../../Device_Drivers/stm32f103/src/syscalls.o
+                0x08005dd4                initialise_monitor_handles
+                0x08005de0                _getpid
+                0x08005dee                _kill
+                0x08005e0e                _exit
+                0x08005e24                _read
+                0x08005e5e                _write
+                0x08005e96                _close
+                0x08005eac                _fstat
+                0x08005eca                _isatty
+                0x08005ede                _lseek
+                0x08005ef6                _open
+                0x08005f10                _wait
+                0x08005f2e                _unlink
+                0x08005f4c                _times
+                0x08005f62                _stat
+                0x08005f80                _link
+                0x08005fa0                _fork
+                0x08005fb6                _execve
+                0x08005fd8                _sbrk
+ .text          0x08006030      0x168 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+                0x08006030                __aeabi_fmul
+                0x08006030                __mulsf3
+ .text          0x08006198      0x110 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_cmpdf2.o)
+                0x08006198                __gtdf2
+                0x08006198                __gedf2
+                0x080061a0                __ltdf2
+                0x080061a0                __ledf2
+                0x080061a8                __nedf2
+                0x080061a8                __eqdf2
+                0x080061a8                __cmpdf2
+                0x08006224                __aeabi_cdrcmple
+                0x08006234                __aeabi_cdcmpeq
+                0x08006234                __aeabi_cdcmple
+                0x08006244                __aeabi_dcmpeq
+                0x08006258                __aeabi_dcmplt
+                0x0800626c                __aeabi_dcmple
+                0x08006280                __aeabi_dcmpge
+                0x08006294                __aeabi_dcmpgt
+ .text          0x080062a8       0x50 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixdfsi.o)
+                0x080062a8                __aeabi_d2iz
+                0x080062a8                __fixdfsi
+ .text          0x080062f8       0xa0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+                0x080062f8                __truncdfsf2
+                0x080062f8                __aeabi_d2f
+ .text          0x08006398      0x21c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+                0x08006398                __aeabi_frsub
+                0x080063a0                __subsf3
+                0x080063a0                __aeabi_fsub
+                0x080063a4                __aeabi_fadd
+                0x080063a4                __addsf3
+                0x08006504                __aeabi_ui2f
+                0x08006504                __floatunsisf
+                0x0800650c                __aeabi_i2f
+                0x0800650c                __floatsisf
+                0x08006528                __aeabi_ul2f
+                0x08006528                __floatundisf
+                0x08006538                __aeabi_l2f
+                0x08006538                __floatdisf
+ .text          0x080065b4       0x4c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixsfsi.o)
+                0x080065b4                __aeabi_f2iz
+                0x080065b4                __fixsfsi
+ .text          0x08006600       0x40 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixunssfsi.o)
+                0x08006600                __fixunssfsi
+                0x08006600                __aeabi_f2uiz
+ .text          0x08006640        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-exit.o)
+ .text.exit     0x08006640       0x24 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-exit.o)
+                0x08006640                exit
+ .text          0x08006664        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+ .text.std      0x08006664       0x6c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+ .text.stdio_exit_handler
+                0x080066d0       0x18 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+ .text.cleanup_stdio
+                0x080066e8       0x40 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+ .text.__fp_lock
+                0x08006728       0x18 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+ .text.__fp_unlock
+                0x08006740       0x18 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+ .text.global_stdio_init.part.0
+                0x08006758       0x40 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+ .text.__sfp_lock_acquire
+                0x08006798        0xc C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+                0x08006798                __sfp_lock_acquire
+ .text.__sfp_lock_release
+                0x080067a4        0xc C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+                0x080067a4                __sfp_lock_release
+ .text.__sfp    0x080067b0       0xa4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+                0x080067b0                __sfp
+ .text.__sinit  0x08006854       0x30 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+                0x08006854                __sinit
+ .text.__fp_lock_all
+                0x08006884       0x1c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+                0x08006884                __fp_lock_all
+ .text.__fp_unlock_all
+                0x080068a0       0x1c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+                0x080068a0                __fp_unlock_all
+ .text          0x080068bc        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fwalk.o)
+ .text._fwalk_sglue
+                0x080068bc       0x3c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fwalk.o)
+                0x080068bc                _fwalk_sglue
+ .text          0x080068f8        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o)
+ .text.__sread  0x080068f8       0x22 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o)
+                0x080068f8                __sread
+ .text.__seofread
+                0x0800691a        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o)
+                0x0800691a                __seofread
+ .text.__swrite
+                0x0800691e       0x38 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o)
+                0x0800691e                __swrite
+ .text.__sseek  0x08006956       0x26 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o)
+                0x08006956                __sseek
+ .text.__sclose
+                0x0800697c        0x8 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o)
+                0x0800697c                __sclose
+ .text          0x08006984        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
+ .text.memset   0x08006984       0x10 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
+                0x08006984                memset
+ .text          0x08006994        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-closer.o)
+ .text._close_r
+                0x08006994       0x20 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-closer.o)
+                0x08006994                _close_r
+ .text          0x080069b4        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-reent.o)
+ .text._reclaim_reent
+                0x080069b4       0xbc C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-reent.o)
+                0x080069b4                _reclaim_reent
+ .text          0x08006a70        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-impure.o)
+ .text          0x08006a70        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lseekr.o)
+ .text._lseek_r
+                0x08006a70       0x24 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lseekr.o)
+                0x08006a70                _lseek_r
+ .text          0x08006a94        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-readr.o)
+ .text._read_r  0x08006a94       0x24 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-readr.o)
+                0x08006a94                _read_r
+ .text          0x08006ab8        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-writer.o)
+ .text._write_r
+                0x08006ab8       0x24 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-writer.o)
+                0x08006ab8                _write_r
+ .text          0x08006adc        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-errno.o)
+ .text.__errno  0x08006adc        0xc C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-errno.o)
+                0x08006adc                __errno
+ .text          0x08006ae8        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
+ .text.__libc_init_array
+                0x08006ae8       0x48 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
+                0x08006ae8                __libc_init_array
+ .text          0x08006b30        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+ .text.__retarget_lock_init
+                0x08006b30        0x2 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x08006b30                __retarget_lock_init
+ .text.__retarget_lock_init_recursive
+                0x08006b32        0x2 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x08006b32                __retarget_lock_init_recursive
+ .text.__retarget_lock_close
+                0x08006b34        0x2 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x08006b34                __retarget_lock_close
+ .text.__retarget_lock_close_recursive
+                0x08006b36        0x2 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x08006b36                __retarget_lock_close_recursive
+ .text.__retarget_lock_acquire
+                0x08006b38        0x2 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x08006b38                __retarget_lock_acquire
+ .text.__retarget_lock_acquire_recursive
+                0x08006b3a        0x2 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x08006b3a                __retarget_lock_acquire_recursive
+ .text.__retarget_lock_try_acquire
+                0x08006b3c        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x08006b3c                __retarget_lock_try_acquire
+ .text.__retarget_lock_try_acquire_recursive
+                0x08006b40        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x08006b40                __retarget_lock_try_acquire_recursive
+ .text.__retarget_lock_release
+                0x08006b44        0x2 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x08006b44                __retarget_lock_release
+ .text.__retarget_lock_release_recursive
+                0x08006b46        0x2 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x08006b46                __retarget_lock_release_recursive
+ .text          0x08006b48        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-freer.o)
+ .text._free_r  0x08006b48       0x90 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-freer.o)
+                0x08006b48                _free_r
+ .text          0x08006bd8        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
+ .text.sbrk_aligned
+                0x08006bd8       0x44 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
+ .text._malloc_r
+                0x08006c1c      0x100 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
+                0x08006c1c                _malloc_r
+ .text          0x08006d1c        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
+ .text.__malloc_lock
+                0x08006d1c        0xc C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
+                0x08006d1c                __malloc_lock
+ .text.__malloc_unlock
+                0x08006d28        0xc C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
+                0x08006d28                __malloc_unlock
+ .text          0x08006d34        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fflush.o)
+ .text.__sflush_r
+                0x08006d34       0xfc C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fflush.o)
+                0x08006d34                __sflush_r
+ .text._fflush_r
+                0x08006e30       0x50 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fflush.o)
+                0x08006e30                _fflush_r
+ .text.fflush   0x08006e80       0x28 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fflush.o)
+                0x08006e80                fflush
+ .text          0x08006ea8        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-sbrkr.o)
+ .text._sbrk_r  0x08006ea8       0x20 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-sbrkr.o)
+                0x08006ea8                _sbrk_r
+ .text          0x08006ec8        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtend.o
+ .text          0x08006ec8        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtn.o
+ *(.rodata*)
+ .rodata.all_implied_fbits
+                0x08006ec8       0x24 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+ .rodata        0x08006eec       0x26 LED_toggle.o
+ *fill*         0x08006f12        0x2 
+ .rodata        0x08006f14       0x18 stm32f103xx_rtc.o
+ .rodata        0x08006f2c       0xb4 stm32f103xx_init.o
+ .rodata        0x08006fe0       0xc3 stm32f103xx_serial.o
+ *fill*         0x080070a3        0x1 
+ .rodata        0x080070a4      0x5e3 stm32f103xx_fault_handlers.o
+ *fill*         0x08007687        0x1 
+ .rodata.all_implied_fbits
+                0x08007688       0x24 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtend.o
+                0x080076ac                        _etext = .
+                0x080076d0                        _la_data = LOADADDR (.data)
+
+.glue_7         0x080076ac        0x0
+ .glue_7        0x080076ac        0x0 linker stubs
+
+.glue_7t        0x080076ac        0x0
+ .glue_7t       0x080076ac        0x0 linker stubs
+
+.vfp11_veneer   0x080076ac        0x0
+ .vfp11_veneer  0x080076ac        0x0 linker stubs
+
+.v4_bx          0x080076ac        0x0
+ .v4_bx         0x080076ac        0x0 linker stubs
+
+.init           0x080076ac        0xc
+ .init          0x080076ac        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crti.o
+                0x080076ac                _init
+ .init          0x080076b0        0x8 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtn.o
+
+.fini           0x080076b8        0xc
+ .fini          0x080076b8        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crti.o
+                0x080076b8                _fini
+ .fini          0x080076bc        0x8 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtn.o
+
+.iplt           0x080076c4        0x0
+ .iplt          0x080076c4        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+
+.eh_frame       0x080076c4        0x4
+ .eh_frame      0x080076c4        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+ .eh_frame      0x080076c4        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtend.o
+
+.ARM.extab      0x080076c8        0x0
+ .ARM.extab     0x080076c8        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crt0.o
+
+.ARM.exidx      0x080076c8        0x8
+ .ARM.exidx     0x080076c8        0x8 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crt0.o
+                                 0x10 (size before relaxing)
+
+.rel.dyn        0x080076d0        0x0
+ .rel.iplt      0x080076d0        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+
+.data           0x20000000       0x64 load address 0x080076d0
+                0x20000000                        _sdata = .
+ *(.data)
+ .data          0x20000000        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crti.o
+ .data          0x20000000        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+ .data          0x20000000        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crt0.o
+ .data          0x20000000        0x0 LED_toggle.o
+ .data          0x20000000        0x0 stm32f103xx_gpio.o
+ .data          0x20000000        0x0 stm32f103xx_afio.o
+ .data          0x20000000        0x0 stm32f103xx_exti.o
+ .data          0x20000000        0x0 stm32f103xx_nvic.o
+ .data          0x20000000        0x0 stm32f103xx_usart.o
+ .data          0x20000000        0x0 stm32f103xx_rcc.o
+ .data          0x20000000        0x0 stm32f103xx_rtc.o
+ .data          0x20000000        0x0 stm32f103xx_spi.o
+ .data          0x20000000        0x0 stm32f103xx_adc.o
+ .data          0x20000000        0x0 stm32f103xx_i2c.o
+ .data          0x20000000        0x0 stm32f103xx_timer.o
+ .data          0x20000000        0x0 stm32f103xx_dma.o
+ .data          0x20000000        0x0 stm32f103xx_systick.o
+ .data          0x20000000        0x0 stm32f103xx_init.o
+ .data          0x20000000        0x0 stm32f103xx_serial.o
+ .data          0x20000000        0x0 stm32f103xx_fault_handlers.o
+ .data          0x20000000        0x0 stm32f103xx_utilities.o
+ .data          0x20000000        0x0 ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .data          0x20000000        0x4 ../../Device_Drivers/stm32f103/src/syscalls.o
+                0x20000000                environ
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_cmpdf2.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixdfsi.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixsfsi.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixunssfsi.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-exit.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fwalk.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-closer.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-reent.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-impure.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lseekr.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-readr.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-writer.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-errno.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-freer.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fflush.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-sbrkr.o)
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtend.o
+ .data          0x20000004        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtn.o
+ *(.data*)
+ .data.__dso_handle
+                0x20000004        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+                0x20000004                __dso_handle
+ .data.__sglue  0x20000008        0xc C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+                0x20000008                __sglue
+ .data._impure_ptr
+                0x20000014        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-impure.o)
+                0x20000014                _impure_ptr
+ .data._impure_data
+                0x20000018       0x4c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-impure.o)
+                0x20000018                _impure_data
+                0x20000064                        _edata = .
+
+.init_array     0x20000064        0x4 load address 0x08007734
+ .init_array    0x20000064        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+
+.fini_array     0x20000068        0x4 load address 0x08007738
+ .fini_array    0x20000068        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+
+.tm_clone_table
+                0x2000006c        0x0 load address 0x0800773c
+ .tm_clone_table
+                0x2000006c        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+ .tm_clone_table
+                0x2000006c        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtend.o
+
+.igot.plt       0x2000006c        0x0 load address 0x0800773c
+ .igot.plt      0x2000006c        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+
+.bss            0x2000006c      0xa88 load address 0x0800773c
+                0x2000006c                        _sbss = .
+                0x2000006c                        __bss_start__ = .
+ *(.bss)
+ .bss           0x2000006c        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crti.o
+ .bss           0x2000006c        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+ .bss           0x2000006c        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crt0.o
+ .bss           0x2000006c        0x0 LED_toggle.o
+ .bss           0x2000006c        0x0 stm32f103xx_gpio.o
+ .bss           0x2000006c        0x0 stm32f103xx_afio.o
+ .bss           0x2000006c        0x0 stm32f103xx_exti.o
+ .bss           0x2000006c        0x0 stm32f103xx_nvic.o
+ .bss           0x2000006c        0x0 stm32f103xx_usart.o
+ .bss           0x2000006c        0x0 stm32f103xx_rcc.o
+ .bss           0x2000006c        0x4 stm32f103xx_rtc.o
+ .bss           0x20000070        0x0 stm32f103xx_spi.o
+ .bss           0x20000070        0x0 stm32f103xx_adc.o
+ .bss           0x20000070        0x0 stm32f103xx_i2c.o
+ .bss           0x20000070        0x0 stm32f103xx_timer.o
+ .bss           0x20000070        0x0 stm32f103xx_dma.o
+ .bss           0x20000070        0x4 stm32f103xx_systick.o
+                0x20000070                current_tick
+ .bss           0x20000074       0x44 stm32f103xx_init.o
+                0x20000074                R
+                0x20000090                Delay
+                0x200000ac                LED
+ .bss           0x200000b8      0x441 stm32f103xx_serial.o
+                0x200000b8                U2
+                0x200004f8                char_count
+ .bss           0x200004f9        0x0 stm32f103xx_fault_handlers.o
+ *fill*         0x200004f9        0x3 
+ .bss           0x200004fc      0x484 stm32f103xx_utilities.o
+                0x200004fc                temp_buff
+                0x2000053c                result_buff
+ .bss           0x20000980        0x0 ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .bss           0x20000980        0x8 ../../Device_Drivers/stm32f103/src/syscalls.o
+                0x20000980                __env
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_cmpdf2.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixdfsi.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixsfsi.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixunssfsi.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-exit.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fwalk.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-closer.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-reent.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-impure.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lseekr.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-readr.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-writer.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-errno.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-freer.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fflush.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-sbrkr.o)
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtend.o
+ .bss           0x20000988        0x0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtn.o
+ *(.bss*)
+ .bss.completed.1
+                0x20000988        0x1 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+ *fill*         0x20000989        0x3 
+ .bss.object.0  0x2000098c       0x18 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+ .bss.__sf      0x200009a4      0x138 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+                0x200009a4                __sf
+ .bss.__stdio_exit_handler
+                0x20000adc        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+                0x20000adc                __stdio_exit_handler
+ .bss.errno     0x20000ae0        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-reent.o)
+                0x20000ae0                errno
+ .bss.__lock___arc4random_mutex
+                0x20000ae4        0x1 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x20000ae4                __lock___arc4random_mutex
+ .bss.__lock___dd_hash_mutex
+                0x20000ae5        0x1 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x20000ae5                __lock___dd_hash_mutex
+ .bss.__lock___tz_mutex
+                0x20000ae6        0x1 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x20000ae6                __lock___tz_mutex
+ .bss.__lock___env_recursive_mutex
+                0x20000ae7        0x1 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x20000ae7                __lock___env_recursive_mutex
+ .bss.__lock___malloc_recursive_mutex
+                0x20000ae8        0x1 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x20000ae8                __lock___malloc_recursive_mutex
+ .bss.__lock___at_quick_exit_mutex
+                0x20000ae9        0x1 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x20000ae9                __lock___at_quick_exit_mutex
+ .bss.__lock___atexit_recursive_mutex
+                0x20000aea        0x1 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x20000aea                __lock___atexit_recursive_mutex
+ .bss.__lock___sfp_recursive_mutex
+                0x20000aeb        0x1 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x20000aeb                __lock___sfp_recursive_mutex
+ .bss.__malloc_sbrk_start
+                0x20000aec        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
+                0x20000aec                __malloc_sbrk_start
+ .bss.__malloc_free_list
+                0x20000af0        0x4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
+                0x20000af0                __malloc_free_list
+                0x20000af4                        _ebss = .
+                0x20000af4                        __bss_end__ = .
+                0x20000af4                        . = ALIGN (0x4)
+                0x20000af4                        end = .
+OUTPUT(final.elf elf32-littlearm)
+LOAD linker stubs
+
+.ARM.attributes
+                0x00000000       0x29
+ .ARM.attributes
+                0x00000000       0x1d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crti.o
+ .ARM.attributes
+                0x0000001d       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtbegin.o
+ .ARM.attributes
+                0x0000004a       0x1b C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crt0.o
+ .ARM.attributes
+                0x00000065       0x2d LED_toggle.o
+ .ARM.attributes
+                0x00000092       0x2d stm32f103xx_gpio.o
+ .ARM.attributes
+                0x000000bf       0x2d stm32f103xx_afio.o
+ .ARM.attributes
+                0x000000ec       0x2d stm32f103xx_exti.o
+ .ARM.attributes
+                0x00000119       0x2d stm32f103xx_nvic.o
+ .ARM.attributes
+                0x00000146       0x2d stm32f103xx_usart.o
+ .ARM.attributes
+                0x00000173       0x2d stm32f103xx_rcc.o
+ .ARM.attributes
+                0x000001a0       0x2d stm32f103xx_rtc.o
+ .ARM.attributes
+                0x000001cd       0x2d stm32f103xx_spi.o
+ .ARM.attributes
+                0x000001fa       0x2d stm32f103xx_adc.o
+ .ARM.attributes
+                0x00000227       0x2d stm32f103xx_i2c.o
+ .ARM.attributes
+                0x00000254       0x2d stm32f103xx_timer.o
+ .ARM.attributes
+                0x00000281       0x2d stm32f103xx_dma.o
+ .ARM.attributes
+                0x000002ae       0x2d stm32f103xx_systick.o
+ .ARM.attributes
+                0x000002db       0x2d stm32f103xx_init.o
+ .ARM.attributes
+                0x00000308       0x2d stm32f103xx_serial.o
+ .ARM.attributes
+                0x00000335       0x2d stm32f103xx_fault_handlers.o
+ .ARM.attributes
+                0x00000362       0x2d stm32f103xx_utilities.o
+ .ARM.attributes
+                0x0000038f       0x2d ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .ARM.attributes
+                0x000003bc       0x2d ../../Device_Drivers/stm32f103/src/syscalls.o
+ .ARM.attributes
+                0x000003e9       0x1d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+ .ARM.attributes
+                0x00000406       0x1d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_cmpdf2.o)
+ .ARM.attributes
+                0x00000423       0x1d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixdfsi.o)
+ .ARM.attributes
+                0x00000440       0x1d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .ARM.attributes
+                0x0000045d       0x1d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .ARM.attributes
+                0x0000047a       0x1d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixsfsi.o)
+ .ARM.attributes
+                0x00000497       0x1d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixunssfsi.o)
+ .ARM.attributes
+                0x000004b4       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-exit.o)
+ .ARM.attributes
+                0x000004e1       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+ .ARM.attributes
+                0x0000050e       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fwalk.o)
+ .ARM.attributes
+                0x0000053b       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o)
+ .ARM.attributes
+                0x00000568       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
+ .ARM.attributes
+                0x00000595       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-closer.o)
+ .ARM.attributes
+                0x000005c2       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-reent.o)
+ .ARM.attributes
+                0x000005ef       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-impure.o)
+ .ARM.attributes
+                0x0000061c       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lseekr.o)
+ .ARM.attributes
+                0x00000649       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-readr.o)
+ .ARM.attributes
+                0x00000676       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-writer.o)
+ .ARM.attributes
+                0x000006a3       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-errno.o)
+ .ARM.attributes
+                0x000006d0       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
+ .ARM.attributes
+                0x000006fd       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+ .ARM.attributes
+                0x0000072a       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-freer.o)
+ .ARM.attributes
+                0x00000757       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
+ .ARM.attributes
+                0x00000784       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
+ .ARM.attributes
+                0x000007b1       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fflush.o)
+ .ARM.attributes
+                0x000007de       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-sbrkr.o)
+ .ARM.attributes
+                0x0000080b       0x2d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtend.o
+ .ARM.attributes
+                0x00000838       0x1d C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crtn.o
+
+.comment        0x00000000       0x45
+ .comment       0x00000000       0x45 LED_toggle.o
+                                 0x46 (size before relaxing)
+ .comment       0x00000045       0x46 stm32f103xx_gpio.o
+ .comment       0x00000045       0x46 stm32f103xx_afio.o
+ .comment       0x00000045       0x46 stm32f103xx_exti.o
+ .comment       0x00000045       0x46 stm32f103xx_nvic.o
+ .comment       0x00000045       0x46 stm32f103xx_usart.o
+ .comment       0x00000045       0x46 stm32f103xx_rcc.o
+ .comment       0x00000045       0x46 stm32f103xx_rtc.o
+ .comment       0x00000045       0x46 stm32f103xx_spi.o
+ .comment       0x00000045       0x46 stm32f103xx_adc.o
+ .comment       0x00000045       0x46 stm32f103xx_i2c.o
+ .comment       0x00000045       0x46 stm32f103xx_timer.o
+ .comment       0x00000045       0x46 stm32f103xx_dma.o
+ .comment       0x00000045       0x46 stm32f103xx_systick.o
+ .comment       0x00000045       0x46 stm32f103xx_init.o
+ .comment       0x00000045       0x46 stm32f103xx_serial.o
+ .comment       0x00000045       0x46 stm32f103xx_fault_handlers.o
+ .comment       0x00000045       0x46 stm32f103xx_utilities.o
+ .comment       0x00000045       0x46 ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .comment       0x00000045       0x46 ../../Device_Drivers/stm32f103/src/syscalls.o
+
+.debug_line_str
+                0x00000000      0x1a9
+ .debug_line_str
+                0x00000000      0x1a9 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp/crt0.o
+                                 0xd2 (size before relaxing)
+ .debug_line_str
+                0x000001a9       0xca C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+ .debug_line_str
+                0x000001a9       0xca C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_cmpdf2.o)
+ .debug_line_str
+                0x000001a9       0xca C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixdfsi.o)
+ .debug_line_str
+                0x000001a9       0xca C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .debug_line_str
+                0x000001a9       0xca C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .debug_line_str
+                0x000001a9       0xca C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixsfsi.o)
+ .debug_line_str
+                0x000001a9       0xca C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixunssfsi.o)
+
+.debug_info     0x00000000     0x6e07
+ .debug_info    0x00000000      0x28e LED_toggle.o
+ .debug_info    0x0000028e      0x663 stm32f103xx_gpio.o
+ .debug_info    0x000008f1      0x215 stm32f103xx_afio.o
+ .debug_info    0x00000b06      0x220 stm32f103xx_exti.o
+ .debug_info    0x00000d26      0x23f stm32f103xx_nvic.o
+ .debug_info    0x00000f65      0x75a stm32f103xx_usart.o
+ .debug_info    0x000016bf      0x531 stm32f103xx_rcc.o
+ .debug_info    0x00001bf0      0x695 stm32f103xx_rtc.o
+ .debug_info    0x00002285      0x6fe stm32f103xx_spi.o
+ .debug_info    0x00002983      0x77f stm32f103xx_adc.o
+ .debug_info    0x00003102      0x800 stm32f103xx_i2c.o
+ .debug_info    0x00003902      0x8a8 stm32f103xx_timer.o
+ .debug_info    0x000041aa      0x514 stm32f103xx_dma.o
+ .debug_info    0x000046be      0x1ab stm32f103xx_systick.o
+ .debug_info    0x00004869      0x8a6 stm32f103xx_init.o
+ .debug_info    0x0000510f      0x999 stm32f103xx_serial.o
+ .debug_info    0x00005aa8      0x374 stm32f103xx_fault_handlers.o
+ .debug_info    0x00005e1c      0x751 stm32f103xx_utilities.o
+ .debug_info    0x0000656d      0x185 ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .debug_info    0x000066f2      0x715 ../../Device_Drivers/stm32f103/src/syscalls.o
+
+.debug_abbrev   0x00000000     0x1c3e
+ .debug_abbrev  0x00000000      0x108 LED_toggle.o
+ .debug_abbrev  0x00000108      0x1d7 stm32f103xx_gpio.o
+ .debug_abbrev  0x000002df       0xee stm32f103xx_afio.o
+ .debug_abbrev  0x000003cd       0xdc stm32f103xx_exti.o
+ .debug_abbrev  0x000004a9       0xde stm32f103xx_nvic.o
+ .debug_abbrev  0x00000587      0x18d stm32f103xx_usart.o
+ .debug_abbrev  0x00000714      0x145 stm32f103xx_rcc.o
+ .debug_abbrev  0x00000859      0x20a stm32f103xx_rtc.o
+ .debug_abbrev  0x00000a63      0x183 stm32f103xx_spi.o
+ .debug_abbrev  0x00000be6      0x185 stm32f103xx_adc.o
+ .debug_abbrev  0x00000d6b      0x1a7 stm32f103xx_i2c.o
+ .debug_abbrev  0x00000f12      0x128 stm32f103xx_timer.o
+ .debug_abbrev  0x0000103a      0x128 stm32f103xx_dma.o
+ .debug_abbrev  0x00001162      0x12a stm32f103xx_systick.o
+ .debug_abbrev  0x0000128c      0x165 stm32f103xx_init.o
+ .debug_abbrev  0x000013f1      0x278 stm32f103xx_serial.o
+ .debug_abbrev  0x00001669      0x11e stm32f103xx_fault_handlers.o
+ .debug_abbrev  0x00001787      0x1ec stm32f103xx_utilities.o
+ .debug_abbrev  0x00001973      0x101 ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .debug_abbrev  0x00001a74      0x1ca ../../Device_Drivers/stm32f103/src/syscalls.o
+
+.debug_aranges  0x00000000      0x280
+ .debug_aranges
+                0x00000000       0x20 LED_toggle.o
+ .debug_aranges
+                0x00000020       0x20 stm32f103xx_gpio.o
+ .debug_aranges
+                0x00000040       0x20 stm32f103xx_afio.o
+ .debug_aranges
+                0x00000060       0x20 stm32f103xx_exti.o
+ .debug_aranges
+                0x00000080       0x20 stm32f103xx_nvic.o
+ .debug_aranges
+                0x000000a0       0x20 stm32f103xx_usart.o
+ .debug_aranges
+                0x000000c0       0x20 stm32f103xx_rcc.o
+ .debug_aranges
+                0x000000e0       0x20 stm32f103xx_rtc.o
+ .debug_aranges
+                0x00000100       0x20 stm32f103xx_spi.o
+ .debug_aranges
+                0x00000120       0x20 stm32f103xx_adc.o
+ .debug_aranges
+                0x00000140       0x20 stm32f103xx_i2c.o
+ .debug_aranges
+                0x00000160       0x20 stm32f103xx_timer.o
+ .debug_aranges
+                0x00000180       0x20 stm32f103xx_dma.o
+ .debug_aranges
+                0x000001a0       0x20 stm32f103xx_systick.o
+ .debug_aranges
+                0x000001c0       0x20 stm32f103xx_init.o
+ .debug_aranges
+                0x000001e0       0x20 stm32f103xx_serial.o
+ .debug_aranges
+                0x00000200       0x20 stm32f103xx_fault_handlers.o
+ .debug_aranges
+                0x00000220       0x20 stm32f103xx_utilities.o
+ .debug_aranges
+                0x00000240       0x20 ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .debug_aranges
+                0x00000260       0x20 ../../Device_Drivers/stm32f103/src/syscalls.o
+
+.debug_macro    0x00000000     0x5cae
+ .debug_macro   0x00000000       0xf2 LED_toggle.o
+ .debug_macro   0x000000f2      0xaba LED_toggle.o
+ .debug_macro   0x00000bac       0x22 LED_toggle.o
+ .debug_macro   0x00000bce       0x8e LED_toggle.o
+ .debug_macro   0x00000c5c       0x51 LED_toggle.o
+ .debug_macro   0x00000cad      0x103 LED_toggle.o
+ .debug_macro   0x00000db0       0x6a LED_toggle.o
+ .debug_macro   0x00000e1a      0x1df LED_toggle.o
+ .debug_macro   0x00000ff9      0x124 LED_toggle.o
+ .debug_macro   0x0000111d       0x52 LED_toggle.o
+ .debug_macro   0x0000116f      0x25a LED_toggle.o
+ .debug_macro   0x000013c9      0x190 LED_toggle.o
+ .debug_macro   0x00001559      0x166 LED_toggle.o
+ .debug_macro   0x000016bf      0x13c LED_toggle.o
+ .debug_macro   0x000017fb      0x21a LED_toggle.o
+ .debug_macro   0x00001a15       0x16 LED_toggle.o
+ .debug_macro   0x00001a2b       0x22 LED_toggle.o
+ .debug_macro   0x00001a4d       0x58 LED_toggle.o
+ .debug_macro   0x00001aa5       0x94 LED_toggle.o
+ .debug_macro   0x00001b39       0xe7 stm32f103xx_gpio.o
+ .debug_macro   0x00001c20      0x172 stm32f103xx_gpio.o
+ .debug_macro   0x00001d92       0x10 stm32f103xx_gpio.o
+ .debug_macro   0x00001da2      0x136 stm32f103xx_gpio.o
+ .debug_macro   0x00001ed8       0xaf stm32f103xx_afio.o
+ .debug_macro   0x00001f87       0x52 stm32f103xx_afio.o
+ .debug_macro   0x00001fd9      0x166 stm32f103xx_afio.o
+ .debug_macro   0x0000213f      0x172 stm32f103xx_afio.o
+ .debug_macro   0x000022b1       0xb0 stm32f103xx_exti.o
+ .debug_macro   0x00002361       0xab stm32f103xx_nvic.o
+ .debug_macro   0x0000240c       0xe6 stm32f103xx_usart.o
+ .debug_macro   0x000024f2       0xf0 stm32f103xx_rcc.o
+ .debug_macro   0x000025e2      0x118 stm32f103xx_rtc.o
+ .debug_macro   0x000026fa      0x270 stm32f103xx_rtc.o
+ .debug_macro   0x0000296a      0x11e stm32f103xx_rtc.o
+ .debug_macro   0x00002a88       0xda stm32f103xx_spi.o
+ .debug_macro   0x00002b62      0x244 stm32f103xx_spi.o
+ .debug_macro   0x00002da6       0xb4 stm32f103xx_adc.o
+ .debug_macro   0x00002e5a      0x394 stm32f103xx_adc.o
+ .debug_macro   0x000031ee       0xab stm32f103xx_i2c.o
+ .debug_macro   0x00003299      0x282 stm32f103xx_i2c.o
+ .debug_macro   0x0000351b       0xb4 stm32f103xx_timer.o
+ .debug_macro   0x000035cf      0x541 stm32f103xx_timer.o
+ .debug_macro   0x00003b10       0xb4 stm32f103xx_dma.o
+ .debug_macro   0x00003bc4      0x2d9 stm32f103xx_dma.o
+ .debug_macro   0x00003e9d       0xfc stm32f103xx_systick.o
+ .debug_macro   0x00003f99       0x88 stm32f103xx_systick.o
+ .debug_macro   0x00004021      0x108 stm32f103xx_init.o
+ .debug_macro   0x00004129      0x220 stm32f103xx_init.o
+ .debug_macro   0x00004349       0xe4 stm32f103xx_serial.o
+ .debug_macro   0x0000442d      0x106 stm32f103xx_fault_handlers.o
+ .debug_macro   0x00004533       0xac stm32f103xx_fault_handlers.o
+ .debug_macro   0x000045df       0xe8 stm32f103xx_utilities.o
+ .debug_macro   0x000046c7       0x7b ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .debug_macro   0x00004742      0x265 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x000049a7       0x75 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00004a1c       0x24 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00004a40       0x94 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00004ad4       0x3c ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00004b10       0x34 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00004b44       0x57 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00004b9b      0x364 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00004eff       0x16 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00004f15       0x4a ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00004f5f       0x34 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00004f93       0x10 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00004fa3       0x58 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00004ffb      0x1e5 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x000051e0       0x10 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x000051f0       0x3c ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x0000522c       0x10 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x0000523c       0x10 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x0000524c       0x10 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x0000525c       0x1c ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00005278       0x52 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x000052ca       0x22 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x000052ec       0x10 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x000052fc       0x52 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x0000534e       0xcf ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x0000541d       0x1c ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00005439       0x3d ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00005476       0x35 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x000054ab      0x12c ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x000055d7       0x16 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x000055ed       0x16 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00005603       0x29 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x0000562c       0x10 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x0000563c      0x242 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x0000587e       0x1c ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x0000589a       0x10 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x000058aa       0x10 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x000058ba       0x16 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x000058d0      0x170 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00005a40      0x18a ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00005bca       0x16 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_macro   0x00005be0       0xce ../../Device_Drivers/stm32f103/src/syscalls.o
+
+.debug_line     0x00000000     0x744e
+ .debug_line    0x00000000      0x379 LED_toggle.o
+ .debug_line    0x00000379      0x726 stm32f103xx_gpio.o
+ .debug_line    0x00000a9f      0x3cf stm32f103xx_afio.o
+ .debug_line    0x00000e6e      0x47b stm32f103xx_exti.o
+ .debug_line    0x000012e9      0x4a4 stm32f103xx_nvic.o
+ .debug_line    0x0000178d      0x729 stm32f103xx_usart.o
+ .debug_line    0x00001eb6      0x5ed stm32f103xx_rcc.o
+ .debug_line    0x000024a3      0x65d stm32f103xx_rtc.o
+ .debug_line    0x00002b00      0x7f8 stm32f103xx_spi.o
+ .debug_line    0x000032f8      0x562 stm32f103xx_adc.o
+ .debug_line    0x0000385a      0x91b stm32f103xx_i2c.o
+ .debug_line    0x00004175      0x6ac stm32f103xx_timer.o
+ .debug_line    0x00004821      0x637 stm32f103xx_dma.o
+ .debug_line    0x00004e58      0x414 stm32f103xx_systick.o
+ .debug_line    0x0000526c      0x46a stm32f103xx_init.o
+ .debug_line    0x000056d6      0x8da stm32f103xx_serial.o
+ .debug_line    0x00005fb0      0x5bc stm32f103xx_fault_handlers.o
+ .debug_line    0x0000656c      0x71b stm32f103xx_utilities.o
+ .debug_line    0x00006c87      0x298 ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .debug_line    0x00006f1f      0x52f ../../Device_Drivers/stm32f103/src/syscalls.o
+
+.debug_str      0x00000000    0x12a75
+ .debug_str     0x00000000    0x12a75 LED_toggle.o
+                               0x6ade (size before relaxing)
+ .debug_str     0x00012a75     0x6702 stm32f103xx_gpio.o
+ .debug_str     0x00012a75     0x5e5d stm32f103xx_afio.o
+ .debug_str     0x00012a75     0x5937 stm32f103xx_exti.o
+ .debug_str     0x00012a75     0x5eef stm32f103xx_nvic.o
+ .debug_str     0x00012a75     0x6e4c stm32f103xx_usart.o
+ .debug_str     0x00012a75     0x6c50 stm32f103xx_rcc.o
+ .debug_str     0x00012a75     0x7a88 stm32f103xx_rtc.o
+ .debug_str     0x00012a75     0x68a9 stm32f103xx_spi.o
+ .debug_str     0x00012a75     0x6d11 stm32f103xx_adc.o
+ .debug_str     0x00012a75     0x6347 stm32f103xx_i2c.o
+ .debug_str     0x00012a75     0x73bc stm32f103xx_timer.o
+ .debug_str     0x00012a75     0x6aa5 stm32f103xx_dma.o
+ .debug_str     0x00012a75     0x779d stm32f103xx_systick.o
+ .debug_str     0x00012a75     0x89d6 stm32f103xx_init.o
+ .debug_str     0x00012a75     0x6d1b stm32f103xx_serial.o
+ .debug_str     0x00012a75     0x7b56 stm32f103xx_fault_handlers.o
+ .debug_str     0x00012a75     0x6bf8 stm32f103xx_utilities.o
+ .debug_str     0x00012a75     0x3dd7 ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .debug_str     0x00012a75     0x9399 ../../Device_Drivers/stm32f103/src/syscalls.o
+
+.debug_frame    0x00000000     0x25ec
+ .debug_frame   0x00000000       0x30 LED_toggle.o
+ .debug_frame   0x00000030      0x238 stm32f103xx_gpio.o
+ .debug_frame   0x00000268       0x60 stm32f103xx_afio.o
+ .debug_frame   0x000002c8      0x100 stm32f103xx_exti.o
+ .debug_frame   0x000003c8       0x88 stm32f103xx_nvic.o
+ .debug_frame   0x00000450      0x1c0 stm32f103xx_usart.o
+ .debug_frame   0x00000610      0x1c0 stm32f103xx_rcc.o
+ .debug_frame   0x000007d0      0x2a8 stm32f103xx_rtc.o
+ .debug_frame   0x00000a78      0x198 stm32f103xx_spi.o
+ .debug_frame   0x00000c10      0x1e4 stm32f103xx_adc.o
+ .debug_frame   0x00000df4      0x27c stm32f103xx_i2c.o
+ .debug_frame   0x00001070      0x30c stm32f103xx_timer.o
+ .debug_frame   0x0000137c      0x11c stm32f103xx_dma.o
+ .debug_frame   0x00001498       0xbc stm32f103xx_systick.o
+ .debug_frame   0x00001554      0x108 stm32f103xx_init.o
+ .debug_frame   0x0000165c      0x1a8 stm32f103xx_serial.o
+ .debug_frame   0x00001804       0xe4 stm32f103xx_fault_handlers.o
+ .debug_frame   0x000018e8      0x2b8 stm32f103xx_utilities.o
+ .debug_frame   0x00001ba0       0x4c ../../Device_Drivers/stm32f103/others/bp_startup.o
+ .debug_frame   0x00001bec      0x2d0 ../../Device_Drivers/stm32f103/src/syscalls.o
+ .debug_frame   0x00001ebc       0x24 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+ .debug_frame   0x00001ee0       0xc4 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_cmpdf2.o)
+ .debug_frame   0x00001fa4       0x24 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixdfsi.o)
+ .debug_frame   0x00001fc8       0x24 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_truncdfsf2.o)
+ .debug_frame   0x00001fec       0x4c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+ .debug_frame   0x00002038       0x24 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixsfsi.o)
+ .debug_frame   0x0000205c       0x24 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libgcc.a(_arm_fixunssfsi.o)
+ .debug_frame   0x00002080       0x28 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-exit.o)
+ .debug_frame   0x000020a8      0x144 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+ .debug_frame   0x000021ec       0x34 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fwalk.o)
+ .debug_frame   0x00002220       0x88 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-stdio.o)
+ .debug_frame   0x000022a8       0x20 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
+ .debug_frame   0x000022c8       0x2c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-closer.o)
+ .debug_frame   0x000022f4       0x38 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-reent.o)
+ .debug_frame   0x0000232c       0x2c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lseekr.o)
+ .debug_frame   0x00002358       0x2c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-readr.o)
+ .debug_frame   0x00002384       0x2c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-writer.o)
+ .debug_frame   0x000023b0       0x20 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-errno.o)
+ .debug_frame   0x000023d0       0x2c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
+ .debug_frame   0x000023fc       0xb0 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+ .debug_frame   0x000024ac       0x38 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-freer.o)
+ .debug_frame   0x000024e4       0x50 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
+ .debug_frame   0x00002534       0x30 C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
+ .debug_frame   0x00002564       0x5c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-fflush.o)
+ .debug_frame   0x000025c0       0x2c C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.2 rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v7-m/nofp\libc_nano.a(libc_a-sbrkr.o)
