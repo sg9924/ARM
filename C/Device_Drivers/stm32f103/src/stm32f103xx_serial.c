@@ -347,7 +347,7 @@ uint8_t Serialprintln(char *format, uint8_t msg_type, ...)
     }
 
 	va_list args;                 // initializing list pointer 
-    va_start(args, msg_type);       // Initialize the argument list
+    va_start(args, msg_type);     // Initialize the argument list
 
     while (*format != '\0')       // Iterate over each character in the format string
     {
@@ -487,43 +487,6 @@ void SerialInput(char* msg, uint8_t datatype, void* var)
     }
 }
 
-/*
-void SerialInput(char* msg, char* format, ...)
-{
-    Serialprint(msg);
-
-    va_list args;                 // initializing list pointer 
-    va_start(args, format);       // Initialize the argument list
-
-    while (*format != '\0')       // Iterate over each character in the format string
-    {
-        if (*format == '%')       // Check for the start of a conversion specifier
-        {
-            format++;             // Move to the next character after '%'
-            if (*format == 'c')   // Case: Input is a character
-            {
-                char* ch = va_arg(args, char*);
-                USART_RX(&U2, (uint8_t*)ch, 1);
-                USART_TX(&U2, (uint8_t*)ch, 1);
-            }
-            else if (*format == 's')                // Case: Input is a string
-            {
-                char* str = va_arg(args, char*);    // Fetch the next argument as char*
-                while(1)
-                {
-                    USART_RX(&U2, (uint8_t*)str, 1);
-                    USART_TX(&U2, (uint8_t*)str, 1);
-                    if(*str == '\r')
-                        break;
-                    str++;
-                }
-                *(--str) = '\0';
-            }
-        format++; // Move to the next character in the format string
-        }
-    }
-}
-*/
 
 
 uint8_t vSerialprintln(char *format, uint8_t msg_type, va_list args)
@@ -647,3 +610,43 @@ uint8_t vSerialprintln(char *format, uint8_t msg_type, va_list args)
     wait(SERIAL_DELAY);
     return char_count; // Return the number of characters printed
 }
+
+
+
+/*
+void SerialInput(char* msg, char* format, ...)
+{
+    Serialprint(msg);
+
+    va_list args;                 // initializing list pointer 
+    va_start(args, format);       // Initialize the argument list
+
+    while (*format != '\0')       // Iterate over each character in the format string
+    {
+        if (*format == '%')       // Check for the start of a conversion specifier
+        {
+            format++;             // Move to the next character after '%'
+            if (*format == 'c')   // Case: Input is a character
+            {
+                char* ch = va_arg(args, char*);
+                USART_RX(&U2, (uint8_t*)ch, 1);
+                USART_TX(&U2, (uint8_t*)ch, 1);
+            }
+            else if (*format == 's')                // Case: Input is a string
+            {
+                char* str = va_arg(args, char*);    // Fetch the next argument as char*
+                while(1)
+                {
+                    USART_RX(&U2, (uint8_t*)str, 1);
+                    USART_TX(&U2, (uint8_t*)str, 1);
+                    if(*str == '\r')
+                        break;
+                    str++;
+                }
+                *(--str) = '\0';
+            }
+        format++; // Move to the next character in the format string
+        }
+    }
+}
+*/
