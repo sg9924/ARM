@@ -8,23 +8,27 @@
 #include"stm32f103xx_memory_map.h"
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /********************************************* Generic Macros Definitions Start *********************************************/
-#define SYSCORE_CLK          8000000
+#define ENABLE                               1
+#define DISABLE                              0
 
-#define ENABLE              1
-#define DISABLE             0
+#define SET                                  ENABLE
+#define RESET                                DISABLE
+#define GPIO_PIN_SET                         SET
+#define GPIO_PIN_RESET                       RESET
+#define FLAG_RESET                           RESET
+#define FLAG_SET                             SET
 
-#define SET                 ENABLE
-#define RESET               DISABLE
-#define GPIO_PIN_SET        SET
-#define GPIO_PIN_RESET      RESET
-#define FLAG_RESET          RESET
-#define FLAG_SET            SET
+#define GET_BITS_1                           0x1
+#define GET_BITS_2                           0x3
+#define GET_BITS_3                           0x7
+#define GET_BITS_4                           0xF
 
 // Bit Manipulations !!Currently not used!!
 #define READ_BIT(reg,bit_field)              (reg>>bit_field)
 #define SET_BIT(reg,bit_field)               (reg |= 1U<<bit_field)
 #define RESET_BIT(reg,bit_field)             (reg &= ~(1U<<bit_field))
 #define CHECK_BIT(reg,bit_position)          (reg & (1U<<bit_position) >> bit_position)
+#define CHECK_BITS(reg,bit_position,bits)    (reg & (bits<<bit_position) >> bit_position)
 
 /********************************************** Generic Macros Definitions End **********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
@@ -268,6 +272,20 @@ typedef struct
     volatile uint32_t ALRL;
 
 }RTC_RegDef;
+
+//FLASH MEMORY INTERFACE
+typedef struct
+{
+    volatile uint32_t ACR;
+    volatile uint32_t KEYR;
+    volatile uint32_t OPTKEYR;
+    volatile uint32_t SR;
+    volatile uint32_t CR;
+    volatile uint32_t AR;
+    volatile uint32_t RESERVED;
+    volatile uint32_t OBR;
+    volatile uint32_t WRPR;
+}FLASH_RegDef;
 
 /*************************************** Peripheral Registers Definition Structures End ***************************************/
 /*----------------------------------------------------------------------------------------------------------------------------*/
