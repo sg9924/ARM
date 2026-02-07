@@ -29,7 +29,7 @@ OBJ_DIR=Objects
 INC_DIR=../../Device_Drivers/stm32f103/inc
 SRC_DIR=../../Device_Drivers/stm32f103/src
 UTIL_DIR=../../Device_Drivers/utilities
-LOG_DIR=../Logs
+LOG_DIR=../../Logs
 
 #Files
 MAIN=test
@@ -37,9 +37,9 @@ ELF=final.elf
 STARTUP=../../Device_Drivers/stm32f103/others/bp_startup
 SYSCALLS=../../Device_Drivers/stm32f103/src/syscalls
 LINK=../../Device_Drivers/stm32f103/others/bp_linker.ld
-DRIVERS=stm32f103xx_gpio.o stm32f103xx_afio.o stm32f103xx_exti.o stm32f103xx_nvic.o stm32f103xx_usart.o stm32f103xx_rcc.o stm32f103xx_rtc.o stm32f103xx_spi.o stm32f103xx_adc.o stm32f103xx_i2c.o stm32f103xx_timer.o stm32f103xx_dma.o stm32f103xx_systick.o stm32f103xx_flash.o
+DRIVERS=stm32f103xx_gpio.o stm32f103xx_afio.o stm32f103xx_exti.o stm32f103xx_nvic.o stm32f103xx_usart.o stm32f103xx_rcc.o stm32f103xx_rtc.o stm32f103xx_spi.o stm32f103xx_adc.o stm32f103xx_i2c.o stm32f103xx_timer.o stm32f103xx_dma.o stm32f103xx_systick.o stm32f103xx_flash.o stm32f103xx_bkp.o
 OTHERS=stm32f103xx_init.o stm32f103xx_serial.o stm32f103xx_fault_handlers.o
-UTILS=stm32f103xx_utilities.o
+UTILS=stm32f103xx_utilities.o log.o
 #DISPLAY=
 #SENSORS=
 
@@ -47,7 +47,7 @@ UTILS=stm32f103xx_utilities.o
 CFLAGS= -c -mcpu=$(MACH) -mthumb -mfloat-abi=soft -std=gnu11 -Wall -Wno-unused -O0 -I$(INC_DIR)
 DEBUG_FLAG= -g3
 #LDFLAGS= -mcpu=$(MACH) -mthumb --specs=nano.specs -T $(LINK) -Wl,-Map=logs/final.map
-LDFLAGS= --specs=nano.specs -mcpu=$(MACH) -mthumb -T $(LINK) -Wl,-Map=$(LOG_DIR)/final.map
+LDFLAGS= --specs=nano.specs -mcpu=$(MACH) -mthumb -T $(LINK) -Wl,-Map="$(LOG_DIR)final.map"
 #LDFLAGS= -mcpu=$(MACH) -mthumb -nostdlib -T $(LINK) -Wl,-Map=logs/final.map
 
 
@@ -83,11 +83,15 @@ stm32f103xx_serial.o:$(SRC_DIR)/stm32f103xx_serial.c
 	$(CC) $(CFLAGS) $(DEBUG_FLAG) $^ -o $@
 stm32f103xx_systick.o:$(SRC_DIR)/stm32f103xx_systick.c
 	$(CC) $(CFLAGS) $(DEBUG_FLAG) $^ -o $@
-stm32f103xx_flash.o:$(SRC_DIR)/stm32f103xx_flash.c
-	$(CC) $(CFLAGS) $(DEBUG_FLAG) $^ -o $@
 stm32f103xx_utilities.o:$(UTIL_DIR)/stm32f103xx_utilities.c
 	$(CC) $(CFLAGS) $(DEBUG_FLAG) $^ -o $@
 stm32f103xx_fault_handlers.o:$(SRC_DIR)/stm32f103xx_fault_handlers.c
+	$(CC) $(CFLAGS) $(DEBUG_FLAG) $^ -o $@
+stm32f103xx_flash.o:$(SRC_DIR)/stm32f103xx_flash.c
+	$(CC) $(CFLAGS) $(DEBUG_FLAG) $^ -o $@
+stm32f103xx_bkp.o: $(SRC_DIR)/stm32f103xx_bkp.c
+	$(CC) $(CFLAGS) $(DEBUG_FLAG) $^ -o $@
+log.o: $(UTIL_DIR)/log.c
 	$(CC) $(CFLAGS) $(DEBUG_FLAG) $^ -o $@
 #seg_display.o: seg_display.c
 #	$(CC) $(CFLAGS) $(DEBUG_FLAG) $^ -o $@
