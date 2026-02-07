@@ -1,6 +1,5 @@
 #include"../inc/stm32f103xx_serial.h"
 
-
 USART_Handle U2;
 static GPIO_Handle GA;
 
@@ -178,8 +177,7 @@ void Serial_init()
 {
     Serial_UART_init();
     SERIAL_NL();
-    Serialprint("Serial Communication has been initialized.", INFO);
-    SERIAL_NL();
+    Serialprintln("Serial Communication has been initialized.", INFO);
 }
 
 
