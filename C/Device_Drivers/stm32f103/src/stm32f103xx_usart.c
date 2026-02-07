@@ -19,6 +19,9 @@
 --CTS  PB13
 --RTS  PB14
 */
+
+
+extern uint32_t sysclock;
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /*********************************************** USART API's Definitions Start **********************************************/
 
@@ -84,7 +87,7 @@ void USART_Configure(USART_Handle* pUSARTHandle, uint8_t mode, uint32_t baudrate
 //USART Set Baudrate
 void USART_SetBaudRate(USART_Handle* pUSARTHandle)
 {
-    uint16_t uartdiv = SYSCORE_CLK/(pUSARTHandle->USARTx_Config.baudrate);
+    uint16_t uartdiv = RCC_Get_PCLK1()/(pUSARTHandle->USARTx_Config.baudrate);
     pUSARTHandle->pUSARTx->BRR |= ((uartdiv/16) << USART_BRR_DIV_MANTISSA) | ((uartdiv%16) << USART_BRR_DIV_FRACTION);
 }                                                                                               
 
