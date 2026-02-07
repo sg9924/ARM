@@ -55,6 +55,7 @@ uint8_t Serialprint(const char *format, uint8_t msg_type, ...);
 uint8_t Serialprintln(char *format, uint8_t msg_type, ...);
 void SerialInput(char* msg, uint8_t datatype, void* d);
 //void SerialInput(char* msg, char* format, ...);
+uint8_t vSerialprintln(char *format, uint8_t msg_type, va_list args);
 
 
 #endif

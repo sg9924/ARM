@@ -524,3 +524,126 @@ void SerialInput(char* msg, char* format, ...)
     }
 }
 */
+
+
+uint8_t vSerialprintln(char *format, uint8_t msg_type, va_list args)
+{
+    char_count = 0;
+    buff_ind = 0;
+    
+    if(msg_type == DEBUG)
+    {
+        string_copy(&buffer[0], SERIAL_DEBUG_STRING_W_NL);
+        buff_ind = string_size(SERIAL_DEBUG_STRING_W_NL)+1;
+    } 
+    else if(msg_type == INFO)
+    {
+        string_copy(&buffer[0], SERIAL_INFO_STRING_W_NL);
+        buff_ind = string_size(SERIAL_INFO_STRING_W_NL)+1;
+    }
+    else if(msg_type == WARN)
+    {
+        string_copy(&buffer[0], SERIAL_WARN_STRING_W_NL);
+        buff_ind = string_size(SERIAL_WARN_STRING_W_NL)+1;
+    }
+    else if(msg_type == FATAL)
+    {
+        string_copy(&buffer[0], SERIAL_FATAL_STRING_W_NL);
+        buff_ind = string_size(SERIAL_FATAL_STRING_W_NL)+1;
+    }
+    else if(msg_type == ASSERT)
+    {
+        string_copy(&buffer[0], SERIAL_ASSERT_STRING_W_NL);
+        buff_ind = string_size(SERIAL_ASSERT_STRING_W_NL)+1;
+    }
+    else
+    {
+        string_copy(&buffer[0], SERIAL_NL_STRING);
+        buff_ind = 2;
+    }
+
+
+    while (*format != '\0')       // Iterate over each character in the format string
+    {
+        if (*format == '%')       // Check for the start of a conversion specifier
+        {
+            format++;             // Move to the next character after '%'
+            if (*format == '%')   // Case: '%%' prints a single '%'
+            {
+                buffer[buff_ind++] = '%';
+                if (buff_ind == BUFF_SIZE)
+                {
+                    _print_buffer(buffer, &buff_ind);
+                    char_count += buff_ind;
+                    _reset_buffer(&buff_ind);
+                }
+            }
+            else if (*format == 'c')          // Case: '%c' prints a character
+            {
+                int ch = va_arg(args, int);   // Fetch the next argument as int
+                buffer[buff_ind++] = ch;
+                if (buff_ind == BUFF_SIZE)
+                {
+                    _print_buffer(buffer, &buff_ind);
+                    char_count += buff_ind;
+                    _reset_buffer(&buff_ind);
+                }
+            }
+            else if (*format == 's')                 // Case: '%s' prints a string
+            {
+                char *str = va_arg(args, char *);    // Fetch the next argument as char*
+                while (*str)                         // Iterate over each character in the string
+                {
+                    buffer[buff_ind++] = *str;
+                    str++;
+                    if (buff_ind == BUFF_SIZE)
+                    {
+                        _print_buffer(buffer, &buff_ind);
+                        char_count += buff_ind;
+                        _reset_buffer(&buff_ind);
+                    }
+                }
+            }
+            else if (*format == 'd' || *format == 'i') // Case: '%d' or '%i' prints an integer
+            {
+                int value = va_arg(args, int);
+                _print_int(value, buffer, &buff_ind);
+            }
+            else if(*format == 'x')
+            {
+                unsigned int value = va_arg(args, unsigned int);
+                _print_hex(value, buffer, &buff_ind);
+            }
+            else if(*format == '.' && *(format+2) == 'f')
+            {
+                double value = va_arg(args, double);
+                _print_float(value, buffer, &buff_ind, *(++format) - '0');
+                ++format;
+            }
+            else if(*format == 'f')
+            {
+                double value = va_arg(args, double);
+                _print_float(value, buffer, &buff_ind, FLOAT_PRECISION_MAX);
+            }
+        }
+        else // Case: Regular character, not a conversion specifier
+        {
+            buffer[buff_ind++] = *format;
+            if (buff_ind == BUFF_SIZE)
+            {
+                _print_buffer(buffer, &buff_ind);
+                char_count += buff_ind;
+                _reset_buffer(&buff_ind);
+            }
+        }
+
+        format++; // Move to the next character in the format string
+    }
+
+    _print_buffer(buffer, &buff_ind);
+    char_count += buff_ind;
+    _reset_buffer(&buff_ind);
+
+    wait(SERIAL_DELAY);
+    return char_count; // Return the number of characters printed
+}
