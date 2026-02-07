@@ -4,6 +4,7 @@
 #include "stm32f103xx.h"
 #include "stm32f103xx_core.h"
 #include "stm32f103xx_memory_map.h"
+#include "stm32f103xx_rcc.h"
 
 //Systick Peripheral Definition
 #define SYSTICK_BASE_ADDR      (SCS_BASE_ADDR + 0x010U)
@@ -16,7 +17,7 @@
 #define SYST_CSR_COUNTFLAG               16
 
 #define SYSTICK_MAX_VALUE                0xFFFFFFFFU
-#define SYSTICK_LOAD_VALUE_DEFAULT       ((8000000U)/1000)
+#define SYSTICK_LOAD_VALUE_DEFAULT       ((RCC_SYSCLK_FREQ_DEFAULT)/1000)
 
 //SYSTICK Configuration
 #define SYSTICK_EXCEPTION_DISABLE        0
