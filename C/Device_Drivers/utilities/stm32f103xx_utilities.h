@@ -4,7 +4,11 @@
 #include<stdint.h>
 #include"math_lib.h"
 
-#define NULL ((void *)0)
+#define bool                    uint8_t
+#define true                    1U
+#define false                   0U
+
+#define NULL                    ((void *)0)
 
 #define TRIM_LEFT               0
 #define TRIM_RIGHT              1

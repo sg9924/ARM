@@ -32,7 +32,7 @@ UTIL_DIR=../../Device_Drivers/utilities
 LOG_DIR=../../Logs
 
 #Files
-MAIN=test
+MAIN=LED_Toggle
 ELF=final.elf
 STARTUP=../../Device_Drivers/stm32f103/others/bp_startup
 SYSCALLS=../../Device_Drivers/stm32f103/src/syscalls
@@ -47,7 +47,7 @@ UTILS=stm32f103xx_utilities.o log.o
 CFLAGS= -c -mcpu=$(MACH) -mthumb -mfloat-abi=soft -std=gnu11 -Wall -Wno-unused -O0 -I$(INC_DIR)
 DEBUG_FLAG= -g3
 #LDFLAGS= -mcpu=$(MACH) -mthumb --specs=nano.specs -T $(LINK) -Wl,-Map=logs/final.map
-LDFLAGS= --specs=nano.specs -mcpu=$(MACH) -mthumb -T $(LINK) -Wl,-Map="$(LOG_DIR)final.map"
+LDFLAGS= --specs=nano.specs -mcpu=$(MACH) -mthumb -T $(LINK) -Wl,-Map="final.map"
 #LDFLAGS= -mcpu=$(MACH) -mthumb -nostdlib -T $(LINK) -Wl,-Map=logs/final.map
 
 
