@@ -24,6 +24,17 @@ static char*       msg_type_list[10] =
 };
 
 
+static const uint8_t msg_type_levels[] =
+{
+    [NONE]   = LOG_LEVEL_NONE,
+    [DEBUG]  = LOG_LEVEL_DEBUG,
+    [INFO]   = LOG_LEVEL_INFO,
+    [WARN]   = LOG_LEVEL_WARN,
+    [ERROR]  = LOG_LEVEL_ERROR,
+    [FATAL]  = LOG_LEVEL_FATAL,
+    [ASSERT] = LOG_LEVEL_ASSERT
+};
+
 
 void _print_buffer(char* buffer, uint32_t* buff_ind)
 {
@@ -352,8 +363,14 @@ uint32_t _string_format(const char *format, uint8_t msg_type, va_list args, uint
 
 uint32_t Serialprint(const char *format, uint8_t msg_type, ...)
 {
-    va_list args;                 // initialize the list pointer
-    va_start(args, msg_type);     // Initialize the argument list
+    va_list args;                 //initialize the list pointer
+    va_start(args, msg_type);     //Initialize the argument list
+
+    if (GET_LOG_LEVEL(msg_type) < current_log_level)
+    {
+        va_end(args);
+        return 0;
+    }
 
     uint32_t result = _string_format(format, msg_type, args, 0); //add new line is false
     
@@ -367,6 +384,12 @@ uint32_t Serialprintln(const char *format, uint8_t msg_type, ...)
 {
     va_list args;                 // initialize the list pointer
     va_start(args, msg_type);     // Initialize the argument list
+
+    if (GET_LOG_LEVEL(msg_type) < current_log_level)
+    {
+        va_end(args);
+        return 0;
+    }
 
     uint32_t result = _string_format(format, msg_type, args, 1);  //add new line is true
     

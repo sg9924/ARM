@@ -1,11 +1,13 @@
 #ifndef INC_STM32F103XX_SERIAL_H
 #define INC_STM32F103XX_SERIAL_H
-#include"stm32f103xx_gpio.h"
-#include"stm32f103xx_usart.h"
-#include"stm32f103xx.h"
-#include"../../utilities/stm32f103xx_utilities.h"
 
-#include<stdarg.h>
+#include "stm32f103xx_gpio.h"
+#include "stm32f103xx_usart.h"
+#include "stm32f103xx.h"
+#include "../../utilities/stm32f103xx_utilities.h"
+#include "../../utilities/serial_ansi.h"
+
+#include <stdarg.h>
 
 #define FLOAT_PRECISION_MAX            6
 
@@ -28,15 +30,42 @@
 #define FATAL                          5
 #define ASSERT                         6
 
-#define SERIAL_DEBUG_STRING            ("[DEBUG]: ")
-#define SERIAL_INFO_STRING             ("[INFO]: ")
-#define SERIAL_WARN_STRING             ("[WARN]: ")
-#define SERIAL_ERROR_STRING            ("[ERROR]: ")
-#define SERIAL_FATAL_STRING            ("[FATAL]: ")
-#define SERIAL_ASSERT_STRING           ("[ASSERT]: ")
+#define DEBUG_COLOR                    ""
+#define INFO_COLOR                     COLOR_GREEN
+#define WARN_COLOR                     COLOR_YELLOW
+#define ERROR_COLOR                    COLOR_RED
+#define FATAL_COLOR                    COLOR_RED
+#define ASSERT_COLOR                   ""
+
+#define SERIAL_DEBUG_STRING            (DEBUG_COLOR  "[DEBUG]: "  COLOR_RESET)
+#define SERIAL_INFO_STRING             (INFO_COLOR   "[INFO]: "   COLOR_RESET)
+#define SERIAL_WARN_STRING             (WARN_COLOR   "[WARN]: "   COLOR_RESET)
+#define SERIAL_ERROR_STRING            (ERROR_COLOR  "[ERROR]: "  COLOR_RESET)
+#define SERIAL_FATAL_STRING            (FATAL_COLOR  "[FATAL]: "  COLOR_RESET)
+#define SERIAL_ASSERT_STRING           (ASSERT_COLOR "[ASSERT]: " COLOR_RESET)
 
 #define SERIAL_NL_STRING               ("\r\n")
 
+#define GET_LOG_LEVEL(msg_type)        msg_type_levels[msg_type]
+#define SET_LOG_LEVEL(level)           {                               \
+                                        if (level <= LOG_LEVEL_ASSERT) \
+                                        {current_log_level = level;}   \
+                                        }
+#define GET_CURRENT_LOG_LEVEL()        (current_log_level)
+
+
+
+typedef enum {
+    LOG_LEVEL_NONE   = NONE,
+    LOG_LEVEL_DEBUG  = DEBUG,
+    LOG_LEVEL_INFO   = INFO,
+    LOG_LEVEL_WARN   = WARN,
+    LOG_LEVEL_ERROR  = ERROR,
+    LOG_LEVEL_FATAL  = FATAL,
+    LOG_LEVEL_ASSERT = ASSERT
+} LogLevel_t;
+
+static uint8_t current_log_level = LOG_LEVEL_NONE;
 
 
 void _print_buffer(char* buffer, uint32_t* buff_ind);
