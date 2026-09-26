@@ -3,6 +3,7 @@
 
 #include"stm32f103xx.h"
 #include"stm32f103xx_nvic.h"
+#include "../../utilities/stm32f103xx_utilities.h"
 /************************************************** USART Definitions Start *************************************************/
 
 //USART Peripherals
@@ -140,6 +141,7 @@
 /*--------------------------------------------------------------------------------------------------------------------------*/
 /********************************************* USART Structure Definitions Start ********************************************/
 
+//USART Config
 typedef struct
 {
     uint8_t mode;
@@ -152,7 +154,7 @@ typedef struct
     uint8_t  clock_phase;
 }USART_Config;
 
-// USART Handler Structure
+//USART Handler Structure
 typedef struct
 {
     USART_RegDef     *pUSARTx;              /*<USART Register Definition>*/
@@ -169,13 +171,13 @@ typedef struct
 /********************************************* USART Structure Definitions Start ********************************************/
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
-void USART_PClk_init(USART_RegDef *pUSARTx, uint8_t mode);
+bool USART_PClk_init(USART_RegDef *pUSARTx, uint8_t mode);
 
 void USART_Config_Default(USART_Handle* pUSARTHandle);
 void USART_Configure(USART_Handle* pUSARTHandle, uint8_t mode, uint32_t baudrate, uint8_t clk_phase,
-                    uint8_t clk_polarity, uint8_t word_len, uint8_t parity_ctrl, uint8_t parity_type, uint8_t stop_bits);
+                     uint8_t clk_polarity, uint8_t word_len, uint8_t parity_ctrl, uint8_t parity_type, uint8_t stop_bits);
 void USART_SetBaudRate(USART_Handle* pUSARTHandle);
-void USART_init(USART_Handle* pUSARTHandle, GPIO_Handle* pGPIOHandle,  USART_RegDef* pUSARTx);
+bool USART_init(USART_Handle* pUSARTHandle, GPIO_Handle* pGPIOHandle,  USART_RegDef* pUSARTx);
 
 void USART_TX(USART_Handle* pUSARTHandle, uint8_t* pbuffer, uint32_t size);
 void USART_RX(USART_Handle* pUSARTHandle, uint8_t* pbuffer, uint32_t size);

@@ -26,7 +26,7 @@ extern uint32_t sysclock;
 /*********************************************** USART API's Definitions Start **********************************************/
 
 // USART - Peripheral Clock Enable
-void USART_PClk_init(USART_RegDef *pUSARTx, uint8_t mode)
+bool USART_PClk_init(USART_RegDef *pUSARTx, uint8_t mode)
 {
 	if(mode == ENABLE)
 	{
@@ -40,11 +40,10 @@ void USART_PClk_init(USART_RegDef *pUSARTx, uint8_t mode)
 			UART4_PCLK_EN();
         else if (pUSARTx == UART5)
 			UART5_PCLK_EN();
+        return true;
 	}
 	else
-	{
-		//To Do
-	}
+        return false;
 
 }
 
@@ -61,13 +60,13 @@ void USART_Config_Default(USART_Handle* pUSARTHandle)
 
     pUSARTHandle->pRXBuffer = 0;
     pUSARTHandle->pTXBuffer = 0;
-    pUSARTHandle->TXState = USART_READY;
-    pUSARTHandle->RXState = USART_READY;
+    pUSARTHandle->TXState   = USART_READY;
+    pUSARTHandle->RXState   = USART_READY;
 }
 
 //Set USART Configuration
 void USART_Configure(USART_Handle* pUSARTHandle, uint8_t mode, uint32_t baudrate, uint8_t clk_phase,
-                    uint8_t clk_polarity, uint8_t word_len, uint8_t parity_ctrl, uint8_t parity_type, uint8_t stop_bits)
+                     uint8_t clk_polarity, uint8_t word_len, uint8_t parity_ctrl, uint8_t parity_type, uint8_t stop_bits)
 {
     pUSARTHandle->USARTx_Config.mode           = mode;
     pUSARTHandle->USARTx_Config.baudrate       = baudrate;
@@ -80,21 +79,21 @@ void USART_Configure(USART_Handle* pUSARTHandle, uint8_t mode, uint32_t baudrate
 
     pUSARTHandle->pRXBuffer = 0;
     pUSARTHandle->pTXBuffer = 0;
-    pUSARTHandle->TXState = USART_READY;
-    pUSARTHandle->RXState = USART_READY;
+    pUSARTHandle->TXState   = USART_READY;
+    pUSARTHandle->RXState   = USART_READY;
 }
 
 //USART Set Baudrate
 void USART_SetBaudRate(USART_Handle* pUSARTHandle)
 {
-    uint16_t uartdiv = RCC_Get_PCLK1()/(pUSARTHandle->USARTx_Config.baudrate);
+    uint16_t uartdiv            = RCC_Get_PCLK1()/(pUSARTHandle->USARTx_Config.baudrate);
     pUSARTHandle->pUSARTx->BRR |= ((uartdiv/16) << USART_BRR_DIV_MANTISSA) | ((uartdiv%16) << USART_BRR_DIV_FRACTION);
 }                                                                                               
 
 //USART Init
-void USART_init(USART_Handle* pUSARTHandle, GPIO_Handle* pGPIOHandle,  USART_RegDef* pUSARTx)
+bool USART_init(USART_Handle* pUSARTHandle, GPIO_Handle* pGPIOHandle,  USART_RegDef* pUSARTx)
 {
-    pUSARTHandle->pUSARTx = pUSARTx;
+    pUSARTHandle->pUSARTx     = pUSARTx;
     pUSARTHandle->pGPIOHandle = pGPIOHandle;
 
     //USART2
@@ -104,8 +103,8 @@ void USART_init(USART_Handle* pUSARTHandle, GPIO_Handle* pGPIOHandle,  USART_Reg
 
         //Initialize GPIOA pins
         pUSARTHandle->pGPIOHandle->GPIOx_PinConfig.PinOutputSpeed = GPIO_OP_SPEED_10;
-        pUSARTHandle->pGPIOHandle->GPIOx_PinConfig.PinMode = GPIO_MODE_AF;
-        pUSARTHandle->pGPIOHandle->GPIOx_PinConfig.PinConfigType = GPIO_CONFIG_AF_OP_PP;
+        pUSARTHandle->pGPIOHandle->GPIOx_PinConfig.PinMode        = GPIO_MODE_AF;
+        pUSARTHandle->pGPIOHandle->GPIOx_PinConfig.PinConfigType  = GPIO_CONFIG_AF_OP_PP;
 
         //PA2
         pUSARTHandle->pGPIOHandle->GPIOx_PinConfig.PinNo = 2;
@@ -115,6 +114,8 @@ void USART_init(USART_Handle* pUSARTHandle, GPIO_Handle* pGPIOHandle,  USART_Reg
         pUSARTHandle->pGPIOHandle->GPIOx_PinConfig.PinNo = 3;
         GPIO_Init(pUSARTHandle->pGPIOHandle);
     }
+    else
+        return false;
 
     //1. Enable GPIOA Peripheral Clock
     GPIO_PClk_init(pUSARTHandle->pGPIOHandle->pGPIOx, ENABLE);
@@ -157,26 +158,32 @@ void USART_init(USART_Handle* pUSARTHandle, GPIO_Handle* pGPIOHandle,  USART_Reg
 
     //CR2 Configuration
     //8. Configure Stop Bits
-    temp = 0;
+    temp  = 0;
     temp |= pUSARTHandle->USARTx_Config.stop_bits<<USART_CR2_STOP;
+
+    //load the configurated values into CR1
+    pUSARTHandle->pUSARTx->CR1 |= temp;
+
+    return true;
 }
 
 //USART Send Data (Blocking)
 void USART_TX(USART_Handle* pUSARTHandle, uint8_t* pbuffer, uint32_t size)
 {
     pUSARTHandle->pTXBuffer = pbuffer;
-    pUSARTHandle->TXLen = size;
-    pUSARTHandle->TXState = USART_TX_BUSY;
+    pUSARTHandle->TXLen     = size;
+    pUSARTHandle->TXState   = USART_TX_BUSY;
 
     while(size--)
     {
         //wait till USART_SR->TXE becomes 1 to indicate that USART_DR is empty
         while(!(pUSARTHandle->pUSARTx->SR & 1<<USART_SR_TXE));
 
+        //9 bit
         if(pUSARTHandle->USARTx_Config.word_length == USART_WORD_9BIT)
         {
-            uint16_t *pdata = (uint16_t*)pbuffer;
-            pUSARTHandle->pUSARTx->DR = (*pdata && (uint16_t)0x01FF);
+            uint16_t *pdata           = (uint16_t*)pbuffer;
+            pUSARTHandle->pUSARTx->DR = (*pdata & (uint16_t)0x01FF);
 
             if(pUSARTHandle->USARTx_Config.parity_type == USART_PARITY_DISABLE)
                 pbuffer += 2; //increment buffer address twice
@@ -198,12 +205,12 @@ void USART_TX(USART_Handle* pUSARTHandle, uint8_t* pbuffer, uint32_t size)
 void USART_RX(USART_Handle* pUSARTHandle, uint8_t* pbuffer, uint32_t size)
 {
     pUSARTHandle->pRXBuffer = pbuffer;
-    pUSARTHandle->RXLen = size;
-    pUSARTHandle->RXState = USART_RX_BUSY;
+    pUSARTHandle->RXLen     = size;
+    pUSARTHandle->RXState   = USART_RX_BUSY;
 
     while(size--)
     {
-        //wait till USART_SR->TXE becomes 1 to indicate that USART_DR is empty
+        //wait till USART_SR->TXE becomes 1 to indicate that USART_DR is not empty
         while(!(pUSARTHandle->pUSARTx->SR & 1<<USART_SR_RXNE));
 
         if(pUSARTHandle->USARTx_Config.word_length == USART_WORD_9BIT)
@@ -271,7 +278,7 @@ uint8_t USART_TX_IT(USART_Handle* pUSARTHandle, uint8_t* pbuffer, uint32_t size)
     if(TX_State != USART_TX_BUSY)
     {
         //2. Get Data size and buffer address
-        pUSARTHandle->TXLen = size;
+        pUSARTHandle->TXLen     = size;
         pUSARTHandle->pTXBuffer = pbuffer;
 
         //3. Set state as busy in TX
@@ -297,7 +304,7 @@ uint8_t USART_RX_IT(USART_Handle* pUSARTHandle, uint8_t* pbuffer, uint32_t size)
     if(RX_State != USART_RX_BUSY)
     {
         //2. Get Data size and buffer address
-        pUSARTHandle->RXLen = size;
+        pUSARTHandle->RXLen     = size;
         pUSARTHandle->pRXBuffer = pbuffer;
 
         //3. Set state as busy in TX
@@ -361,7 +368,7 @@ void USART_IRQ_Handler(USART_Handle* pUSARTHandle)
                 if(pUSARTHandle->USARTx_Config.word_length == USART_WORD_9BIT)
                 {
                     uint16_t *pdata = (uint16_t*)pUSARTHandle->pTXBuffer;
-                    pUSARTHandle->pUSARTx->DR = (*pdata && (uint16_t)0x01FF);
+                    pUSARTHandle->pUSARTx->DR = (*pdata & (uint16_t)0x01FF);
 
                     if(pUSARTHandle->USARTx_Config.parity_type == USART_PARITY_DISABLE)
                     {
