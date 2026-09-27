@@ -15,6 +15,7 @@
 #define BOARD_INIT_DISPLAY_CLK_INFO                         1
 
 //Serial
+#define SERIAL_USART_TYPE                                   USART_TYPE_DEFAULT
 #define SERIAL_BAUD_RATE                                    USART_BAUDRATE_115200
 
 
