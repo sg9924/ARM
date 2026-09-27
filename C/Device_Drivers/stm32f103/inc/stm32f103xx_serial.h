@@ -75,7 +75,7 @@ void _print_uint(uint32_t value, char* buffer, uint32_t* buff_ind);
 void _print_hex(int32_t value, char* buffer, uint32_t* buff_ind);
 void _print_float(double value, char* buffer, uint32_t* buff_ind, uint8_t precision);
 
-void Serial_UART_init(uint32_t baud_rate);
+void Serial_UART_init(uint8_t usart_type, uint32_t baud_rate);
 void Serial_init();
 
 uint32_t Serialprint(const char *format, uint8_t msg_type, ...);

@@ -36,10 +36,25 @@ static const uint8_t msg_type_levels[] =
 };
 
 
+#if SERIAL_USART_TYPE == USART_TYPE_IT
+    void USART2_IRQHandler(void)
+    {
+        USART_IRQ_Handler(&U2);
+    }
+#endif
+
+
 void _print_buffer(char* buffer, uint32_t* buff_ind)
 {
     if(*buff_ind > 0)
+    {
+        #if SERIAL_USART_TYPE == USART_TYPE_IT
+        USART_TX_IT(&U2, (uint8_t*)buffer, (*buff_ind));
+        //while(U2.TXState != USART_READY);
+        #endif
+        
         USART_TX(&U2, (uint8_t*)buffer, (*buff_ind));
+    }
 }
 
 
@@ -262,17 +277,20 @@ void _print_hex(int32_t value, char* buffer, uint32_t* buff_ind)
 
 
 
-void Serial_UART_init(uint32_t baud_rate)
+void Serial_UART_init(uint8_t usart_type, uint32_t baud_rate)
 {
     USART_Configure(&U2, USART_MODE_TXRX, baud_rate, USART_CPHA_DEFAULT, USART_CPOL_DEFAULT, USART_WORD_8BIT, USART_PARITY_DISABLE, USART_PARITY_NONE, USART_STOPBIT_DEFAULT);
     USART_init(&U2, &GA, USART2);
+
+    if(usart_type == USART_TYPE_IT)
+        USART_IT_Config(&U2, ENABLE);
 }
 
 
 void Serial_init()
 {
     buff_ind = 0;
-    Serial_UART_init(SERIAL_BAUD_RATE);
+    Serial_UART_init(SERIAL_USART_TYPE, SERIAL_BAUD_RATE);
     SERIAL_NL();
     Serialprint("Serial Communication has been initialized.", INFO);
     SERIAL_NL();
