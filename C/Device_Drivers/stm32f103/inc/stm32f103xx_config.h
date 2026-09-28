@@ -16,6 +16,7 @@
 
 //Serial
 #define SERIAL_USART_TYPE                                   USART_TYPE_DEFAULT
+#define MAX_SERIAL_OUTPUTS                                  1
 #define SERIAL_BAUD_RATE                                    USART_BAUDRATE_115200
 
 

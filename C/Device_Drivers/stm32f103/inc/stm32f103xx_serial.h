@@ -55,7 +55,8 @@
 
 
 
-typedef enum {
+typedef enum
+{
     LOG_LEVEL_NONE   = NONE,
     LOG_LEVEL_DEBUG  = DEBUG,
     LOG_LEVEL_INFO   = INFO,
@@ -67,7 +68,7 @@ typedef enum {
 
 static uint8_t current_log_level = LOG_LEVEL_NONE;
 
-
+void serial_output_uart(const char* data, uint32_t length);
 void _print_buffer(char* buffer, uint32_t* buff_ind);
 void _reset_buffer(uint32_t* buff_ind);
 void _print_int(int32_t value, char* buffer, uint32_t* buff_ind);

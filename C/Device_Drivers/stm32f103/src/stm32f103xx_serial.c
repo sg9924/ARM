@@ -12,6 +12,8 @@ static GPIO_Handle GA;
 static uint32_t    buff_ind;
 static char        buffer[BUFF_SIZE_BYTES];
 static bool        serial_flag = true;
+
+//Message Types
 static char*       msg_type_list[10] =
 {
     [NONE]   = "",
@@ -23,7 +25,7 @@ static char*       msg_type_list[10] =
     [ASSERT] = SERIAL_ASSERT_STRING
 };
 
-
+//Log Levels
 static const uint8_t msg_type_levels[] =
 {
     [NONE]   = LOG_LEVEL_NONE,
@@ -36,6 +38,25 @@ static const uint8_t msg_type_levels[] =
 };
 
 
+//Serial Output Function Pointer
+typedef void (*serial_output_fn)(const char* data, uint32_t length);
+
+
+typedef struct
+{
+    serial_output_fn handler;
+    uint8_t          enabled;
+} SerialOutput_t;
+
+SerialOutput_t outputs[MAX_SERIAL_OUTPUTS] =
+{
+    {.handler = serial_output_uart, .enabled = 1}
+    /* more to follow: LCD, OLED, SD Card*/
+};
+
+
+
+
 #if SERIAL_USART_TYPE == USART_TYPE_IT
     void USART2_IRQHandler(void)
     {
@@ -44,16 +65,30 @@ static const uint8_t msg_type_levels[] =
 #endif
 
 
+
+
+void serial_output_uart(const char* data, uint32_t length)
+{
+    #if SERIAL_USART_TYPE == USART_TYPE_IT
+    USART_TX_IT(&U2, (uint8_t*)buffer, length);
+    //while(U2.TXState != USART_READY);
+    #else if SERIAL_USART_TYPE == USART_TYPE_DEFAULT
+    USART_TX(&U2, (uint8_t*)buffer, length);
+    #endif
+}
+
+
+
 void _print_buffer(char* buffer, uint32_t* buff_ind)
 {
     if(*buff_ind > 0)
     {
-        #if SERIAL_USART_TYPE == USART_TYPE_IT
-        USART_TX_IT(&U2, (uint8_t*)buffer, (*buff_ind));
-        //while(U2.TXState != USART_READY);
-        #endif
-        
-        USART_TX(&U2, (uint8_t*)buffer, (*buff_ind));
+        //Route to enabled Serial outputs
+        for (uint8_t i = 0; i < MAX_SERIAL_OUTPUTS; i++)
+        {
+            if (outputs[i].enabled == 1 && outputs[i].handler != NULL)
+                outputs[i].handler((char*)buffer, (*buff_ind));
+        }
     }
 }
 
