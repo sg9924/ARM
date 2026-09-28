@@ -72,7 +72,7 @@ void serial_output_uart(const char* data, uint32_t length)
     #if SERIAL_USART_TYPE == USART_TYPE_IT
     USART_TX_IT(&U2, (uint8_t*)buffer, length);
     //while(U2.TXState != USART_READY);
-    #else if SERIAL_USART_TYPE == USART_TYPE_DEFAULT
+    #elif SERIAL_USART_TYPE == USART_TYPE_DEFAULT
     USART_TX(&U2, (uint8_t*)buffer, length);
     #endif
 }
