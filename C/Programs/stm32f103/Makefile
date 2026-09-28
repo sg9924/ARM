@@ -29,13 +29,14 @@ OBJ_DIR=Objects
 INC_DIR=../../Device_Drivers/stm32f103/inc
 SRC_DIR=../../Device_Drivers/stm32f103/src
 UTIL_DIR=../../Device_Drivers/utilities
+STARTUP_DIR=../../Device_Drivers/stm32f103/others
 LOG_DIR=../../Logs
 
 #Files
 MAIN=LED_Toggle
 ELF=final.elf
-STARTUP=../../Device_Drivers/stm32f103/others/bp_startup
-SYSCALLS=../../Device_Drivers/stm32f103/src/syscalls
+STARTUP=bp_startup
+SYSCALLS=syscalls
 LINK=../../Device_Drivers/stm32f103/others/bp_linker.ld
 DRIVERS=stm32f103xx_gpio.o stm32f103xx_afio.o stm32f103xx_exti.o stm32f103xx_nvic.o stm32f103xx_usart.o stm32f103xx_rcc.o stm32f103xx_rtc.o stm32f103xx_spi.o stm32f103xx_adc.o stm32f103xx_i2c.o stm32f103xx_timer.o stm32f103xx_dma.o stm32f103xx_systick.o stm32f103xx_flash.o stm32f103xx_bkp.o
 OTHERS=stm32f103xx_init.o stm32f103xx_serial.o stm32f103xx_fault_handlers.o
@@ -97,9 +98,9 @@ log.o: $(UTIL_DIR)/log.c
 #	$(CC) $(CFLAGS) $(DEBUG_FLAG) $^ -o $@
 $(MAIN).o:$(MAIN).c 
 	$(CC) $(CFLAGS) $(DEBUG_FLAG) $^ -o $@
-$(STARTUP).o:$(STARTUP).c
+$(STARTUP).o:$(STARTUP_DIR)/$(STARTUP).c
 	$(CC) $(CFLAGS) $(DEBUG_FLAG) $^ -o $@
-$(SYSCALLS).o:$(SYSCALLS).c
+$(SYSCALLS).o:$(SRC_DIR)/$(SYSCALLS).c
 	$(CC) $(CFLAGS) $(DEBUG_FLAG) $^ -o $@
 final.elf: $(MAIN).o $(DRIVERS) $(OTHERS) $(UTILS) $(DISPLAY) $(SENSORS) $(STARTUP).o $(SYSCALLS).o
 	$(CC) $(LDFLAGS) $^ -o $@
