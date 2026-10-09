@@ -221,55 +221,91 @@ void _print_uint(uint32_t value, char* buffer, uint32_t* buff_ind)
 
 void _print_float(double value, char* buffer, uint32_t* buff_ind, uint8_t precision)
 {
-    int32_t integral;
-    int8_t i=0;       //!!!don't change datatype to uint!!!
-    char buff[32];
+    int8_t   i = 0;       //!!!don't change datatype to uint!!!
+    int32_t  integral;
+    char     frac_buff[32];
+    uint32_t fractional_part;
 
-    if(value>0)
-        integral = value;
-    else if(value<0)
-        integral=0;
-    
-    float fractional = (float)value - integral;
-
-    _print_int(integral, buffer, buff_ind);
-
-    if(precision!=0)
+    //Handle Negative float
+    if (value < 0)
     {
-        buffer[(*buff_ind)++] = '.';
+        _buffer_write_char('-');
+        value = -value;  //get absolute value
+    }
 
-        while(precision>0)
-        {
-            fractional = fractional * 10;
-            if(((uint32_t)fractional)%10 == 0)
-                buffer[(*buff_ind)++] = '0';
-            precision--;
-        }
+    //Extract Integral
+    integral = (int32_t)value;
 
+    //Print Integral to Buffer
+    if (integral == 0)
+    {
+        _buffer_write_char('0');
+    }
+    else
+    {
+        char int_buff[32];
+        int8_t int_idx = 0;
+        int32_t temp   = integral;
         
-        uint32_t f = (uint32_t)fractional;
-
-        // extract digits of integer in reverse
-        while(f>0)
+        while (temp > 0)
         {
-            buff[i++] = '0' + (f%10);
-            f/=10;
+            int_buff[int_idx++] = '0' + (temp % 10);
+            temp /= 10;
         }
-        i--;
-
-        // store the digits in correct order
-        while(i>=0)
-        {
-            buffer[(*buff_ind)++] = buff[i--];
-            if (*buff_ind == BUFF_SIZE_BYTES)
-            {
-                _print_buffer(buffer, buff_ind);
-                char_count += (*buff_ind);
-                _reset_buffer(buff_ind);
-            }
-        }
-        char_count += (*buff_ind);
+        int_idx--;
         
+        while (int_idx >= 0)
+            _buffer_write_char(int_buff[int_idx--]);
+    }
+    
+    //Print Decimal to Buffer
+    if (precision > 0)
+    {
+        _buffer_write_char('.');
+
+        float fractional = value - integral;
+
+        //convert precision to whole integer
+        //precision + 1 to get one extra digit for rounding
+        for (int j = 0; j < precision+1; j++)
+            fractional *= 10;
+        
+        fractional_part = (uint32_t)fractional;
+
+        //Check the last digit (rounding digit)
+        uint32_t rounding_digit = fractional_part % 10;
+        fractional_part /= 10;  // 677600 (remove rounding digit)
+
+        //If rounding digit >= 5, round up
+        if (rounding_digit >= 5)
+            fractional_part++;
+    }
+
+    if (fractional_part == 0)
+    {
+        // All zeros - print zeros for precision
+        for (int j = 0; j < precision; j++)
+            _buffer_write_char('0');
+    }
+    else
+    {
+        // Extract digits in reverse order
+        i = 0;
+        while (fractional_part > 0 && i < precision)
+        {
+            frac_buff[i++] = '0' + (fractional_part % 10);
+            fractional_part /= 10;
+        }
+        
+        // Pad with leading zeros if needed
+        while (i < precision)
+            frac_buff[i++] = '0';
+        
+        i--;  // Point to last extracted digit
+        
+        // Print in correct order (reverse)
+        while (i >= 0)
+            _buffer_write_char(frac_buff[i--]);
     }
 }
 
