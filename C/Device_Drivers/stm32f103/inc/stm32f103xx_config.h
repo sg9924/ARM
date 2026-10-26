@@ -3,6 +3,22 @@
 
 
 #define ENABLE_SYSTICK_HANDLER_DEFAULT                      0
+#define ENABLE_SYSTICK_DELAY                                0
+
+//Board Init
+#define BOARD_INIT_SERIAL                                   1
+#define BOARD_INIT_LED                                      1
+#define BOARD_INIT_SYSTICK                                  0
+#define BOARD_INIT_TIM2                                     1
+
+#define BOARD_INIT_DISPLAY_CPU_INFO                         1
+#define BOARD_INIT_DISPLAY_CLK_INFO                         1
+
+//Serial
+#define SERIAL_USART_TYPE                                   USART_TYPE_DEFAULT
+#define MAX_SERIAL_OUTPUTS                                  1
+#define SERIAL_BAUD_RATE                                    USART_BAUDRATE_115200
+
 
 
 

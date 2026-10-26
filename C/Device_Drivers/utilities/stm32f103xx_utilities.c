@@ -1,5 +1,5 @@
 #include"stm32f103xx_utilities.h"
-#include"../inc/stm32f103xx_serial.h"
+#include"../stm32f103/inc/stm32f103xx_serial.h"
 #include<stdarg.h>
 
 //char temp_buff[33];
@@ -71,70 +71,6 @@ char* string_trim(char* pbuff, uint8_t direction, char character, uint32_t lengt
 
 
 
-char* string_format(char* str, ...)
-{
-    bi = 0;
-
-	va_list args;              // initializing list pointer 
-    va_start(args, str);       // Initialize the argument list
-
-    while (*str != '\0')       // Iterate over each character in the format string
-    {
-        if (*str == '%')       // Check for the start of a conversion specifier
-        {
-            str++;             // Move to the next character after '%'
-            if (*str == '%')   // Case: '%%' prints a single '%'
-            {
-                str_buffer[bi++] = '%';
-            }
-            else if (*str == 'c')          // Case: '%c' prints a character
-            {
-                int ch = va_arg(args, int);   // Fetch the next argument as int
-                str_buffer[bi++] = ch;
-            }
-            else if (*str == 's')                 // Case: '%s' prints a string
-            {
-                char *str = va_arg(args, char *);    // Fetch the next argument as char*
-                while (*str)                         // Iterate over each character in the string
-                {
-                    str_buffer[bi++] = *str;
-                    str++;
-                }
-            }
-            else if (*str == 'd' || *str == 'i') // Case: '%d' or '%i' prints an integer
-            {
-                int value = va_arg(args, int);
-                _print_int(value, str_buffer, &bi);
-            }
-            else if(*str == 'x')
-            {
-                unsigned int value = va_arg(args, unsigned int);
-                _print_hex(value, str_buffer, &bi);
-            }
-            else if(*str == '.' && *(str+2) == 'f')
-            {
-                double value = va_arg(args, double);
-                _print_float(value, str_buffer, &bi, *(++str) - '0');
-                ++str;
-            }
-            else if(*str == 'f')
-            {
-                double value = va_arg(args, double);
-                _print_float(value, str_buffer, &bi, 6);
-            }
-        }
-        else // Case: Regular character, not a conversion specifier
-        {
-            str_buffer[bi++] = *str;
-        }
-
-        str++; // Move to the next character in the format string
-    }
-    va_end(args); // Clean up the argument list
-    
-    str_buffer[bi] = '\0';
-    return str_buffer;
-}
 
 
 

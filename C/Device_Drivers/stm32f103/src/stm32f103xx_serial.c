@@ -1,439 +1,669 @@
 #include"../inc/stm32f103xx_serial.h"
+#include"../../utilities/stm32f103xx_utilities.h"
+#include"../../utilities/string_util.h"
+#include"../inc/stm32f103xx_config.h"
+
+#include <stdlib.h>
+
+#define ABS(x)        (x>=0 ? x : -x)
+
+#define _UPDATE_CHAR_COUNT(buff_idx)               (char_count += buff_idx)
 
 USART_Handle U2;
-static GPIO_Handle GA;
+uint8_t      char_count;     //Initialize a counter for the number of characters printed
 
 //Buffer
-static uint32_t buff_ind;
-static char buffer[BUFF_SIZE];
+static GPIO_Handle GA;
+static uint32_t    buff_ind;
+static char        buffer[BUFF_SIZE_BYTES];
+static bool        serial_flag = true;
 
-uint8_t char_count;     // Initialize a counter for the number of characters printed
+//Message Types
+static char*       msg_type_list[10] =
+{
+    [NONE]   = "",
+    [INFO]   = SERIAL_INFO_STRING,
+    [DEBUG]  = SERIAL_DEBUG_STRING,
+    [WARN]   = SERIAL_WARN_STRING,
+    [FATAL]  = SERIAL_FATAL_STRING,
+    [ERROR]  = SERIAL_ERROR_STRING,
+    [ASSERT] = SERIAL_ASSERT_STRING
+};
+
+//Log Levels
+static const uint8_t msg_type_levels[] =
+{
+    [NONE]   = LOG_LEVEL_NONE,
+    [DEBUG]  = LOG_LEVEL_DEBUG,
+    [INFO]   = LOG_LEVEL_INFO,
+    [WARN]   = LOG_LEVEL_WARN,
+    [ERROR]  = LOG_LEVEL_ERROR,
+    [FATAL]  = LOG_LEVEL_FATAL,
+    [ASSERT] = LOG_LEVEL_ASSERT
+};
+
+
+//Serial Output Function Pointer
+typedef void (*serial_output_fn)(const char* data, uint32_t length);
+
+
+typedef struct
+{
+    serial_output_fn handler;
+    uint8_t          enabled;
+} SerialOutput_t;
+
+SerialOutput_t outputs[MAX_SERIAL_OUTPUTS] =
+{
+    {.handler = serial_output_uart, .enabled = 1}
+    /* more to follow: LCD, OLED, SD Card*/
+};
+
+
+
+
+#if SERIAL_USART_TYPE == USART_TYPE_IT
+    void USART2_IRQHandler(void)
+    {
+        USART_IRQ_Handler(&U2);
+    }
+#endif
+
+
+
+
+void serial_output_uart(const char* data, uint32_t length)
+{
+    #if SERIAL_USART_TYPE == USART_TYPE_IT
+    USART_TX_IT(&U2, (uint8_t*)buffer, length);
+    //while(U2.TXState != USART_READY);
+    #elif SERIAL_USART_TYPE == USART_TYPE_DEFAULT
+    USART_TX(&U2, (uint8_t*)buffer, length);
+    #endif
+}
+
+
 
 void _print_buffer(char* buffer, uint32_t* buff_ind)
 {
     if(*buff_ind > 0)
-        USART_TX(&U2, (uint8_t*)buffer, (*buff_ind));
+    {
+        //Route to enabled Serial outputs
+        for (uint8_t i = 0; i < MAX_SERIAL_OUTPUTS; i++)
+        {
+            if (outputs[i].enabled == 1 && outputs[i].handler != NULL)
+                outputs[i].handler((char*)buffer, (*buff_ind));
+        }
+    }
 }
+
 
 void _reset_buffer(uint32_t* buff_ind)
 {
     *buff_ind = 0;
 }
 
-void _print_int(int32_t value, char* buffer, uint32_t* buff_ind)
+
+static void _enable_serial_output()
 {
-    int8_t i=0;   //!!!don't change datatype to uint!!!
-    char buff[32];
-
-    //negative integer
-    if(value<0)
-    {
-        buffer[*buff_ind] = '-';
-        ++(*buff_ind);
-        value = value - (2*value); //making the integer value positive
-    }
-    else if(value == 0)
-    {
-        buffer[*buff_ind] = '0';
-        ++(*buff_ind);
-    }
-
-    // extract digits of integer in reverse
-    while(value>0)
-    {
-        buff[i++] = '0' + (value%10);
-        value/=10;
-    }
-    i--;
-
-    // store the digits in correct order
-    while(i>=0)
-    {
-        buffer[(*buff_ind)++] = buff[i--];
-        if (*buff_ind == BUFF_SIZE)
-        {
-            _print_buffer(buffer, buff_ind);
-            char_count += (*buff_ind);
-            _reset_buffer(buff_ind);
-        }
-    }
-    char_count += (*buff_ind);
+    serial_flag = true;
 }
 
-void _print_float(double value, char* buffer, uint32_t* buff_ind, uint8_t precision)
+
+static void _disable_serial_output()
 {
-    int32_t integral;
-    int8_t i=0;       //!!!don't change datatype to uint!!!
-    char buff[32];
-
-    if(value>0)
-        integral = value;
-    else if(value<0)
-        integral=0;
-    
-    float fractional = (float)value - integral;
-
-    _print_int(integral, buffer, buff_ind);
-
-    if(precision!=0)
-    {
-        buffer[(*buff_ind)++] = '.';
-
-        while(precision>0)
-        {
-            fractional = fractional * 10;
-            if(((uint32_t)fractional)%10 == 0)
-                buffer[(*buff_ind)++] = '0';
-            precision--;
-        }
-
-        
-        uint32_t f = (uint32_t)fractional;
-
-        // extract digits of integer in reverse
-        while(f>0)
-        {
-            buff[i++] = '0' + (f%10);
-            f/=10;
-        }
-        i--;
-
-        // store the digits in correct order
-        while(i>=0)
-        {
-            buffer[(*buff_ind)++] = buff[i--];
-            if (*buff_ind == BUFF_SIZE)
-            {
-                _print_buffer(buffer, buff_ind);
-                char_count += (*buff_ind);
-                _reset_buffer(buff_ind);
-            }
-        }
-        char_count += (*buff_ind);
-        
-    }
-
-    //_print_int((int32_t)fractional,buffer, buff_ind);
+    serial_flag = false;
 }
 
-void _print_hex(uint32_t value, char* buffer, uint32_t* buff_ind)
+
+static uint32_t _get_remaining_bytes()
 {
-    int i=0;
-    char buff[32];
+    return (BUFF_SIZE_BYTES - buff_ind);
+}
 
-    //negative integer
-    /*
-    if(value<0)
+
+static void _flush_buffer()
+{
+    if(serial_flag)
     {
-        buffer[*buff_ind] = '-';
-        ++(*buff_ind);
-        value = value - (2*value); //making the integer value positive
-    }
-    */
-
-    buffer[*buff_ind] = '0';
-    ++(*buff_ind);
-    buffer[*buff_ind] = 'x';
-    ++(*buff_ind);
-
-    if(value == 0)
-    {
-        buffer[*buff_ind] = '0';
-        ++(*buff_ind);;
+        _print_buffer(buffer, &buff_ind);
+        _UPDATE_CHAR_COUNT(buff_ind);
+        _reset_buffer(&buff_ind);
     }
     else
-    {
-        //extract digits of integer in reverse in hexadecimal
-        while(value>0)
-        {
-            buff[i++] = "0123456789ABCDEF"[value % 16];
-            value = value/16;
-        }
-        i--;
+        _UPDATE_CHAR_COUNT(buff_ind);
+}
 
-        // store the digits in correct order
-        while(i>=0)
+
+static void _flush_buffer_preemptive(uint32_t required_bytes)
+{
+    if (_get_remaining_bytes() < required_bytes)
+        _flush_buffer();
+}
+
+
+static void _buffer_write_char(char ch)
+{
+    buffer[buff_ind++] = ch;
+
+    //If Buffer is full
+    //Flush it
+    if (buff_ind == BUFF_SIZE_BYTES)
+        _flush_buffer();
+}
+
+
+static void _buffer_write_str(char* ch)
+{
+    while (*ch)  //Iterate over each character in the string
+    {
+        buffer[buff_ind++] = *ch;
+        ch++;
+        if (buff_ind == BUFF_SIZE_BYTES)
+            _flush_buffer();
+    }
+}
+
+
+
+static uint32_t _uintTostr(uint32_t value, char* buffer)
+{
+    uint8_t  i   = 0;
+    uint32_t len = 0;
+    char     int_buff[12];
+
+    do
+    {
+        int_buff[i++] = '0' + (value % 10);
+        value /= 10;
+    } while(value > 0);
+
+    while(i > 0)
+        buffer[len++] = int_buff[--i];
+
+    buffer[len] = EOS;
+    return len;
+}
+
+
+
+static uint32_t _intTostr(int32_t value, char* buffer)
+{
+    int8_t   i = 0;   //!!!don't change datatype to uint!!!
+    uint32_t len = 0;
+    char     int_buff[12];
+    uint32_t mag;
+    
+    mag = (value < 0) ? ((uint32_t)0 - (uint32_t)value) : (uint32_t)value;
+
+    if(value < 0)
+    {
+        buffer[len++] = '-';
+        buffer++;
+    }
+    
+    len += _uintTostr(mag, buffer);
+
+    return len;
+}
+
+
+
+static uint32_t _floatTostr(double value, char* buffer, int8_t precision)
+{
+    uint32_t len = 0;
+    //Handle sign
+    if(value < 0)
+    {
+        buffer[len++] = '-';
+        value = -value;
+    }
+ 
+    //Extract parts
+    int32_t integral = (int32_t)value;
+    float frac       = value - integral;
+        
+    uint32_t scale = 1;
+    for(uint8_t j = 0; j < precision; j++)
+        scale *= 10;
+
+    //Round fractional part to 'precision' digits
+    uint32_t frac_part = (uint32_t)(frac * scale + 0.5);
+
+    //Carry into integer part (e.g. 0.999 -> 1.00)
+    if(frac_part >= scale)
+    {
+        frac_part = 0;
+        integral++;
+    }
+ 
+    //integer part
+    len += _uintTostr(integral, buffer);
+ 
+    //decimal part
+    //write right to left so leading zeros are kept
+    if (precision > 0)
+    {
+        buffer[len++] = '.';
+        for(uint8_t p = precision; p > 0; p--)
         {
-            buffer[(*buff_ind)++] = buff[i--];
-            if (*buff_ind == BUFF_SIZE)
-            {
-                _print_buffer(buffer, buff_ind);
-                char_count += (*buff_ind);
-                _reset_buffer(buff_ind);
-            }
+            buffer[len + p - 1] = '0' + (frac_part % 10);
+            frac_part /= 10;
+        }
+        len += precision;
+    }
+
+    buffer[len] = EOS;
+    return len;
+}
+
+
+
+
+static uint32_t _floatToExponentStr(double value, char* buffer, int8_t precision)
+{
+    uint32_t len = 0;
+
+    //Handle sign
+    if(value < 0)
+    {
+        buffer[len++] = '-';
+        value = -value;
+    }
+
+    int16_t exp = 0;
+
+    if(value >= 1)
+    {
+        while(value >= 10)
+        {
+            value /= 10;
+            exp++;
         }
     }
-    char_count += (*buff_ind);
+    else if(value < 1 && value > 0)
+    {
+        while(value < 1)
+        {
+            value *= 10;
+            exp--;
+        }
+    }
+
+    //Mantissa Rounding
+    char mant[32];
+    _floatTostr(value, mant, precision);
+    if(mant[1] != '.' && mant[0] == '1' && mant[1] == '0')
+    {
+        //mantissa "10.000" becomes "1.000" with exp + 1
+        value /= 10;
+        exp++;
+    }
+
+    len += _floatTostr(value, buffer+len, precision);
+
+    buffer[len++] = 'e';
+    buffer[len++] = (exp >= 0) ? '+' : '-';
+
+    int16_t absexp = ABS(exp);
+    
+    if(absexp < 10)
+        buffer[len++] = '0';
+    
+    len += _uintTostr(absexp, buffer + len);
+
+    buffer[len++] = EOS;
+    return len;
+    
 }
 
 
-void Serial_UART_init()
+
+
+static uint32_t _intTohexstr(uint32_t value, char* buffer)
 {
-    USART_Configure(&U2, USART_MODE_TXRX, USART_BAUDRATE_9600, USART_CPHA_DEFAULT, USART_CPOL_DEFAULT, USART_WORD_8BIT, USART_PARITY_DISABLE, USART_PARITY_NONE, USART_STOPBIT_DEFAULT);
-    USART_init(&U2, &GA, USART2);
+    uint8_t  i   = 0;
+    uint32_t len = 0;
+    char     hex_buff[8];
+
+    //Extract hex digits in reverse
+    do
+    {
+        hex_buff[i++] = "0123456789ABCDEF"[value & 0xF];
+        value >>= 4;
+    } while(value > 0);
+
+    //Prefix
+    buffer[len++] = '0';
+    buffer[len++] = 'x';
+
+    //Digits in correct order
+    while(i > 0)
+        buffer[len++] = hex_buff[--i];
+
+    buffer[len] = EOS;
+    return len;
 }
+
+
+
+static FormatSpec parse_format_spec(const char** format)
+{
+    FormatSpec spec = 
+    {
+        .left_align      = 0,
+        .zero_pad        = 0,
+        .length_modifier = 0,
+        .width           = -1,
+        .precision       = -1
+    };
+ 
+    if(format == NULL || *format == NULL)
+        return spec;
+ 
+    //1. Parse flags
+    //'-' for left alignment
+    if(**format == '-')
+    {
+        spec.left_align = 1;
+        (*format)++;
+    }
+    //'0' for zero padding
+    else if (**format == '0')
+    {
+        spec.zero_pad = 1;
+        (*format)++;
+    }
+ 
+    //2. Parse width (sequence of digits)
+    if(**format >= '0' && **format <= '9')
+    {
+        spec.width = 0;
+        while (**format >= '0' && **format <= '9')
+        {
+            spec.width = spec.width * 10 + (**format - '0');
+            (*format)++;
+        }
+    }
+ 
+    //3. Parse precision (.digits)
+    if(**format == '.')
+    {
+        (*format)++;  //skip the '.'
+        spec.precision = 0;
+        
+        //Parse precision digits
+        while (**format >= '0' && **format <= '9')
+        {
+            spec.precision = spec.precision * 10 + (**format - '0');
+            (*format)++;
+        }
+    }
+
+    //4. length modifier
+    //ignore for STM32 bluepill
+    if (**format == 'l')
+    (*format)++;
+ 
+    return spec;
+}
+
+
+
+static void _write_formatted(const char *str, uint32_t str_len, uint32_t prefix_len, FormatSpec spec)
+{
+    int32_t pad = spec.width - (int32_t)str_len;
+
+    //Right padding (left-aligned output)
+    if(spec.left_align == 1)
+    {
+        for(int32_t i = 0; i < str_len; i++)
+            _buffer_write_char(str[i]);
+        for(int32_t p = 0; p < pad; p++)
+            _buffer_write_char(' ');
+        
+        return;
+    }
+
+    //zero padding
+    if(spec.zero_pad == 1)
+    {
+        //Prefix (sign or 0x) first
+        for(int32_t i = 0; i < prefix_len; i++)
+            _buffer_write_char(str[i]);
+        //zero padding
+        for(int32_t p = 0; p < pad; p++)
+            _buffer_write_char('0');
+        //data string
+        for(int32_t i = prefix_len; i < str_len; i++)
+            _buffer_write_char(str[i]);
+
+        return;
+    }
+
+    //Left padding (right-aligned output)
+    //zero padding is ignored
+    //print spaces
+    if(spec.left_align == 0)
+    {
+        //left space padding
+        for(int32_t i = 0; i < pad; i++)
+            _buffer_write_char(' ');
+        //data string
+        for(uint32_t i = 0; i < str_len; i++)
+            _buffer_write_char(str[i]);
+    }
+}
+
+
+uint32_t _string_format(const char *format, uint8_t msg_type, va_list args, uint8_t add_newline)
+{
+    char_count = 0;
+
+    if(add_newline)
+    {
+        _buffer_write_str("\r\n");
+    }
+    
+    //Log Type
+    _buffer_write_str(msg_type_list[msg_type]);
+
+
+    while (*format != '\0')                              //Iterate over each character in the format string
+    {
+        if (*format == '%')                              //Check for the start of a conversion specifier
+        {
+            format++;                                    //Move to the next character after '%'
+
+            //Parse the format specifications: %[flags][width][.precision][specifier]
+            FormatSpec spec = parse_format_spec(&format);
+
+            switch (*format)
+            {
+                case '%':  //'%%' prints a single '%'
+                {
+                    _buffer_write_char('%');
+                    break;
+                }
+
+                case 'c':  //'%c' prints a character
+                {
+                    char ch = (char)va_arg(args, int);
+                    spec.zero_pad = 0;
+                    _write_formatted(&ch, 1, 0, spec);
+                    break;
+                }
+
+                case 's':  //'%s' prints a string (with optional width/precision)
+                {
+                    char    *str     = va_arg(args, char *);
+
+                    if(str == NULL)
+                        str = "(null)";
+
+                    uint32_t str_len = xstr_len(str);
+
+                    //Truncation: if precision is set, limit string length
+                    if(spec.precision >= 0 && spec.precision < str_len)
+                        str_len = spec.precision;
+
+                    spec.zero_pad = 0;
+                    _write_formatted(str, str_len, 0, spec);
+                    break;
+                }
+
+                case 'i':  //'%i' (alias for %d)
+                case 'd':  //'%d' : signed int
+                {
+                    int  value = va_arg(args, int);
+                    char num_str[33];
+                    uint32_t len = _intTostr(value, num_str);
+                    
+                    _write_formatted(num_str, len, (value < 0), spec);
+                    break;
+                }
+ 
+                case 'u':  //'%u' prints an unsigned integer
+                {
+                    unsigned int value = va_arg(args, unsigned int);
+                    char     num_str[33];
+                    uint32_t len = _uintTostr(value, num_str);
+
+                    _write_formatted(num_str, len, 0, spec);
+                    break;
+                }
+ 
+                case 'X':
+                case 'x':  //'%x' prints hexadecimal
+                {
+                    uint32_t value = va_arg(args, unsigned int);
+                    char     num_str[12];
+                    uint32_t len = _intTohexstr(value, num_str);
+
+                    _write_formatted(num_str, len, 2, spec);
+                    break;
+                }
+ 
+                case 'f':  //'%f': float
+                {
+                    double value = va_arg(args, double);
+                    char   num_str[32];
+                    int    float_precision = (spec.precision >= 0) ? spec.precision : FLOAT_PRECISION_MAX;
+                    uint32_t len = _floatTostr(value, num_str, float_precision);
+
+                    _write_formatted(num_str, xstr_len(num_str), (value < 0), spec);
+                    break;
+                }
+
+                case 'e':
+                {
+                    double value = va_arg(args, double);
+                    char   num_str[32];
+                    int    float_precision = (spec.precision >= 0) ? spec.precision : FLOAT_PRECISION_MAX;
+                    uint32_t len = _floatToExponentStr(value, num_str, float_precision);
+
+                    _write_formatted(num_str, xstr_len(num_str), (value < 0), spec);
+                    break;
+
+                }
+ 
+                default:  //Unknown specifier - just skip it
+                {
+                    break;
+                }
+            }
+            
+        }
+        else //Regular character, not a conversion specifier
+            _buffer_write_char(*format);
+
+        format++; //Move to the next character in the format string
+    }
+
+    _flush_buffer();
+
+    va_end(args); //Clean up the argument list
+    return char_count; //Return the number of characters printed
+}
+
+
+
+
+void Serial_UART_init(uint8_t usart_type, uint32_t baud_rate)
+{
+    USART_Configure(&U2, USART_MODE_TXRX, baud_rate, USART_CPHA_DEFAULT, USART_CPOL_DEFAULT, USART_WORD_8BIT, USART_PARITY_DISABLE, USART_PARITY_NONE, USART_STOPBIT_DEFAULT);
+    USART_init(&U2, &GA, USART2);
+
+    if(usart_type == USART_TYPE_IT)
+        USART_IT_Config(&U2, ENABLE);
+}
+
+
 
 void Serial_init()
 {
-    Serial_UART_init();
+    buff_ind = 0;
+    Serial_UART_init(SERIAL_USART_TYPE, SERIAL_BAUD_RATE);
     SERIAL_NL();
-    Serialprintln("Serial Communication has been initialized.", INFO);
+    Serialprint("Serial Communication has been initialized.", INFO);
+    SERIAL_NL();
 }
 
 
 
 
-uint8_t Serialprint(const char *format, uint8_t msg_type, ...)
+uint32_t Serialprint(const char *format, uint8_t msg_type, ...)
 {
-    char_count = 0;
-    buff_ind = 0;
+    va_list args;                 //initialize the list pointer
+    va_start(args, msg_type);     //Initialize the argument list
+
+    if (GET_LOG_LEVEL(msg_type) < current_log_level)
+    {
+        va_end(args);
+        return 0;
+    }
+
+    uint32_t result = _string_format(format, msg_type, args, 0); //add new line is false
     
-    if(msg_type == DEBUG)
-    {
-        string_copy(&buffer[0], SERIAL_DEBUG_STRING);
-        buff_ind = string_size(SERIAL_DEBUG_STRING)+1;
-    } 
-    else if(msg_type == INFO)
-    {
-        string_copy(&buffer[0], SERIAL_INFO_STRING);
-        buff_ind = string_size(SERIAL_INFO_STRING)+1;
-    }
-    else if(msg_type == WARN)
-    {
-        string_copy(&buffer[0], SERIAL_WARN_STRING);
-        buff_ind = string_size(SERIAL_WARN_STRING)+1;
-    }
-    else if(msg_type == FATAL)
-    {
-        string_copy(&buffer[0], SERIAL_FATAL_STRING);
-        buff_ind = string_size(SERIAL_FATAL_STRING)+1;
-    }
-    else if(msg_type == ASSERT)
-    {
-        string_copy(&buffer[0], SERIAL_ASSERT_STRING);
-        buff_ind = string_size(SERIAL_ASSERT_STRING)+1;
-    }
-    else
-    {
-        buff_ind = 0;
-    }
-
-	va_list args;                 // initializing list pointer 
-    va_start(args, msg_type);       // Initialize the argument list
-
-    while (*format != '\0')       // Iterate over each character in the format string
-    {
-        if (*format == '%')       // Check for the start of a conversion specifier
-        {
-            format++;             // Move to the next character after '%'
-            if (*format == '%')   // Case: '%%' prints a single '%'
-            {
-                buffer[buff_ind++] = '%';
-                if (buff_ind == BUFF_SIZE)
-                {
-                    _print_buffer(buffer, &buff_ind);
-                    char_count += buff_ind;
-                    _reset_buffer(&buff_ind);
-                }
-            }
-            else if (*format == 'c')          // Case: '%c' prints a character
-            {
-                int ch = va_arg(args, int);   // Fetch the next argument as int
-                buffer[buff_ind++] = ch;
-                if (buff_ind == BUFF_SIZE)
-                {
-                    _print_buffer(buffer, &buff_ind);
-                    char_count += buff_ind;
-                    _reset_buffer(&buff_ind);
-                }
-            }
-            else if (*format == 's')                 // Case: '%s' prints a string
-            {
-                char *str = va_arg(args, char *);    // Fetch the next argument as char*
-                while (*str)                         // Iterate over each character in the string
-                {
-                    buffer[buff_ind++] = *str;
-                    str++;
-                    if (buff_ind == BUFF_SIZE)
-                    {
-                        _print_buffer(buffer, &buff_ind);
-                        char_count += buff_ind;
-                        _reset_buffer(&buff_ind);
-                    }
-                }
-            }
-            else if (*format == 'd' || *format == 'i') // Case: '%d' or '%i' prints an integer
-            {
-                int value = va_arg(args, int);
-                _print_int(value, buffer, &buff_ind);
-            }
-            else if(*format == 'x')
-            {
-                unsigned int value = va_arg(args, unsigned int);
-                _print_hex(value, buffer, &buff_ind);
-            }
-            else if(*format == '.' && *(format+2) == 'f')
-            {
-                double value = va_arg(args, double);
-                _print_float(value, buffer, &buff_ind, *(++format) - '0');
-                ++format;
-            }
-            else if(*format == 'f')
-            {
-                double value = va_arg(args, double);
-                _print_float(value, buffer, &buff_ind, FLOAT_PRECISION_MAX);
-            }
-        }
-        else // Case: Regular character, not a conversion specifier
-        {
-            buffer[buff_ind++] = *format;
-            if (buff_ind == BUFF_SIZE)
-            {
-                _print_buffer(buffer, &buff_ind);
-                char_count += buff_ind;
-                _reset_buffer(&buff_ind);
-            }
-        }
-
-        format++; // Move to the next character in the format string
-    }
-
-    _print_buffer(buffer, &buff_ind);
-    char_count += buff_ind;
-    _reset_buffer(&buff_ind);
-
-    va_end(args); // Clean up the argument list
-
-    wait(SERIAL_DELAY);
-    return char_count; // Return the number of characters printed
+    va_end(args);
+    return result;
 }
 
 
 
-uint8_t Serialprintln(char *format, uint8_t msg_type, ...)
+uint32_t Serialprintln(const char *format, uint8_t msg_type, ...)
 {
-    char_count = 0;
-    buff_ind = 0;
+    va_list args;                 //initialize the list pointer
+    va_start(args, msg_type);     //Initialize the argument list
+
+    if (GET_LOG_LEVEL(msg_type) < current_log_level)
+    {
+        va_end(args);
+        return 0;
+    }
+
+    uint32_t result = _string_format(format, msg_type, args, 1);  //add new line is true
     
-    if(msg_type == DEBUG)
-    {
-        string_copy(&buffer[0], SERIAL_DEBUG_STRING_W_NL);
-        buff_ind = string_size(SERIAL_DEBUG_STRING_W_NL)+1;
-    } 
-    else if(msg_type == INFO)
-    {
-        string_copy(&buffer[0], SERIAL_INFO_STRING_W_NL);
-        buff_ind = string_size(SERIAL_INFO_STRING_W_NL)+1;
-    }
-    else if(msg_type == WARN)
-    {
-        string_copy(&buffer[0], SERIAL_WARN_STRING_W_NL);
-        buff_ind = string_size(SERIAL_WARN_STRING_W_NL)+1;
-    }
-    else if(msg_type == FATAL)
-    {
-        string_copy(&buffer[0], SERIAL_FATAL_STRING_W_NL);
-        buff_ind = string_size(SERIAL_FATAL_STRING_W_NL)+1;
-    }
-    else if(msg_type == ASSERT)
-    {
-        string_copy(&buffer[0], SERIAL_ASSERT_STRING_W_NL);
-        buff_ind = string_size(SERIAL_ASSERT_STRING_W_NL)+1;
-    }
-    else
-    {
-        string_copy(&buffer[0], SERIAL_NL_STRING);
-        buff_ind = 2;
-    }
+    va_end(args);
+    return result;
+}
 
-	va_list args;                 // initializing list pointer 
-    va_start(args, msg_type);     // Initialize the argument list
 
-    while (*format != '\0')       // Iterate over each character in the format string
-    {
-        if (*format == '%')       // Check for the start of a conversion specifier
-        {
-            format++;             // Move to the next character after '%'
-            if (*format == '%')   // Case: '%%' prints a single '%'
-            {
-                buffer[buff_ind++] = '%';
-                if (buff_ind == BUFF_SIZE)
-                {
-                    _print_buffer(buffer, &buff_ind);
-                    char_count += buff_ind;
-                    _reset_buffer(&buff_ind);
-                }
-            }
-            else if (*format == 'c')          // Case: '%c' prints a character
-            {
-                int ch = va_arg(args, int);   // Fetch the next argument as int
-                buffer[buff_ind++] = ch;
-                if (buff_ind == BUFF_SIZE)
-                {
-                    _print_buffer(buffer, &buff_ind);
-                    char_count += buff_ind;
-                    _reset_buffer(&buff_ind);
-                }
-            }
-            else if (*format == 's')                 // Case: '%s' prints a string
-            {
-                char *str = va_arg(args, char *);    // Fetch the next argument as char*
-                while (*str)                         // Iterate over each character in the string
-                {
-                    buffer[buff_ind++] = *str;
-                    str++;
-                    if (buff_ind == BUFF_SIZE)
-                    {
-                        _print_buffer(buffer, &buff_ind);
-                        char_count += buff_ind;
-                        _reset_buffer(&buff_ind);
-                    }
-                }
-            }
-            else if (*format == 'd' || *format == 'i') // Case: '%d' or '%i' prints an integer
-            {
-                int value = va_arg(args, int);
-                _print_int(value, buffer, &buff_ind);
-            }
-            else if(*format == 'x')
-            {
-                unsigned int value = va_arg(args, unsigned int);
-                _print_hex(value, buffer, &buff_ind);
-            }
-            else if(*format == '.' && *(format+2) == 'f')
-            {
-                double value = va_arg(args, double);
-                _print_float(value, buffer, &buff_ind, *(++format) - '0');
-                ++format;
-            }
-            else if(*format == 'f')
-            {
-                double value = va_arg(args, double);
-                _print_float(value, buffer, &buff_ind, FLOAT_PRECISION_MAX);
-            }
-        }
-        else // Case: Regular character, not a conversion specifier
-        {
-            buffer[buff_ind++] = *format;
-            if (buff_ind == BUFF_SIZE)
-            {
-                _print_buffer(buffer, &buff_ind);
-                char_count += buff_ind;
-                _reset_buffer(&buff_ind);
-            }
-        }
 
-        format++; // Move to the next character in the format string
-    }
+char* Stringformat(const char *format, uint8_t msg_type, bool new_line, ...)
+{
+    _disable_serial_output();      //disable UART
+    va_list args;                 //initialize the list pointer
+    va_start(args, new_line);     //Initialize the argument list
 
-    _print_buffer(buffer, &buff_ind);
-    char_count += buff_ind;
-    _reset_buffer(&buff_ind);
+    buff_ind = 0;                 //Reset buffer index
+    uint32_t result = _string_format(format, msg_type, args, new_line);
+    _buffer_write_char('\0');     //mark end of the string
+    
+    va_end(args);
+    _enable_serial_output();       //enable UART
 
-    va_end(args); // Clean up the argument list
-
-    wait(SERIAL_DELAY);
-    return char_count; // Return the number of characters printed
+    return buffer;
 }
 
 
@@ -489,126 +719,10 @@ void SerialInput(char* msg, uint8_t datatype, void* var)
 
 
 
-uint8_t vSerialprintln(char *format, uint8_t msg_type, va_list args)
+uint32_t vSerialprintln(char *format, uint8_t msg_type, va_list args)
 {
-    char_count = 0;
-    buff_ind = 0;
-    
-    if(msg_type == DEBUG)
-    {
-        string_copy(&buffer[0], SERIAL_DEBUG_STRING_W_NL);
-        buff_ind = string_size(SERIAL_DEBUG_STRING_W_NL)+1;
-    } 
-    else if(msg_type == INFO)
-    {
-        string_copy(&buffer[0], SERIAL_INFO_STRING_W_NL);
-        buff_ind = string_size(SERIAL_INFO_STRING_W_NL)+1;
-    }
-    else if(msg_type == WARN)
-    {
-        string_copy(&buffer[0], SERIAL_WARN_STRING_W_NL);
-        buff_ind = string_size(SERIAL_WARN_STRING_W_NL)+1;
-    }
-    else if(msg_type == FATAL)
-    {
-        string_copy(&buffer[0], SERIAL_FATAL_STRING_W_NL);
-        buff_ind = string_size(SERIAL_FATAL_STRING_W_NL)+1;
-    }
-    else if(msg_type == ASSERT)
-    {
-        string_copy(&buffer[0], SERIAL_ASSERT_STRING_W_NL);
-        buff_ind = string_size(SERIAL_ASSERT_STRING_W_NL)+1;
-    }
-    else
-    {
-        string_copy(&buffer[0], SERIAL_NL_STRING);
-        buff_ind = 2;
-    }
-
-
-    while (*format != '\0')       // Iterate over each character in the format string
-    {
-        if (*format == '%')       // Check for the start of a conversion specifier
-        {
-            format++;             // Move to the next character after '%'
-            if (*format == '%')   // Case: '%%' prints a single '%'
-            {
-                buffer[buff_ind++] = '%';
-                if (buff_ind == BUFF_SIZE)
-                {
-                    _print_buffer(buffer, &buff_ind);
-                    char_count += buff_ind;
-                    _reset_buffer(&buff_ind);
-                }
-            }
-            else if (*format == 'c')          // Case: '%c' prints a character
-            {
-                int ch = va_arg(args, int);   // Fetch the next argument as int
-                buffer[buff_ind++] = ch;
-                if (buff_ind == BUFF_SIZE)
-                {
-                    _print_buffer(buffer, &buff_ind);
-                    char_count += buff_ind;
-                    _reset_buffer(&buff_ind);
-                }
-            }
-            else if (*format == 's')                 // Case: '%s' prints a string
-            {
-                char *str = va_arg(args, char *);    // Fetch the next argument as char*
-                while (*str)                         // Iterate over each character in the string
-                {
-                    buffer[buff_ind++] = *str;
-                    str++;
-                    if (buff_ind == BUFF_SIZE)
-                    {
-                        _print_buffer(buffer, &buff_ind);
-                        char_count += buff_ind;
-                        _reset_buffer(&buff_ind);
-                    }
-                }
-            }
-            else if (*format == 'd' || *format == 'i') // Case: '%d' or '%i' prints an integer
-            {
-                int value = va_arg(args, int);
-                _print_int(value, buffer, &buff_ind);
-            }
-            else if(*format == 'x')
-            {
-                unsigned int value = va_arg(args, unsigned int);
-                _print_hex(value, buffer, &buff_ind);
-            }
-            else if(*format == '.' && *(format+2) == 'f')
-            {
-                double value = va_arg(args, double);
-                _print_float(value, buffer, &buff_ind, *(++format) - '0');
-                ++format;
-            }
-            else if(*format == 'f')
-            {
-                double value = va_arg(args, double);
-                _print_float(value, buffer, &buff_ind, FLOAT_PRECISION_MAX);
-            }
-        }
-        else // Case: Regular character, not a conversion specifier
-        {
-            buffer[buff_ind++] = *format;
-            if (buff_ind == BUFF_SIZE)
-            {
-                _print_buffer(buffer, &buff_ind);
-                char_count += buff_ind;
-                _reset_buffer(&buff_ind);
-            }
-        }
-
-        format++; // Move to the next character in the format string
-    }
-
-    _print_buffer(buffer, &buff_ind);
-    char_count += buff_ind;
-    _reset_buffer(&buff_ind);
-
-    wait(SERIAL_DELAY);
-    return char_count; // Return the number of characters printed
+    uint32_t result = _string_format(format, msg_type, args, 1);  //add new line is true
+    return result;
 }
 
 
@@ -618,23 +732,23 @@ void SerialInput(char* msg, char* format, ...)
 {
     Serialprint(msg);
 
-    va_list args;                 // initializing list pointer 
-    va_start(args, format);       // Initialize the argument list
+    va_list args;                 //initializing list pointer 
+    va_start(args, format);       //Initialize the argument list
 
-    while (*format != '\0')       // Iterate over each character in the format string
+    while (*format != '\0')       //Iterate over each character in the format string
     {
-        if (*format == '%')       // Check for the start of a conversion specifier
+        if (*format == '%')       //Check for the start of a conversion specifier
         {
-            format++;             // Move to the next character after '%'
-            if (*format == 'c')   // Case: Input is a character
+            format++;             //Move to the next character after '%'
+            if (*format == 'c')   //Input is a character
             {
                 char* ch = va_arg(args, char*);
                 USART_RX(&U2, (uint8_t*)ch, 1);
                 USART_TX(&U2, (uint8_t*)ch, 1);
             }
-            else if (*format == 's')                // Case: Input is a string
+            else if (*format == 's')                //Input is a string
             {
-                char* str = va_arg(args, char*);    // Fetch the next argument as char*
+                char* str = va_arg(args, char*);    //Fetch the next argument as char*
                 while(1)
                 {
                     USART_RX(&U2, (uint8_t*)str, 1);
@@ -645,7 +759,7 @@ void SerialInput(char* msg, char* format, ...)
                 }
                 *(--str) = '\0';
             }
-        format++; // Move to the next character in the format string
+        format++; //Move to the next character in the format string
         }
     }
 }
