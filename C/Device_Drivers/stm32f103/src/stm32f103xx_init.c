@@ -1,4 +1,5 @@
 #include"../inc/stm32f103xx_init.h"
+#include"../inc/stm32f103xx_config.h"
 #include"../inc/stm32f103xx.h"
 #include"../inc/stm32f103xx_core.h"
 #include"../inc/stm32f103xx_timer.h"
@@ -9,18 +10,38 @@
 //TIM2 for delays
 
 //RCC_Handle R;
-TIM_Handle Delay;
+TIM_Handle TIM2_Delay;
 GPIO_Handle LED;
 extern uint32_t sysclock;
+extern RCC_Handle RCCHandle;
 
 void board_init()
 {
-    clock_init();  //SYSCLK: PLL with HSE at 72MHz
+    #if BOARD_INIT_SERIAL == 1
     Serial_init(); //Initialize USART2 for Serial Print (Debugging)
+    #endif
+
+    #if BOARD_INIT_LED == 1
     led_init();    //Initialize built in LED at PC13
-    led_reset();   //switch off led
+    led_off();     //switch off led
+    #endif
+
+    #if BOARD_INIT_TIM2 == 1
+    tim2_init();
+    #endif
+
+    #if BOARD_INIT_SYSTICK == 1
+    Systick_Configure(SYSTICK_CLK_SRC_AHB, SYSTICK_EXCEPTION_ENABLE);
+    SYSTICK_ENABLE();
+    #endif
+
+    #if BOARD_INIT_DISPLAY_CPU_INFO == 1
     display_cpu_info();
+    #endif
+
+    #if BOARD_INIT_DISPLAY_CLK_INFO == 1
     display_clk_info();
+    #endif
     
 }
 
@@ -75,24 +96,35 @@ void display_clk_info()
 }
 
 
+
+void tim2_init()
+{
+    uint32_t prescale_value;
+    //APB1 prescalar is greater than 1 -> timer clock is PCLK1 x 2
+    if(RCCHandle.APB1_Prescalar > 1)
+        prescale_value = ((RCC_Get_PCLK1()) * 2/1000000) - 1;
+    else
+        prescale_value = (RCC_Get_PCLK1()/1000000) - 1;
+    
+    //Configure Timer 2
+    //PSC: 1, ARR: max -> 1MHZ: 1us delay for 1 in ARR -> for 72MHz clock
+    TIM_Base_Configure(&TIM2_Delay, TIM2, TIM_COUNT_DIR_UP, prescale_value, (0xFFFF), TIM_AR_PRELOAD_ENABLE);
+    TIM_Base_init(&TIM2_Delay); //initialize
+    TIM_Base_Start(&TIM2_Delay); //enable timer
+}
+
+
 void tim_delay_ms(uint16_t delay)
 {
-    //Configure Timer 2
-    TIM_Base_Configure(&Delay, TIM2, TIM_COUNT_DIR_UP, ((sysclock/10000)-1), (delay*10)-1, TIM_AR_PRELOAD_ENABLE);
-    TIM_Count_Reset(&Delay); //reset count
-    TIM_Base_init(&Delay); //initialize
-    TIM_Base_Start(&Delay); //enable timer
-    TIM_Update_Event_Check(&Delay); //wait for update event flag
-    TIM_Base_Stop(&Delay); //disable timer
+    TIM2->CNT = 0;
+    while(TIM2->CNT < delay);
 }
 
 
 void tim_delay_us(uint16_t delay)
 {
-    //Configure Timer 2
-    TIM_Base_Configure(&Delay, TIM2, TIM_COUNT_DIR_UP, ((sysclock/1000000)-1), delay-1, TIM_AR_PRELOAD_ENABLE);
-    TIM_Base_init(&Delay); //initialize
-    TIM_Base_Start(&Delay); //enable timer
-    TIM_Update_Event_Check(&Delay); //wait for update event flag
-    TIM_Base_Stop(&Delay); //disable timer
+    for(uint16_t i=0; i<delay; i++)
+    {
+        tim_delay_us(1000);
+    }
 }
