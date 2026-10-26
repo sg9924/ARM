@@ -24,7 +24,6 @@ uint32_t string_size(char* data);
 char* string_truncate(char* pbuff, uint8_t length, uint8_t no_of_chars, uint8_t direction);
 char* string_concat(char* s1, char* s2);
 char* string_trim(char* pbuff, uint8_t direction, char character, uint32_t length);
-char* string_format(char* str, ...);
 
 char* array_reverse(char* pbuff, uint8_t length);
 char* string_copy(char* dest, char* src);
@@ -38,7 +37,6 @@ int32_t string_to_int(char* str);
 uint8_t no_of_digits(uint32_t num);
 
 uint32_t power(uint8_t num, uint8_t power);
-
 
 //char* digit_extract(uint32_t num);
 

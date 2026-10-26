@@ -54,7 +54,6 @@
 #define GET_CURRENT_LOG_LEVEL()        (current_log_level)
 
 
-
 typedef enum
 {
     LOG_LEVEL_NONE   = NONE,
@@ -65,6 +64,18 @@ typedef enum
     LOG_LEVEL_FATAL  = FATAL,
     LOG_LEVEL_ASSERT = ASSERT
 } LogLevel_t;
+
+
+
+typedef struct
+{
+    int8_t left_align;   //< Flag '-': 1 if left-aligned, 0 if right-aligned
+    int8_t zero_pad;     //< Flag '0': zero padding
+    int8_t length_modifier;
+    int8_t width;        //< Minimum field width (-1 if not specified)
+    int8_t precision;    //< Maximum precision for strings, decimals (-1 if not specified)
+} FormatSpec;
+
 
 static uint8_t current_log_level = LOG_LEVEL_NONE;
 

@@ -3,7 +3,6 @@
 #include"../../Device_Drivers/stm32f103/inc/stm32f103xx_serial.h"
 #include "../../Device_Drivers/utilities/ascii.h"
 
-
 int main()
 {
     board_init();
